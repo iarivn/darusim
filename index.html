@@ -139,19 +139,25 @@ select.dsel{width:100%;background:var(--card2);border:1px solid var(--line2);col
 .sctl button:hover{background:rgba(45,212,191,.12)}
 .stage{position:relative;height:640px;overflow:hidden;background:radial-gradient(600px 400px at 50% 30%,rgba(45,212,191,.06),transparent 65%)}
 @media(max-width:640px){.stage{height:520px}}
-.stage svg.body{position:absolute;inset:0;margin:auto;height:100%;max-width:100%}
+ .anat-wrap{position:relative;height:100%;aspect-ratio:1008/2096;margin:0 auto;transition:transform .5s ease;will-change:transform}
+.anat-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 44px rgba(45,212,191,.07))}
+.fx-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hs-layer{position:absolute;inset:0}
+.hs{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;background:none;border:none;border-radius:50%;cursor:pointer;z-index:5;padding:0}
+.hs .ring{display:block;width:100%;height:100%;border-radius:50%;border:2px solid rgba(255,255,255,.22);background:rgba(45,212,191,.1);transition:.3s}
+.hs.dim{opacity:.15;pointer-events:none}
+.hs.fx-good .ring{border-color:var(--green);background:rgba(52,211,153,.28);animation:hsP 1.6s ease-in-out infinite}
+.hs.fx-bad .ring{border-color:var(--red);background:rgba(248,113,113,.28);animation:hsR 1s ease-in-out infinite}
+@keyframes hsP{50%{box-shadow:0 0 0 10px rgba(52,211,153,.22),0 0 26px rgba(52,211,153,.85)}}
+@keyframes hsR{50%{box-shadow:0 0 0 12px rgba(248,113,113,.28),0 0 28px rgba(248,113,113,.9)}}
+.female-ph{height:100%;display:flex;align-items:center;justify-content:center;padding:30px}
+.fp-card{background:var(--card);border:1px dashed var(--line2);border-radius:20px;padding:44px 30px;text-align:center;max-width:400px}
+.fp-t{font-weight:800;font-size:1.15rem;margin-bottom:12px;color:var(--teal)}
+.fp-card p{color:var(--mut);font-size:.9rem;line-height:2.1}
 .legend{position:absolute;bottom:14px;right:14px;display:flex;gap:8px;flex-wrap:wrap;z-index:5}
 .lg{background:rgba(4,10,11,.75);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:.72rem;font-weight:700;
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .lg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:6px}
-/* organ fx */
-.organ{transition:opacity .35s;cursor:pointer}
-.organ.dim{opacity:.22}
-.organ .hit{transition:.3s}
-.organ.fx-good .hit{filter:drop-shadow(0 0 5px #34D399) drop-shadow(0 0 16px rgba(52,211,153,.85));animation:pg 1.7s ease-in-out infinite}
-.organ.fx-bad .hit{filter:drop-shadow(0 0 5px #F87171) drop-shadow(0 0 16px rgba(248,113,113,.9));animation:pr 1.05s ease-in-out infinite}
-@keyframes pg{50%{filter:drop-shadow(0 0 12px #34D399) drop-shadow(0 0 30px rgba(52,211,153,.95))}}
-@keyframes pr{50%{filter:drop-shadow(0 0 12px #F87171) drop-shadow(0 0 30px rgba(248,113,113,1))}}
 .pt{fill:var(--teal);filter:drop-shadow(0 0 5px var(--teal))}
 .capsule{filter:drop-shadow(0 0 10px rgba(45,212,191,.8))}
 /* tour card */
@@ -181,6 +187,67 @@ select.dsel{width:100%;background:var(--card2);border:1px solid var(--line2);col
 /* footer */
 footer{border-top:1px solid var(--line);padding:34px 22px;text-align:center;color:var(--dim);font-size:.8rem;line-height:2.1}
 footer b{color:var(--mut)}
+
+@media(max-width:640px){
+  body{font-size:14px}
+  .hero{padding:42px 18px 20px}
+  .hero h1{font-size:1.85rem}
+  .hero p{font-size:.85rem}
+  .hero .kick{font-size:.7rem}
+  .searchbar input{font-size:.88rem;padding:13px 48px 13px 16px}
+  .cat{font-size:.76rem;padding:7px 15px}
+  .sec{padding:18px 14px 48px}
+  .sec-h h2{font-size:1.05rem}
+  .sec-h span{font-size:.75rem}
+  .dcard{padding:15px}
+  .dcard h3{font-size:.95rem}
+  .dcard .en{font-size:.68rem}
+  .dcard p{font-size:.76rem;min-height:0;line-height:1.85}
+  .dcard .cat-tag{font-size:.64rem}
+  .btn{font-size:.78rem;padding:9px 13px}
+  .fav{font-size:1.05rem}
+  .mbox{padding:24px 18px}
+  .mbox h2{font-size:1.2rem}
+  .mbox .en{font-size:.74rem}
+  .mbox h4{font-size:.83rem;margin:16px 0 6px}
+  .mbox p,.mbox li{font-size:.8rem;line-height:1.95}
+  .tip{font-size:.78rem}
+  .sim-head{padding:30px 16px 6px}
+  .sim-head h1{font-size:1.55rem}
+  .sim-head p{font-size:.82rem}
+  .sim-wrap{padding:12px 12px 40px;gap:14px}
+  .panel{padding:17px}
+  .panel h3{font-size:.9rem}
+  .panel label.fl{font-size:.74rem}
+  .pill2{font-size:.76rem;padding:8px 11px}
+  .seg button{font-size:.8rem;padding:8px}
+  select.dsel{font-size:.84rem;padding:10px}
+  .runbtn{font-size:.9rem;padding:13px}
+  .discl{font-size:.66rem}
+  .warnbox{font-size:.76rem}
+  .stage{height:480px}
+  .stage-bar{padding:10px 14px}
+  .stage-bar .t{font-size:.82rem}
+  .sctl button{font-size:.7rem;padding:7px 10px}
+  .lg{font-size:.64rem;padding:4px 11px}
+  .tour{padding:16px;min-height:150px}
+  .tour .th h3{font-size:.98rem}
+  .badge{font-size:.66rem}
+  .tour .tt{font-size:.8rem;line-height:1.95}
+  .tnav button{font-size:.76rem;padding:7px 14px}
+  .fxlist h3{font-size:.98rem}
+  .fx{padding:12px 14px}
+  .fx .fh{font-size:.82rem}
+  .fx p{font-size:.72rem}
+  .hd-in{padding:0 14px;height:60px}
+  .logo b{font-size:.98rem}
+  .logo small{font-size:.6rem}
+  .logo .pill{width:34px;height:34px}
+  .chipbtn{padding:7px 13px;font-size:.72rem}
+  footer{font-size:.7rem;padding:24px 14px}
+  .hs{width:28px;height:28px;margin:-14px 0 0 -14px}
+}
+
 </style>
 </head>
 <body>
@@ -312,12 +379,13 @@ footer b{color:var(--mut)}
 <script>
 /* ============ ORGAN META ============ */
 const ORGANS={
- brain:{fa:'مغز',x:200,y:78}, thyroid:{fa:'غده تیروئید',x:200,y:148},
- lungs:{fa:'ریه‌ها',x:200,y:235}, heart:{fa:'قلب',x:182,y:262},
- liver:{fa:'کبد',x:243,y:335}, stomach:{fa:'معده',x:172,y:345},
- kidney:{fa:'کلیه‌ها',x:200,y:378}, gut:{fa:'روده‌ها',x:200,y:445},
- blood:{fa:'خون و رگ‌ها',x:200,y:400}, skin:{fa:'پوست',x:200,y:400}, bone:{fa:'استخوان و مفاصل',x:200,y:600}
+ brain:{fa:'مغز',x:50,y:21}, thyroid:{fa:'غده تیروئید',x:50,y:33},
+ lungs:{fa:'ریه‌ها',x:50,y:56}, heart:{fa:'قلب',x:47,y:63.5},
+ liver:{fa:'کبد',x:56,y:77}, stomach:{fa:'معده',x:46,y:81},
+ kidney:{fa:'کلیه‌ها',x:50,y:87.5}, gut:{fa:'روده‌ها',x:50,y:96},
+ blood:{fa:'خون و رگ‌ها',x:50,y:73}, skin:{fa:'پوست',x:50,y:104}, bone:{fa:'استخوان و مفاصل',x:50,y:150}
 };
+const MOUTH={x:50,y:26}, STOMACH_PT={x:46,y:81};
 const CATS={pain:'مسکن و ضدالتهاب',antibiotic:'آنتی‌بیوتیک',cardio:'قلب و فشار خون',diabetes:'دیابت و قند خون',gi:'گوارش',neuro:'مغز و اعصاب',resp:'تنفسی و آلرژی',hormone:'هورمونی',blood:'خون',supp:'مکمل‌ها'};
 
 /* ther: {o,s,l} | adv: {o,c,s,l} — c: high=دوز بالا، long=مصرف طولانی، both=هر دو */
@@ -512,75 +580,11 @@ const DRUGS=[
 ];
 </script>
 <script>
-/* ============ BODY SVG BUILDER ============ */
-function torsoPath(sw,ww,hw){
-  const X=v=>200+v;
-  return `M${X(-sw)},152 C${X(-sw+14)},144 ${X(-34)},141 200,141 C${X(34)},141 ${X(sw-14)},144 ${X(sw)},152 `+
-  `L${X(sw-8)},250 C${X(ww+4)},305 ${X(ww)},350 ${X(ww)},395 L${X(hw)},468 L${X(-hw)},468 L${X(-ww)},395 `+
-  `C${X(-ww)},350 ${X(-ww-4)},305 ${X(-sw+8)},250 Z`;
-}
-function bodySVG(gender){
-  const F = gender==='female';
-  const sw=F?58:66, ww=F?40:48, hw=F?62:52;
-  const X=v=>200+v;
-  const SKIN='#D29B78', SKIN_D='#B9835F', HAIR='#241A12';
-  const armL=`M${X(-sw-6)},160 C${X(-sw-12)},230 ${X(-sw-14)},300 ${X(-sw-8)},348 L${X(-sw+12)},346 C${X(-sw+8)},300 ${X(-sw+6)},230 ${X(-sw+2)},162 Z`;
-  const armR=`M${X(sw+6)},160 C${X(sw+12)},230 ${X(sw+14)},300 ${X(sw+8)},348 L${X(sw-12)},346 C${X(sw-8)},300 ${X(sw-6)},230 ${X(sw-2)},162 Z`;
-  const legL=`M${X(-hw+10)},468 C${X(-hw+8)},540 ${X(-hw+8)},610 ${X(-hw+12)},672 L${X(-16)},672 C${X(-16)},610 ${X(-14)},540 ${X(-12)},468 Z`;
-  const legR=`M${X(12)},468 C${X(14)},540 ${X(16)},610 ${X(16)},672 L${X(hw-12)},672 C${X(hw-8)},610 ${X(hw-8)},540 ${X(hw-10)},468 Z`;
-  const hairBack = F ?
-   `<path d="M200,14 C160,14 144,46 147,88 C149,120 144,155 138,185 L160,195 C166,170 168,145 170,125 L170,90 C176,66 224,66 230,90 L230,125 C232,145 234,170 240,195 L262,185 C256,155 251,120 253,88 C256,46 240,14 200,14 Z" fill="${HAIR}"/>` :
-   `<path d="M160,68 C160,32 240,32 240,68 C236,52 220,44 200,44 C180,44 164,52 160,68 Z" fill="${HAIR}"/>`;
-  const hairLocks = F ?
-   `<path d="M162,70 C152,100 150,140 154,180 C156,205 162,228 172,245 L192,238 C184,218 180,195 179,170 C178,140 180,105 188,80 Z" fill="${HAIR}"/><path d="M238,70 C248,100 250,140 246,180 C244,205 238,228 228,245 L208,238 C216,218 220,195 221,170 C222,140 220,105 212,80 Z" fill="${HAIR}"/>` : '';
-  const hairFront = F ?
-   `<path d="M160,66 C164,46 180,38 200,38 C220,38 236,46 240,66 C232,54 218,50 200,50 C182,50 168,54 160,66 Z" fill="${HAIR}"/>` : '';
-  const skinPaths = `${hairBack}
-   <ellipse cx="200" cy="72" rx="40" ry="48" fill="${SKIN}"/>
-   <ellipse cx="160" cy="76" rx="7" ry="10" fill="${SKIN}"/><ellipse cx="240" cy="76" rx="7" ry="10" fill="${SKIN}"/>
-   <path d="M187,108 L213,108 L211,142 L189,142 Z" fill="${SKIN}"/>
-   <path d="M187,108 L213,108 L211,120 L189,120 Z" fill="${SKIN_D}" opacity=".55"/>
-   <path d="${torsoPath(sw,ww,hw)}" fill="${SKIN}"/>
-   <path d="${armL}" fill="${SKIN}"/><path d="${armR}" fill="${SKIN}"/>
-   <circle cx="${X(-sw+2)}" cy="358" r="11" fill="${SKIN}"/><circle cx="${X(sw-2)}" cy="358" r="11" fill="${SKIN}"/>
-   <path d="${legL}" fill="${SKIN}"/><path d="${legR}" fill="${SKIN}"/>
-   <ellipse cx="${X(-hw+34)}" cy="684" rx="18" ry="9" fill="${SKIN}"/><ellipse cx="${X(hw-34)}" cy="684" rx="18" ry="9" fill="${SKIN}"/>
-   ${hairLocks}
-   ${hairFront}
-   <path d="M${X(sw-4)},200 C${X(sw-2)},280 ${X(sw-2)},360 ${X(sw-6)},440" stroke="${SKIN_D}" stroke-width="10" fill="none" opacity=".35" stroke-linecap="round"/>`;
-  const vessels = `<g class="hit" stroke="#E0303E" fill="none" stroke-linecap="round" opacity=".55">
-   <path d="M200,112 C200,200 200,300 200,420" stroke-width="6"/>
-   <path d="M200,190 C172,210 152,232 140,258" stroke-width="4"/><path d="M200,190 C228,210 248,232 260,258" stroke-width="4"/>
-   <path d="M200,420 C192,500 188,580 187,660" stroke-width="5"/><path d="M200,420 C208,500 212,580 213,660" stroke-width="5"/>
-   <path d="M200,300 C160,320 130,330 110,335" stroke-width="3" opacity=".7"/><path d="M200,300 C240,320 270,330 290,335" stroke-width="3" opacity=".7"/>
-   <circle cx="200" cy="420" r="4" fill="#E0303E" stroke="none"/></g>`;
-  const org = (id, inner)=>`<g id="og-${id}" class="organ" data-organ="${id}"><g class="hit">${inner}</g></g>`;
-  return `<svg class="body" data-g="${gender}" viewBox="0 0 400 800" role="img" aria-label="آناتومی بدن">
-   <g id="zoomG">
-   ${org('skin', skinPaths)}
-   ${org('blood', vessels)}
-   ${org('kidney', `<ellipse cx="158" cy="380" rx="13" ry="19" fill="#B0503C" transform="rotate(-15 158 380)"/><ellipse cx="242" cy="380" rx="13" ry="19" fill="#B0503C" transform="rotate(15 242 380)"/><path d="M158,398 C156,420 156,440 158,458 M242,398 C244,420 244,440 242,458" stroke="#B0503C" stroke-width="4" fill="none"/>`)}
-   ${org('gut', `<g stroke="#E78FA0" stroke-width="11" fill="none" stroke-linecap="round">
-     <path d="M168,412 C200,404 232,404 236,418 C239,430 208,430 176,430"/>
-     <path d="M176,442 C208,442 240,442 236,456 C232,468 200,468 168,466"/>
-     <path d="M170,478 C200,480 228,478 234,486"/></g>`)}
-   ${org('liver', `<path d="M218,315 C235,310 255,315 262,330 C266,342 260,355 245,358 C230,361 216,352 214,338 C213,328 214,320 218,315 Z" fill="#A8433C"/><path d="M225,322 C238,320 250,326 254,336" stroke="#7E2F28" stroke-width="3" fill="none"/>`)}
-   ${org('stomach', `<path d="M172,322 C190,322 197,340 189,354 C181,368 162,368 156,355" stroke="#E8B06A" stroke-width="17" fill="none" stroke-linecap="round"/>`)}
-   ${org('lungs', `<ellipse cx="167" cy="248" rx="25" ry="46" fill="#E89AA0" transform="rotate(7 167 248)"/><ellipse cx="233" cy="248" rx="25" ry="46" fill="#E89AA0" transform="rotate(-7 233 248)"/><path d="M200,205 L178,235 M200,205 L222,235 M200,205 L200,250" stroke="#C9737E" stroke-width="5" stroke-linecap="round"/>`)}
-   ${org('heart', `<path d="M182,282 C170,270 158,260 158,246 C158,236 166,230 174,232 C178,233 181,236 182,239 C183,236 186,233 190,232 C198,230 206,236 206,246 C206,260 194,270 182,282 Z" fill="#D7263D"/><path d="M170,246 C172,254 176,260 182,266" stroke="#8E1420" stroke-width="3" fill="none"/>`)}
-   ${org('thyroid', `<ellipse cx="190" cy="142" rx="9" ry="13" fill="#E8A87C"/><ellipse cx="210" cy="142" rx="9" ry="13" fill="#E8A87C"/><rect x="192" y="139" width="16" height="7" rx="3" fill="#E8A87C"/>`)}
-   ${org('brain', `<g fill="#D98CA6" stroke="#8E4A63" stroke-width="2"><ellipse cx="200" cy="72" rx="26" ry="30"/><circle cx="182" cy="58" r="12"/><circle cx="218" cy="58" r="12"/><circle cx="186" cy="88" r="10"/><circle cx="214" cy="88" r="10"/></g><path d="M200,46 L200,98" stroke="#8E4A63" stroke-width="2"/>`)}
-   ${org('bone', `<g fill="#EDE6D6" stroke="#B9AE97" stroke-width="2"><circle cx="${X(-sw+6)}" cy="168" r="9"/><circle cx="${X(sw-6)}" cy="168" r="9"/><circle cx="${X(-sw+2)}" cy="262" r="8"/><circle cx="${X(sw-2)}" cy="262" r="8"/><circle cx="${X(-30)}" cy="470" r="9"/><circle cx="${X(30)}" cy="470" r="9"/><circle cx="${X(-34)}" cy="600" r="10"/><circle cx="${X(34)}" cy="600" r="10"/></g>`)}
-   <g id="fxLayer"></g>
-   </g></svg>`;
-}
-</script>
-<script>
 /* ============ APP ============ */
 const $=id=>document.getElementById(id);
 const NS='http://www.w3.org/2000/svg';
 const COND_FA={high:'دوز بالا',long:'مصرف طولانی',both:'دوز بالا یا مصرف طولانی'};
-const S={gender:'male',dose:'normal',dur:'short',drugId:null,fx:[],tourIdx:0,autoTimer:null,zoom:1,cx:200,cy:400,cat:'all',q:'',favs:new Set(JSON.parse(localStorage.getItem('darusim-fav')||'[]'))};
+const S={gender:'male',dose:'normal',dur:'short',drugId:null,fx:[],tourIdx:0,autoTimer:null,zoom:1,cx:50,cy:104,cat:'all',q:'',favs:new Set(JSON.parse(localStorage.getItem('darusim-fav')||'[]'))};
 
 /* ---------- views ---------- */
 function showView(v){
@@ -655,7 +659,9 @@ function segWire(id,key){
   $(id).querySelectorAll('button').forEach(b=>b.onclick=()=>{
     $(id).querySelectorAll('button').forEach(x=>x.classList.remove('on'));
     b.classList.add('on'); S[key]=b.dataset.v;
-    if(key==='dose')b.classList.toggle('warn',false);
+    if(key==='gender'){stopAuto();buildStage();setZoom(1,50,104);
+      $('tour').innerHTML='<div class="tour-empty">دارو، دوز و مدت را انتخاب کن و «اجرای شبیه‌سازی» را بزن.</div>';
+      $('fxListSec').style.display='none';}
   });
 }
 function populateSimDrug(){
@@ -668,16 +674,35 @@ function populateSimDrug(){
 }
 const LEGEND='<div class="legend"><span class="lg"><i style="background:var(--green)"></i>اثر مفید</span><span class="lg"><i style="background:var(--red)"></i>اثر مضر</span><span class="lg"><i style="background:var(--teal)"></i>مسیر دارو</span></div>';
 function buildStage(){
-  $('stage').innerHTML=LEGEND+bodySVG(S.gender);
-  document.querySelectorAll('.organ').forEach(g=>{
-    g.addEventListener('click',()=>organClicked(g.dataset.organ));
+  const st=$('stage');
+  if(S.gender==='female'){
+    st.innerHTML=LEGEND+`<div class="female-ph"><div class="fp-card">
+      <div class="fp-t">آناتومی زن به‌زودی</div>
+      <p>برای شبیه‌سازی بدن زن، به تصویر آناتومی مشابه مدل مردانه نیاز است.<br>اگر چنین تصویری داری بفرست تا جایگزین کنم.</p></div></div>`;
+    return;
+  }
+  st.innerHTML=LEGEND+`<div class="anat-wrap" id="anatWrap">
+    <img class="anat-img" src="anatomy-male.png" alt="آناتومی بدن">
+    <svg class="fx-svg" id="fxSvg" viewBox="0 0 100 208" preserveAspectRatio="none"></svg>
+    <div class="hs-layer" id="hsLayer"></div></div>`;
+  const layer=$('hsLayer');
+  Object.entries(ORGANS).forEach(([o,m])=>{
+    const b=document.createElement('button');
+    b.className='hs'; b.dataset.organ=o;
+    b.style.left=m.x+'%'; b.style.top=(m.y/208*100)+'%';
+    b.title=m.fa; b.setAttribute('aria-label',m.fa);
+    b.innerHTML='<span class="ring"></span>';
+    b.addEventListener('click',()=>organClicked(o));
+    layer.appendChild(b);
   });
 }
 function setZoom(s,cx,cy){
   S.zoom=Math.min(3,Math.max(1,s)); if(cx!==undefined){S.cx=cx;S.cy=cy;}
-  $('zoomG').setAttribute('transform',`translate(${200-S.cx*S.zoom} ${400-S.cy*S.zoom}) scale(${S.zoom})`);
+  const w=$('anatWrap'); if(!w)return;
+  w.style.transform=`scale(${S.zoom})`;
+  w.style.transformOrigin=`${S.cx}% ${S.cy/208*100}%`;
 }
-function clearFx(){document.querySelectorAll('.organ').forEach(g=>g.classList.remove('dim','fx-good','fx-bad'));}
+function clearFx(){document.querySelectorAll('.hs').forEach(g=>g.classList.remove('dim','fx-good','fx-bad'));}
 function computeFx(d){
   const map={};
   d.ther.forEach(t=>{map[t.o]=map[t.o]||{};map[t.o].good=t;});
@@ -691,24 +716,25 @@ function stopAuto(){if(S.autoTimer){clearInterval(S.autoTimer);S.autoTimer=null;
 
 /* --- run --- */
 function runSim(){
+  if(S.gender==='female'){$('tour').innerHTML='<div class="tour-empty">برای بدن زن هنوز تصویر آناتومی ندارم؛ لطفاً حالت «مرد» را انتخاب کن یا تصویر بفرست.</div>';return;}
   const d=DRUGS.find(x=>x.id===$('simDrug').value); if(!d)return;
   S.drugId=d.id; S.fx=computeFx(d); S.tourIdx=0; stopAuto();
   buildStage();
   $('stageTitle').innerHTML=`${d.fa} <small>— ${doseFa()} · ${durFa()}</small>`;
   $('warnBox').classList.toggle('show',S.dose==='high'||S.dur==='long');
-  setZoom(1,200,400); clearFx();
+  setZoom(1,50,104); clearFx();
   $('tour').innerHTML='<div class="tour-empty">در حال آماده‌سازی شبیه‌سازی…</div>';
   $('fxListSec').style.display='none';
   flyCapsule(d);
 }
 function flyCapsule(d){
-  const fxL=$('fxLayer');
+  const fxL=$('fxSvg');
   const eso=document.createElementNS(NS,'path');
-  eso.setAttribute('d','M200,118 C200,170 196,230 186,290 C182,310 177,328 172,342');
+  eso.setAttribute('d','M50,26 C50,45 49,62 47.5,74 C47,77 46.5,79 46,81');
   eso.setAttribute('fill','none'); fxL.appendChild(eso);
   const len=eso.getTotalLength();
   const cap=document.createElementNS(NS,'g'); cap.setAttribute('class','capsule');
-  cap.innerHTML='<rect x="-17" y="-7" width="34" height="14" rx="7" fill="#EAF4F1"/><rect x="0" y="-7" width="17" height="14" rx="7" fill="#2DD4BF" transform="translate(0,0)"/><rect x="-2" y="-7" width="4" height="14" fill="#0F2428"/>';
+  cap.innerHTML='<rect x="-3.4" y="-1.4" width="6.8" height="2.8" rx="1.4" fill="#EAF4F1"/><rect x="0" y="-1.4" width="3.4" height="2.8" rx="1.4" fill="#2DD4BF"/><rect x="-0.4" y="-1.4" width="0.8" height="2.8" fill="#0F2428"/>';
   fxL.appendChild(cap);
   const t0=performance.now(),DUR=1500;
   (function step(t){
@@ -723,12 +749,12 @@ function dissolve(cap,d){
   const t0=performance.now(),DUR=450;
   (function step(t){
     const p=Math.min(1,(t-t0)/DUR);
-    cap.setAttribute('opacity',1-p); cap.setAttribute('transform',`translate(172 342) scale(${1-p})`);
+    cap.setAttribute('opacity',1-p); cap.setAttribute('transform',`translate(46 81) scale(${1-p})`);
     if(p<1)requestAnimationFrame(step); else {cap.remove();spawnParticles(d);}
   })(t0);
 }
 function spawnParticles(d){
-  const fxL=$('fxLayer');
+  const fxL=$('fxSvg');
   const targets=[...new Set(S.fx.map(f=>f.o))];
   if(!targets.length){finishNoFx(d);return;}
   let pending=0;
@@ -738,8 +764,8 @@ function spawnParticles(d){
       pending++;
       setTimeout(()=>{
         const c=document.createElementNS(NS,'circle');
-        c.setAttribute('r',4.5);c.setAttribute('class','pt');fxL.appendChild(c);
-        const x0=172,y0=345,cx=(x0+ox)/2+34,cy=(y0+oy)/2-44;
+        c.setAttribute('r',1);c.setAttribute('class','pt');fxL.appendChild(c);
+        const x0=STOMACH_PT.x,y0=STOMACH_PT.y,cx=(x0+ox)/2+7,cy=(y0+oy)/2-9;
         const s=performance.now(),DUR=950;
         (function step(t){
           const p=Math.min(1,(t-s)/DUR),e=1-Math.pow(1-p,3);
@@ -758,7 +784,7 @@ function finishNoFx(d){
 }
 function startTour(d){
   const targets=[...new Set(S.fx.map(f=>f.o))];
-  document.querySelectorAll('.organ').forEach(g=>{
+  document.querySelectorAll('.hs').forEach(g=>{
     g.classList.add('dim');
     const o=g.dataset.organ;
     if(targets.includes(o)){
@@ -810,7 +836,7 @@ function organClicked(o){
     stopAuto();setZoom(1.6,meta.x,meta.y);
     $('tour').innerHTML=`<div class="th"><h3>${meta.fa}</h3></div>
      <p class="tt">در این سناریو، «${DRUGS.find(d=>d.id===S.drugId).fa}» اثر مستقیم شناخته‌شده‌ای روی ${meta.fa} ندارد.</p>
-     <div class="tnav"><button onclick="setZoom(1,200,400)">نمای کلی</button></div>`;
+     <div class="tnav"><button onclick="setZoom(1,50,104)">نمای کلی</button></div>`;
   }
 }
 
@@ -819,7 +845,7 @@ $('runSim').onclick=runSim;
 $('replay').onclick=()=>{if(S.drugId)runSim();};
 $('zoomIn').onclick=()=>{stopAuto();setZoom(S.zoom+0.35);};
 $('zoomOut').onclick=()=>{stopAuto();setZoom(S.zoom-0.35);};
-$('zoomReset').onclick=()=>{stopAuto();setZoom(1,200,400);};
+$('zoomReset').onclick=()=>{stopAuto();setZoom(1,50,104);};
 
 /* ---------- init ---------- */
 segWire('segGender','gender');segWire('segDose','dose');segWire('segDur','dur');
@@ -829,6 +855,1066 @@ if(!localStorage.getItem('darusim-discl')){
   $('disclOk').onclick=()=>{localStorage.setItem('darusim-discl','1');$('disclModal').classList.remove('open');};
   wireClose();
 }
+</script>
+<script>
+DRUGS.push(...[
+/* ---------- PAIN ---------- */
+{id:'naproxen',fa:'ناپروکسن',en:'Naproxen',cat:'pain',desc:'ضدالتهاب با اثر طولانی (۱۲ ساعته)؛ برای آرتروز و درد قاعدگی.',
+ mech:'ناپروکسن از خانواده‌ی NSAIDهاست و مثل ایبوپروفن با مهار آنزیم COX، تولید مواد التهاب‌ساز را متوقف می‌کند؛ فقط دیرتر از بدن می‌رود و اثرش طولانی‌تر است.',
+ ther:[{o:'bone',s:'درد و التهاب مفاصل را تا ۱۲ ساعت کم می‌کند.',l:'کنترل درازمدت دردهای مفصلی.'}],
+ adv:[{o:'stomach',c:'long',s:'مثل بقیه‌ی این خانواده، معده را تحریک می‌کند.',l:'خطر زخم معده در مصرف طولانی.'},{o:'heart',c:'both',s:'در دوز بالا و طولانی ریسک قلبی کمی بیشتر می‌شود.',l:'احتیاط قلبی در مصرف مزمن.'}],
+ tips:['دو بار در روز کافی است (اثر طولانی).']},
+{id:'celecoxib',fa:'سلکوکسیب',en:'Celecoxib',cat:'pain',desc:'ضدالتهاب انتخابی COX-2؛ معده را کمتر اذیت می‌کند.',
+ mech:'سلکوکسیب فقط آنزیم COX-2 (مخصوص التهاب) را می‌بندد و به COX-1 (محافظ معده) کاری ندارد؛ یعنی التهاب را خاموش می‌کند ولی نگهبان معده سر جایش می‌ماند.',
+ ther:[{o:'bone',s:'درد و التهاب مفاصل را کم می‌کند.',l:'مناسب مصرف طولانی‌تر در آرتروز.'}],
+ adv:[{o:'heart',c:'both',s:'مهار انتخابی COX-2 تعادل لخته را کمی به‌هم می‌زند.',l:'ریسک قلبی-عروقی در دوز بالا و طولانی.'},{o:'kidney',c:'long',s:'به کلیه فشار می‌آورد.',l:'احتیاط کلیوی.'}],
+ tips:['برای کسانی که معده‌ی حساس دارند انتخاب بهتری است (با نظر پزشک).']},
+{id:'meloxicam',fa:'ملوکسیکام',en:'Meloxicam',cat:'pain',desc:'ضدالتهاب روزانه؛ برای آرتروز و روماتیسم.',
+ mech:'ملوکسیکام بیشتر سراغ COX-2 می‌رود (انتخابی نسبی)؛ التهاب مفاصل را کم می‌کند و نسبت به دیکلوفناک معده را کمتر اذیت می‌کند.',
+ ther:[{o:'bone',s:'درد و خشکی مفاصل را کم می‌کند.',l:'کنترل روزانه‌ی آرتروز.'}],
+ adv:[{o:'stomach',c:'long',s:'در مصرف طولانی معده را تحریک می‌کند.',l:'خطر زخم در مصرف مزمن.'},{o:'kidney',c:'long',s:'فشار به کلیه.',l:'چکاپ کلیوی در مصرف طولانی.'}],
+ tips:['معمولاً روزی یک عدد مصرف می‌شود.']},
+{id:'mefenamic',fa:'مفنامیک اسید',en:'Mefenamic Acid',cat:'pain',desc:'مسکن معروف برای درد قاعدگی و دندان‌درد.',
+ mech:'مفنامیک اسید هم از خانواده‌ی NSAIDهاست؛ با بستن راه تولید پروستاگلاندین‌ها هم درد را کم می‌کند و هم انقباض‌های دردناک رحم را آرام می‌کند.',
+ ther:[{o:'bone',s:'دردهای عضلانی و قاعدگی را کم می‌کند.',l:'اثر خوب در دردهای دوره‌ای.'}],
+ adv:[{o:'gut',c:'high',s:'اسهال از عوارض شایع آن است.',l:'در دوز بالا تشدید می‌شود.'},{o:'stomach',c:'long',s:'تحریک معده.',l:'زخم در مصرف طولانی.'}],
+ tips:['با غذا مصرف شود.']},
+{id:'ketorolac',fa:'کتورولاک',en:'Ketorolac',cat:'pain',desc:'مسکن تزریقی/خوراکی قوی؛ فقط کوتاه‌مدت (حداکثر ۵ روز).',
+ mech:'کتورولاک قوی‌ترین NSAID از نظر تسکین درد است؛ التهاب و درد را سریع مهار می‌کند ولی به‌خاطر عوارضش فقط برای چند روز مجاز است.',
+ ther:[{o:'bone',s:'دردهای شدید حاد (بعد از جراحی، دندان) را سریع کم می‌کند.',l:'فقط دوره‌ی چندروزه.'}],
+ adv:[{o:'stomach',c:'high',s:'خطر خونریزی گوارشی بالا.',l:'مصرف بیش از ۵ روز ممنوع.'},{o:'kidney',c:'high',s:'فشار شدید به کلیه.',l:'نارسایی کلیه در دوز بالا.'}],
+ tips:['⛔ حداکثر ۵ روز مصرف شود.']},
+{id:'indomethacin',fa:'ایندومتاسین',en:'Indomethacin',cat:'pain',desc:'ضدالتهاب قوی؛ برای نقرس حاد و آرتروز.',
+ mech:'ایندومتاسین از قدیمی‌ترین و قوی‌ترین NSAIDهاست؛ تولید مواد التهاب‌ساز را به‌شدت مهار می‌کند.',
+ ther:[{o:'bone',s:'التهاب شدید مفاصل و نقرس را فرو می‌نشاند.',l:'کنترل حملات حاد.'}],
+ adv:[{o:'stomach',c:'long',s:'تحریک شدید معده.',l:'زخم و خونریزی.'},{o:'brain',c:'high',s:'سردرد و سرگیجه از عوارض شایع آن است.',l:'در دوز بالا تشدید می‌شود.'}],
+ tips:['با غذا و آب فراوان مصرف شود.']},
+{id:'piroxicam',fa:'پیروکسیکام',en:'Piroxicam',cat:'pain',desc:'ضدالتهاب با اثر بسیار طولانی (روزی یک بار).',
+ mech:'پیروکسیکام نیمه‌عمر خیلی طولانی دارد؛ یک بار مصرف، یک روز کامل آنزیم COX را مهار نگه می‌دارد.',
+ ther:[{o:'bone',s:'درد مفاصل را تمام روز کم نگه می‌دارد.',l:'مناسب آرتروز مزمن.'}],
+ adv:[{o:'stomach',c:'long',s:'به‌خاطر ماندگاری طولانی، معده بیشتر در معرض است.',l:'خطر زخم بالاتر از بقیه.'},{o:'skin',c:'long',s:'حساسیت به نور آفتاب.',l:'آفتاب‌سوختگی راحت‌تر.'}],
+ tips:['در آفتاب از ضدآفتاب استفاده کنید.']},
+{id:'etoricoxib',fa:'اتوریکوکسیب',en:'Etoricoxib',cat:'pain',desc:'ضدالتهاب انتخابی COX-2؛ برای آرتروز و نقرس.',
+ mech:'مثل سلکوکسیب فقط COX-2 را می‌بندد؛ التهاب مفصل کم می‌شود و معده نسبتاً در امان می‌ماند.',
+ ther:[{o:'bone',s:'درد آرتروز و حمله‌ی نقرس را کم می‌کند.',l:'کنترل روزانه.'}],
+ adv:[{o:'heart',c:'both',s:'فشار خون را بالا می‌برد و ریسک قلبی دارد.',l:'در بیماری قلبی با احتیاط فراوان.'}],
+ tips:['فشار خون را مرتب چک کنید.']},
+{id:'codeine',fa:'کدئین',en:'Codeine',cat:'pain',desc:'مخدر ضعیف؛ برای درد متوسط و سرفه‌ی شدید.',
+ mech:'کدئین در کبد تبدیل به مورفین می‌شود (کمتر از ۱۰٪)؛ همان مورفین است که به گیرنده‌های درد مغز می‌چسبد و پیام درد را قطع می‌کند.',
+ ther:[{o:'brain',s:'درد متوسط و سرفه‌ی شدید را کم می‌کند.',l:'اثر کوتاه‌مدت.'}],
+ adv:[{o:'gut',c:'long',s:'یبوست شدید می‌دهد.',l:'یبوست مزمن.'},{o:'brain',c:'long',s:'وابستگی روانی و جسمی.',l:'اعتیاد در مصرف طولانی.'}],
+ tips:['در کودکان و شیردهی ممنوع.']},
+{id:'morphine',fa:'مورفین',en:'Morphine',cat:'pain',desc:'قوی‌ترین مسکن مخدر؛ برای دردهای شدید و سرطان.',
+ mech:'مورفین مستقیم به گیرنده‌های «مو» در مغز و نخاع می‌چسبد و دروازه‌ی ورود پیام درد را قفل می‌کند؛ درد هرچه فریاد بزند به مغز نمی‌رسد.',
+ ther:[{o:'brain',s:'دردهای شدید را تقریباً کامل از بین می‌برد.',l:'تسکین دردهای صعب‌العلاج.'}],
+ adv:[{o:'lungs',c:'high',s:'مرکز تنفس مغز را کند می‌کند.',l:'ایست تنفسی در اوردوز — اورژانسی.'},{o:'brain',c:'long',s:'تحمل و وابستگی شدید.',l:'اعتیاد.'},{o:'gut',c:'long',s:'یبوست شدید و دائمی.',l:'نیاز به ملین دائمی.'}],
+ tips:['فقط با نسخه و نظارت پزشک. پادزهر آن نالوکسان است.']},
+{id:'oxycodone',fa:'اکسی‌کدون',en:'Oxycodone',cat:'pain',desc:'مخدر قوی خوراکی؛ برای دردهای شدید مزمن.',
+ mech:'مثل مورفین به گیرنده‌های مخدر مغز می‌چسبد ولی خوراکی جذب بهتری دارد؛ پیام درد را در نخاع و مغز قطع می‌کند.',
+ ther:[{o:'brain',s:'درد شدید را کنترل می‌کند.',l:'درمان درد مزمن سرطانی.'}],
+ adv:[{o:'brain',c:'long',s:'وابستگی و اعتیاد بالا.',l:'بحران اوپیوئید.'},{o:'lungs',c:'high',s:'کندی تنفس.',l:'خطر اوردوز.'}],
+ tips:['⛔ پتانسیل اعتیاد بالا؛ فقط با تجویز دقیق.']},
+{id:'fentanyl',fa:'فنتانیل',en:'Fentanyl',cat:'pain',desc:'مخدر بسیار قوی (۵۰ تا ۱۰۰ برابر مورفین)؛ چسب پوستی و بیمارستانی.',
+ mech:'فنتانیل آن‌قدر قوی است که مقادیر میکروگرمی آن گیرنده‌های درد را اشباع می‌کند؛ از راه پوست به‌تدریج جذب خون می‌شود.',
+ ther:[{o:'brain',s:'دردهای بسیار شدید را ساکت می‌کند.',l:'چسب ۷۲ ساعته برای درد مزمن.'}],
+ adv:[{o:'lungs',c:'high',s:'کمی زیاده‌روی = ایست تنفسی.',l:'مرگبار در اوردوز.'},{o:'brain',c:'long',s:'وابستگی بسیار شدید.',l:'ترک سخت.'}],
+ tips:['⛔ چسب را نبرید، نجویید و در گرما نگذارید (جذب ناگهانی = مرگ).']},
+{id:'baclofen',fa:'باکلوفن',en:'Baclofen',cat:'pain',desc:'شل‌کننده‌ی عضلات؛ برای گرفتگی ناشی از ام‌اس و ضایعه نخاعی.',
+ mech:'باکلوفن گیرنده‌ی GABA-B در نخاع را فعال می‌کند؛ مثل کم کردن ولوم سیگنال‌هایی که به عضله دستور انقباض می‌دهند.',
+ ther:[{o:'bone',s:'گرفتگی و اسپاسم عضلات را شل می‌کند.',l:'بهبود حرکت در ام‌اس.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی و گیجی.',l:'کاهش هوشیاری در دوز بالا.'}],
+ tips:['قطع ناگهانی بعد از مصرف طولانی خطرناک است.']},
+{id:'tizanidine',fa:'تیزاندین',en:'Tizanidine',cat:'pain',desc:'شل‌کننده‌ی عضلات؛ برای کمردرد و اسپاسم.',
+ mech:'تیزاندین گیرنده‌های آلفا-۲ نخاع را تحریک می‌کند و آزاد شدن پیام‌های تحریک‌کننده‌ی عضله را کم می‌کند.',
+ ther:[{o:'bone',s:'اسپاسم و گرفتگی عضلات را کم می‌کند.',l:'کمک به دردهای عضلانی مزمن.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی و خشکی دهان.',l:'افت فشار در دوز بالا.'},{o:'liver',c:'high',s:'آنزیم‌های کبدی را بالا می‌برد.',l:'آسیب کبدی نادر.'}],
+ tips:['با غذا اثرش کمتر می‌شود؛ همیشه یکسان مصرف کنید.']},
+/* ---------- ANTIBIOTICS ---------- */
+{id:'amoxclav',fa:'کوآموکسی‌کلاو',en:'Amoxicillin-Clavulanate',cat:'antibiotic',desc:'آموکسی‌سیلین قوی‌شده؛ برای عفونت‌های مقاوم.',
+ mech:'کلاولانات «سپر» باکتری‌ها (آنزیم بتالاکتاماز) را خنثی می‌کند تا آموکسی‌سیلین بتواند دیواره‌ی باکتری را خراب کند.',
+ ther:[{o:'blood',s:'عفونت‌های مقاوم (سینوس، گوش، دندان) را درمان می‌کند.',l:'پوشش وسیع‌تر از آموکسی‌سیلین تنها.'}],
+ adv:[{o:'gut',s:'اسهال شایع‌تر از آموکسی‌سیلین تنها.',l:'به‌هم‌ریختن فلور روده.'},{o:'liver',c:'high',s:'کلاولانات به کبد فشار می‌آورد.',l:'یرقان نادر ولی جدی.'}],
+ tips:['اول غذا مصرف شود تا معده اذیت نشود.']},
+{id:'ampicillin',fa:'آمپی‌سیلین',en:'Ampicillin',cat:'antibiotic',desc:'پنی‌سیلین وسیع‌الطیف؛ برای عفونت‌های مختلف.',
+ mech:'مثل آموکسی‌سیلین دیواره‌ی سلولی باکتری را تخریب می‌کند و باکتری می‌ترکد.',
+ ther:[{o:'blood',s:'عفونت‌های باکتریایی را از بین می‌برد.',l:'درمان کامل با دوره‌ی مناسب.'}],
+ adv:[{o:'gut',s:'اسهال و تهوع.',l:'به‌هم‌ریختن فلور.'},{o:'skin',c:'high',s:'جوش‌های پوستی شایع.',l:'حساسیت.'}],
+ tips:['با معده‌ی خالی بهتر جذب می‌شود.']},
+{id:'penicillinv',fa:'پنی‌سیلین V',en:'Penicillin V',cat:'antibiotic',desc:'پنی‌سیلین خوراکی؛ برای گلودرد استرپتوکوکی.',
+ mech:'قدیمی‌ترین آنتی‌بیوتیک؛ دیواره‌ی باکتری‌های حساس (مثل استرپتوکوک) را خراب می‌کند.',
+ ther:[{o:'blood',s:'گلودرد چرکی استرپتوکوکی را درمان می‌کند.',l:'پیشگیری از تب روماتیسمی.'}],
+ adv:[{o:'gut',s:'تهوع خفیف.',l:'معمولاً خفیف.'}],
+ tips:['۱۰ روز کامل برای گلودرد استرپتوکوکی ضروری است.']},
+{id:'ceftriaxone',fa:'سفتریاکسون',en:'Ceftriaxone',cat:'antibiotic',desc:'سفالوسپورین تزریقی قوی؛ برای عفونت‌های شدید.',
+ mech:'نسل سوم سفالوسپورین‌ها؛ دیواره‌ی باکتری‌های گرم مثبت و منفی زیادی را تخریب می‌کند و به مغز هم نفوذ می‌کند (مننژیت).',
+ ther:[{o:'blood',s:'عفونت‌های شدید خونی و ریوی را کنترل می‌کند.',l:'نجات‌بخش در سپسیس.'},{o:'brain',s:'به مغز می‌رسد.',l:'درمان مننژیت باکتریایی.'}],
+ adv:[{o:'gut',s:'اسهال.',l:'به‌هم‌ریختن فلور.'},{o:'liver',c:'high',s:'رسوب در کیسه‌ی صفرا (لجن صفراوی).',l:'معمولاً برگشت‌پذیر.'}],
+ tips:['تزریقی است؛ فقط در مرکز درمانی.']},
+{id:'cefixime',fa:'سفیکسیم',en:'Cefixime',cat:'antibiotic',desc:'سفالوسپورین خوراکی؛ برای عفونت ادراری و تنفسی.',
+ mech:'دیواره‌ی باکتری را تخریب می‌کند؛ خوراکی و با دوز روزانه‌ی راحت.',
+ ther:[{o:'kidney',s:'عفونت مجاری ادراری را درمان می‌کند.',l:'پاک‌سازی کامل.'}],
+ adv:[{o:'gut',s:'اسهال و دل‌پیچه.',l:'شایع ولی معمولاً خفیف.'}],
+ tips:['دوره را کامل کنید.']},
+{id:'cefuroxime',fa:'سفوروکسیم',en:'Cefuroxime',cat:'antibiotic',desc:'سفالوسپورین نسل دو؛ برای سینوزیت و عفونت تنفسی.',
+ mech:'دیواره‌ی سلولی باکتری‌های تنفسی و پوستی را خراب می‌کند.',
+ ther:[{o:'lungs',s:'عفونت‌های تنفسی را درمان می‌کند.',l:'بهبود سینوزیت و برونشیت باکتریایی.'}],
+ adv:[{o:'gut',s:'تهوع و اسهال.',l:'گذرا.'}],
+ tips:['با غذا جذب بهتری دارد.']},
+{id:'erythromycin',fa:'اریترومایسین',en:'Erythromycin',cat:'antibiotic',desc:'ماکرولید قدیمی؛ جایگزین پنی‌سیلین در حساسیت.',
+ mech:'وارد باکتری می‌شود و کارخانه‌ی پروتئین‌سازی آن (زیرواحد ۵۰S) را قفل می‌کند.',
+ ther:[{o:'lungs',s:'عفونت‌های تنفسی را درمان می‌کند.',l:'جایگزین در حساسیت به پنی‌سیلین.'}],
+ adv:[{o:'gut',s:'تهوع و دل‌پیچه‌ی شدید (روده را هم تحریک می‌کند).',l:'شایع‌ترین عارضه.'},{o:'liver',c:'high',s:'فشار به کبد.',l:'نادر.'}],
+ tips:['با معده‌ی خالی بهتر است ولی معده را اذیت می‌کند.']},
+{id:'clarithromycin',fa:'کلاریترومایسین',en:'Clarithromycin',cat:'antibiotic',desc:'ماکرولید؛ جزء درمان ریشه‌کنی هلیکوباکتر.',
+ mech:'مثل اریترومایسین پروتئین‌سازی باکتری را متوقف می‌کند؛ نفوذ بافتی بهتری دارد.',
+ ther:[{o:'stomach',s:'در ترکیب‌درمانی، هلیکوباکتر معده را نابود می‌کند.',l:'ریشه‌کنی زخم معده.'},{o:'lungs',s:'عفونت تنفسی.',l:'درمان کامل.'}],
+ adv:[{o:'heart',c:'high',s:'ریتم قلب را در موارد نادر به‌هم می‌ریزد.',l:'احتیاط قلبی.'},{o:'gut',s:'طعم تلخ دهان و تهوع.',l:'گذرا.'}],
+ tips:['طعم فلزی/تلخ دهان شایع است.']},
+{id:'doxycycline',fa:'داکسی‌سایکلین',en:'Doxycycline',cat:'antibiotic',desc:'تتراسایکلین؛ برای آکنه، عفونت تنفسی و گزش کنه.',
+ mech:'به زیرواحد ۳۰S ریبوزوم باکتری می‌چسبد و پروتئین‌سازی را متوقف می‌کند؛ روی باکتری‌های داخل‌سلولی هم اثر دارد.',
+ ther:[{o:'skin',s:'آکنه‌های التهابی را کم می‌کند.',l:'بهبود پوست در چند ماه.'},{o:'lungs',s:'عفونت‌های تنفسی غیرمعمول.',l:'درمان کامل.'}],
+ adv:[{o:'skin',c:'long',s:'پوست را به آفتاب حساس می‌کند.',l:'آفتاب‌سوختگی شدید.'},{o:'gut',s:'سوزش مری اگر با آب کم خورده شود.',l:'زخم مری.'}],
+ tips:['⛔ با لیوان پر آب و صاف بنشینید/بایستید؛ دراز نکشید.','در بارداری و زیر ۸ سال ممنوع (دندان).']},
+{id:'ciprofloxacin',fa:'سیپروفلوکساسین',en:'Ciprofloxacin',cat:'antibiotic',desc:'کینولون؛ انتخاب اول عفونت ادراری.',
+ mech:'آنزیم DNA ژیراز باکتری را قفل می‌کند؛ باکتری نمی‌تواند DNA خودش را باز و کپی کند و می‌میرد.',
+ ther:[{o:'kidney',s:'عفونت مجاری ادراری را سریع درمان می‌کند.',l:'پاک‌سازی کامل.'},{o:'gut',s:'اسهال باکتریایی (شیگلا).',l:'درمان.'}],
+ adv:[{o:'bone',c:'long',s:'به تاندون‌ها (مخصوصاً آشیل) آسیب می‌زند.',l:'پارگی تاندون نادر ولی جدی.'},{o:'brain',c:'high',s:'بی‌خوابی و اضطراب.',l:'تحریک سیستم عصبی.'}],
+ tips:['⛔ با لبنیات، آهن و آنتی‌اسید همزمان نخورید (جذب صفر می‌شود).']},
+{id:'levofloxacin',fa:'لووفلوکساسین',en:'Levofloxacin',cat:'antibiotic',desc:'کینولون تنفسی؛ برای ذات‌الریه.',
+ mech:'مثل سیپروفلوکساسین DNA باکتری را قفل می‌کند؛ نفوذ ریوی بهتری دارد.',
+ ther:[{o:'lungs',s:'ذات‌الریه باکتریایی را درمان می‌کند.',l:'بهبود کامل.'}],
+ adv:[{o:'bone',c:'high',s:'خطر تاندون.',l:'احتیاط در ورزشکاران.'},{o:'blood',c:'high',s:'قند خون را بالا/پایین می‌کند.',l:'احتیاط در دیابت.'}],
+ tips:['در دیابتی‌ها قند را مرتب چک کنید.']},
+{id:'clindamycin',fa:'کلیندامایسین',en:'Clindamycin',cat:'antibiotic',desc:'برای عفونت دندان و پوست؛ ضد باکتری بی‌هوازی.',
+ mech:'پروتئین‌سازی باکتری‌های بی‌هوازی و گرم مثبت را متوقف می‌کند؛ نفوذ استخوانی عالی دارد.',
+ ther:[{o:'bone',s:'عفونت دندان و استخوان را درمان می‌کند.',l:'نفوذ عمقی.'},{o:'skin',s:'عفونت پوستی.',l:'بهبود.'}],
+ adv:[{o:'gut',c:'long',s:'⚠️ خطر کولیت سودوممبران (اسهال خونی خطرناک).',l:'در اسهال شدید فوراً به پزشک مراجعه کنید.'}],
+ tips:['اسهال آبکی/خونی بعد از آن را جدی بگیرید.']},
+{id:'vancomycin',fa:'وانکومایسین',en:'Vancomycin',cat:'antibiotic',desc:'آنتی‌بیوتیک بیمارستانی؛ سلاح آخر علیه MRSA.',
+ mech:'به دیواره‌ی باکتری‌های مقاوم (استاف طلایی مقاوم) می‌چسبد و ساخت دیوار را متوقف می‌کند.',
+ ther:[{o:'blood',s:'عفونت‌های مقاوم خونی را درمان می‌کند.',l:'نجات‌بخش در MRSA.'}],
+ adv:[{o:'kidney',c:'high',s:'به کلیه آسیب می‌زند (سطح خونی باید کنترل شود).',l:'نارسایی کلیه.'},{o:'skin',c:'high',s:'سندرم مرد قرمز (گرگرفتگی) در تزریق سریع.',l:'با تزریق آهسته قابل پیشگیری.'}],
+ tips:['فقط بیمارستانی و با کنترل سطح خونی.']},
+{id:'gentamicin',fa:'جنتامایسین',en:'Gentamicin',cat:'antibiotic',desc:'آمینوگلیکوزید تزریقی؛ برای عفونت‌های شدید.',
+ mech:'به زیرواحد ۳۰S باکتری حمله می‌کند و پروتئین‌های معیوب می‌سازد؛ باکتری با پروتئین خراب می‌میرد.',
+ ther:[{o:'blood',s:'عفونت‌های شدید گرم منفی را می‌کشد.',l:'در ترکیب‌درمانی بیمارستانی.'}],
+ adv:[{o:'kidney',c:'high',s:'سمی برای کلیه.',l:'نارسایی.'},{o:'brain',c:'high',s:'به گوش داخلی آسیب می‌زند (کم‌شنوایی).',l:'ممکن است برگشت‌ناپذیر باشد.'}],
+ tips:['شنوایی و کلیه حین درمان کنترل می‌شود.']},
+{id:'nitrofurantoin',fa:'نیتروفورانتوئین',en:'Nitrofurantoin',cat:'antibiotic',desc:'ضدعفونی‌کننده‌ی ادراری؛ مخصوص عفونت مثانه.',
+ mech:'در ادرار فعال می‌شود و به DNA باکتری‌های مجاری ادراری حمله می‌کند؛ فقط همان‌جا اثر می‌کند.',
+ ther:[{o:'kidney',s:'عفونت مثانه را درمان می‌کند.',l:'پیشگیری در عفونت‌های مکرر.'}],
+ adv:[{o:'lungs',c:'long',s:'در مصرف ماه‌ها، التهاب ریه (نادر).',l:'تنگی نفس مزمن.'},{o:'gut',s:'تهوع.',l:'با غذا بهتر می‌شود.'}],
+ tips:['ادرار را قهوه‌ای/نارنجی می‌کند (طبیعی است).']},
+{id:'cotrimoxazole',fa:'کوتریموکسازول',en:'Co-trimoxazole',cat:'antibiotic',desc:'ترکیب دو آنتی‌بیوتیک؛ برای عفونت ادراری.',
+ mech:'دو دارو با هم دو مرحله‌ی ساخت «فولات» باکتری را می‌بندند؛ باکتری بدون فولات نمی‌تواند DNA بسازد.',
+ ther:[{o:'kidney',s:'عفونت ادراری را درمان می‌کند.',l:'اثر خوب با قیمت کم.'}],
+ adv:[{o:'skin',c:'high',s:'جوش و حساسیت پوستی.',l:'در موارد نادر شدید.'},{o:'blood',c:'long',s:'مغز استخوان را در موارد نادر سرکوب می‌کند.',l:'کم‌خونی.'}],
+ tips:['آب فراوان بنوشید (رسوب در کلیه).']},
+{id:'isoniazid',fa:'ایزونیازید',en:'Isoniazid',cat:'antibiotic',desc:'داروی اصلی سل؛ حداقل ۶ ماه مصرف.',
+ mech:'ساخت «مایکولیک اسید» دیواره‌ی باسیل سل را متوقف می‌کند؛ باسیل بدون دیوار مومی می‌میرد.',
+ ther:[{o:'lungs',s:'باسیل سل ریه را نابود می‌کند.',l:'درمان کامل سل در ۶ ماه.'}],
+ adv:[{o:'liver',c:'high',s:'کبد را درگیر می‌کند (هپاتیت دارویی).',l:'آنزیم کبدی باید چک شود.'},{o:'brain',c:'long',s:'گزگز دست و پا (کمبود B6).',l:'با ویتامین B6 پیشگیری می‌شود.'}],
+ tips:['ناشتا مصرف شود. با ویتامین B6 داده می‌شود.']},
+{id:'rifampin',fa:'ریفامپین',en:'Rifampin',cat:'antibiotic',desc:'داروی سل؛ قاتل باسیل‌های خفته.',
+ mech:'آنزیم RNA پلی‌مراز باکتری را قفل می‌کند؛ باسیل نمی‌تواند RNA بسازد و می‌میرد، حتی باسیل‌های خفته.',
+ ther:[{o:'lungs',s:'سل را ریشه‌کن می‌کند.',l:'جزء اصلی درمان ۶ ماهه.'}],
+ adv:[{o:'liver',c:'high',s:'فشار به کبد.',l:'هپاتیت.'}],
+ tips:['🟠 ادرار، اشک و عرق را نارنجی می‌کند (لنز تماسی رنگ می‌گیرد!).','اثر قرص ضدبارداری را کم می‌کند.']},
+{id:'tetracycline',fa:'تتراسایکلین',en:'Tetracycline',cat:'antibiotic',desc:'خانواده‌ی داکسی‌سایکلین؛ قدیمی‌تر.',
+ mech:'پروتئین‌سازی باکتری (۳۰S) را متوقف می‌کند.',
+ ther:[{o:'skin',s:'آکنه را کم می‌کند.',l:'بهبود تدریجی پوست.'}],
+ adv:[{o:'gut',s:'تهوع و اسهال.',l:'شایع.'},{o:'bone',c:'long',s:'در کودکان به دندان آسیب می‌زند.',l:'زیر ۸ سال ممنوع.'}],
+ tips:['با شیر و آنتی‌اسید همزمان نخورید.']},
+{id:'mupirocin',fa:'موپیروسین (پماد)',en:'Mupirocin Ointment',cat:'antibiotic',desc:'پماد آنتی‌بیوتیک برای زخم و جوش‌های پوستی.',
+ mech:'آنزیم ساخت پروتئین باکتری پوست را مهار می‌کند؛ موضعی و کم‌جذب.',
+ ther:[{o:'skin',s:'عفونت سطحی پوست و زخم را درمان می‌کند.',l:'بهبود سریع.'}],
+ adv:[],
+ tips:['فقط موضعی؛ داخل بینی هم کاربرد دارد (ناقل استاف).']},
+{id:'clotrimazole',fa:'کلوتریمازول',en:'Clotrimazole',cat:'antibiotic',desc:'ضدقارچ موضعی؛ برای قارچ پوستی.',
+ mech:'ساخت «ارگوسترول» دیواره‌ی قارچ را مختل می‌کند؛ قارچ سوراخ می‌شود.',
+ ther:[{o:'skin',s:'قارچ پوستی و پای ورزشکار را درمان می‌کند.',l:'بهبود در چند هفته.'}],
+ adv:[],
+ tips:['دوره را کامل کنید حتی اگر بهتر شدید.']},
+{id:'fluconazole',fa:'فلوکونازل',en:'Fluconazole',cat:'antibiotic',desc:'ضدقارچ خوراکی؛ برای کاندیدا.',
+ mech:'آنزیم ساخت ارگوسترول قارچ را در کل بدن مهار می‌کند.',
+ ther:[{o:'blood',s:'عفونت قارچی سیستمیک را درمان می‌کند.',l:'تک‌دوز برای برفک.'}],
+ adv:[{o:'liver',c:'high',s:'فشار به کبد.',l:'نادر.'}],
+ tips:['با خیلی از داروها تداخل دارد؛ لیست دارویی را به پزشک بگویید.']}
+]);
+</script>
+<script>
+DRUGS.push(...[
+/* ---------- CARDIO ---------- */
+{id:'lisinopril',fa:'لیزینوپریل',en:'Lisinopril',cat:'cardio',desc:'کاهنده‌ی فشار خون از خانواده‌ی ACE-I.',
+ mech:'آنزیم ACE را مهار می‌کند؛ این آنزیم ماده‌ی تنگ‌کننده‌ی رگ (آنژیوتانسین ۲) را می‌سازد. بدون آن، رگ‌ها گشاد می‌مانند.',
+ ther:[{o:'blood',s:'فشار خون را پایین می‌آورد.',l:'کنترل درازمدت فشار.'},{o:'heart',s:'بار قلب را کم می‌کند.',l:'محافظت بعد از سکته.'}],
+ adv:[{o:'lungs',c:'long',s:'سرفه‌ی خشک مزاحم (شایع).',l:'با قطع دارو خوب می‌شود.'},{o:'kidney',c:'high',s:'در کم‌آبی به کلیه فشار می‌آورد.',l:'نارسایی.'}],
+ tips:['سرفه‌ی خشک شایع‌ترین دلیل تعویض آن است.','در بارداری ممنوع.']},
+{id:'enalapril',fa:'انالاپریل',en:'Enalapril',cat:'cardio',desc:'مثل لیزینوپریل؛ ACE-I.',
+ mech:'مهار ACE؛ کاهش آنژیوتانسین ۲ و گشادی رگ‌ها.',
+ ther:[{o:'blood',s:'کاهش فشار خون.',l:'کنترل پایدار.'},{o:'heart',s:'کمک به نارسایی قلبی.',l:'بهبود پیش‌آگهی.'}],
+ adv:[{o:'lungs',c:'long',s:'سرفه‌ی خشک.',l:'مزمن ولی بی‌خطر.'},{o:'kidney',c:'high',s:'فشار کلیوی.',l:'احتیاط.'}],
+ tips:['در بارداری ممنوع.']},
+{id:'valsartan',fa:'والزارتان',en:'Valsartan',cat:'cardio',desc:'ARB؛ مثل لوزارتان ولی بدون سرفه.',
+ mech:'گیرنده‌ی آنژیوتانسین ۲ را می‌بندد؛ رگ گشاد می‌ماند ولی برادی‌کینین بالا نمی‌رود پس سرفه نمی‌دهد.',
+ ther:[{o:'blood',s:'کاهش فشار خون.',l:'کنترل درازمدت.'},{o:'heart',s:'محافظت قلبی.',l:'بعد از سکته.'}],
+ adv:[{o:'kidney',c:'high',s:'در کم‌آبی آسیب کلیوی.',l:'نادر.'}],
+ tips:['جایگزین ACE-I در کسانی که سرفه می‌گیرند.']},
+{id:'atenolol',fa:'آتنولول',en:'Atenolol',cat:'cardio',desc:'بتابلاکر؛ برای فشار و تپش.',
+ mech:'گیرنده‌های بتا-۱ قلب را می‌بندد؛ قلب آرام‌تر می‌تپد.',
+ ther:[{o:'heart',s:'تپش و فشار را کم می‌کند.',l:'کنترل درازمدت.'}],
+ adv:[{o:'brain',c:'long',s:'خستگی و سردی دست و پا.',l:'کاهش انرژی.'},{o:'lungs',c:'high',s:'تنگی نفس در آسم.',l:'احتیاط.'}],
+ tips:['قطع ناگهانی ممنوع.']},
+{id:'propranolol',fa:'پروپرانولول',en:'Propranolol',cat:'cardio',desc:'بتابلاکر غیرانتخابی؛ برای تپش، اضطراب و میگرن.',
+ mech:'هم بتا-۱ (قلب) و هم بتا-۲ (ریه و عروق) را می‌بندد؛ قلب آرام و لرزش اضطراب کم می‌شود.',
+ ther:[{o:'heart',s:'تپش قلب و فشار را کم می‌کند.',l:'کنترل درازمدت.'},{o:'brain',s:'لرزش و تپشِ اضطراب صحنه را کم می‌کند.',l:'پیشگیری از میگرن.'}],
+ adv:[{o:'lungs',c:'high',s:'در آسم خطرناک است.',l:'برونکواسپاسم.'},{o:'brain',c:'long',s:'کابوس و خستگی.',l:'شایع.'}],
+ tips:['در آسم ممنوع. قبل از سخنرانی با نظر پزشک.']},
+{id:'bisoprolol',fa:'بیزوپرولول',en:'Bisoprolol',cat:'cardio',desc:'بتابلاکر انتخابی قلب؛ برای نارسایی قلبی.',
+ mech:'بتا-۱ قلب را انتخابی می‌بندد؛ با دوز کم شروع و به‌تدریج زیاد می‌شود.',
+ ther:[{o:'heart',s:'قلب ضعیف را از کار زیاد نجات می‌دهد.',l:'افزایش طول عمر در نارسایی قلبی.'}],
+ adv:[{o:'brain',c:'long',s:'خستگی.',l:'معمولاً گذرا.'}],
+ tips:['دوز به‌تدریج بالا می‌رود؛ خودسرانه زیاد نکنید.']},
+{id:'carvedilol',fa:'کارودیلول',en:'Carvedilol',cat:'cardio',desc:'بتابلاکر با اثر گشادکنندگی رگ؛ برای نارسایی قلبی.',
+ mech:'هم بتا و هم آلفا-۱ را می‌بندد؛ قلب آرام + رگ گشاد.',
+ ther:[{o:'heart',s:'بهبود عملکرد قلب نارسا.',l:'کاهش مرگ‌ومیر.'},{o:'blood',s:'کاهش فشار.',l:'کنترل.'}],
+ adv:[{o:'brain',c:'high',s:'سرگیجه اول درمان (افت فشار وضعیتی).',l:'با تنظیم دوز بهتر می‌شود.'}],
+ tips:['با غذا مصرف شود؛ آهسته بایستید.']},
+{id:'diltiazem',fa:'دیلتیازم',en:'Diltiazem',cat:'cardio',desc:'مسدودکننده‌ی کانال کلسیم؛ برای فشار و آریتمی.',
+ mech:'کلسیم را هم در رگ و هم در گره‌ی قلبی کم می‌کند؛ رگ گشاد + ضربان منظم.',
+ ther:[{o:'blood',s:'کاهش فشار خون.',l:'کنترل.'},{o:'heart',s:'ریتم قلب را منظم می‌کند.',l:'در فیبریلاسیون.'}],
+ adv:[{o:'skin',c:'long',s:'ورم مچ پا.',l:'خفیف.'},{o:'gut',c:'long',s:'یبوست.',l:'شایع.'}],
+ tips:['گریپ‌فروت تداخل دارد.']},
+{id:'verapamil',fa:'وراپامیل',en:'Verapamil',cat:'cardio',desc:'کانال کلسیم با اثر قوی روی قلب.',
+ mech:'بیشتر روی قلب اثر می‌کند تا رگ؛ هدایت الکتریکی قلب را کند می‌کند.',
+ ther:[{o:'heart',s:'تپش‌های نامنظم را کنترل می‌کند.',l:'کنترل ریتم.'}],
+ adv:[{o:'gut',c:'long',s:'یبوست شدید شایع.',l:'مزمن.'},{o:'heart',c:'high',s:'کندی بیش‌ازحد ضربان.',l:'بلوک قلبی.'}],
+ tips:['یبوست را جدی بگیرید؛ فیبر و آب.']},
+{id:'hctz',fa:'هیدروکلروتیازید',en:'Hydrochlorothiazide',cat:'cardio',desc:'ادرارآور تیازیدی؛ پایه‌ی درمان فشار خون.',
+ mech:'در لوله‌ی کلیه جلوی بازجذب نمک را می‌گیرد؛ نمک و آب دفع می‌شود و حجم خون و فشار کم می‌شود.',
+ ther:[{o:'kidney',s:'آب و نمک اضافی را دفع می‌کند.',l:'کنترل فشار درازمدت.'}],
+ adv:[{o:'blood',c:'long',s:'پتاسیم و منیزیم را پایین می‌آورد.',l:'گرفتگی عضله.'},{o:'blood',c:'long',s:'قند و اسیداوریک را کمی بالا می‌برد.',l:'احتیاط در دیابت و نقرس.'}],
+ tips:['صبح مصرف شود (شب ادرار بیدارتان می‌کند).']},
+{id:'indapamide',fa:'اینداپامید',en:'Indapamide',cat:'cardio',desc:'ادرارآور شبه‌تیازیدی؛ ملایم‌تر.',
+ mech:'مثل تیازیدها نمک را دفع می‌کند ولی اثر ادراری‌اش کمتر و اثر عروقی‌اش بیشتر است.',
+ ther:[{o:'kidney',s:'کاهش فشار خون.',l:'کنترل پایدار.'}],
+ adv:[{o:'blood',c:'long',s:'کاهش پتاسیم.',l:'خفیف‌تر از تیازیدها.'}],
+ tips:['برای سالمندان انتخاب خوبی است.']},
+{id:'digoxin',fa:'دیگوکسین',en:'Digoxin',cat:'cardio',desc:'داروی قدیمی قلب؛ برای نارسایی و فیبریلاسیون.',
+ mech:'پمپ سدیم-پتاسیم سلول قلب را مهار می‌کند؛ کلسیم داخل سلول بیشتر می‌شود و قلب قوی‌تر ولی آرام‌تر می‌تپد.',
+ ther:[{o:'heart',s:'قدرت انقباض قلب را بیشتر و ضربان را کنترل می‌کند.',l:'بهبود علائم نارسایی.'}],
+ adv:[{o:'heart',c:'high',s:'فاصله‌ی دوز درمانی و سمی کم است؛ آریتمی.',l:'مسمومیت کشنده.'},{o:'gut',c:'high',s:'تهوع و بی‌اشتهایی از علائم مسمومیت.',l:'هشدار.'},{o:'brain',c:'high',s:'اختلال دید (هاله‌ی زرد).',l:'علامت کلاسیک مسمومیت.'}],
+ tips:['⛔ پنجره‌ی درمانی باریک؛ سطح خونی کنترل شود.']},
+{id:'amiodarone',fa:'آمیودارون',en:'Amiodarone',cat:'cardio',desc:'ضدآریتمی قوی؛ برای ریتم‌های خطرناک قلب.',
+ mech:'چند کانال قلب (پتاسیم، سدیم، کلسیم + بتا) را همزمان می‌بندد؛ مثل ریست کردن سیستم برق قلب.',
+ ther:[{o:'heart',s:'ریتم‌های خطرناک را کنترل می‌کند.',l:'نجات‌بخش در آریتمی.'}],
+ adv:[{o:'thyroid',c:'long',s:'پر از ید است؛ تیروئید را به‌هم می‌ریزد.',l:'کم‌کاری یا پرکاری.'},{o:'lungs',c:'long',s:'فیبروز ریه (نادر ولی جدی).',l:'تنگی نفس پیشرونده.'},{o:'skin',c:'long',s:'پوست را آبی-خاکستری و به آفتاب حساس می‌کند.',l:'برگشت‌پذیر ولی آهسته.'},{o:'liver',c:'long',s:'آنزیم کبدی بالا.',l:'چکاپ دوره‌ای.'}],
+ tips:['نیمه‌عمر ماه‌ها؛ عوارضش دیر می‌رود. چکاپ چشم، تیروئید، ریه لازم است.']},
+{id:'clopidogrel',fa:'کلوپیدوگرل',en:'Clopidogrel',cat:'cardio',desc:'ضدپلاکت؛ همراه آسپرین بعد از استنت قلبی.',
+ mech:'گیرنده‌ی ADP پلاکت‌ها را برای همیشه می‌بندد؛ پلاکت نمی‌تواند به هم بچسبد.',
+ ther:[{o:'blood',s:'از لخته روی استنت جلوگیری می‌کند.',l:'محافظت بعد از آنژیوپلاستی.'}],
+ adv:[{o:'blood',c:'high',s:'خونریزی.',l:'خطر.'},{o:'stomach',c:'long',s:'خطر خونریزی گوارشی (کمتر از آسپرین).',l:'احتیاط.'}],
+ tips:['قبل از جراحی/دندانپزشکی به پزشک بگویید.']},
+{id:'rosuvastatin',fa:'رزرواستاتین',en:'Rosuvastatin',cat:'cardio',desc:'استاتین قوی؛ کاهنده‌ی کلسترول.',
+ mech:'مثل آتورواستاتین خط تولید کلسترول کبد (HMG-CoA) را می‌بندد؛ قوی‌تر و طولانی‌اثرتر.',
+ ther:[{o:'liver',s:'کلسترول را به‌شدت پایین می‌آورد.',l:'محافظت قلبی قوی.'},{o:'blood',s:'رگ‌ها پاک می‌مانند.',l:'کاهش سکته.'}],
+ adv:[{o:'bone',c:'long',s:'درد عضلانی.',l:'نادر ولی جدی.'}],
+ tips:['هر ساعتی از روز می‌شود خورد (اثر طولانی).']},
+{id:'simvastatin',fa:'سیمواستاتین',en:'Simvastatin',cat:'cardio',desc:'استاتین قدیمی؛ کاهنده‌ی کلسترول.',
+ mech:'مهار HMG-CoA ردوکتاز کبد.',
+ ther:[{o:'liver',s:'کاهش کلسترول.',l:'محافظت قلبی.'}],
+ adv:[{o:'bone',c:'long',s:'درد عضلانی.',l:'احتیاط.'}],
+ tips:['⛔ شب مصرف شود. گریپ‌فروت ممنوع.']},
+{id:'ezetimibe',fa:'ازتیمایب',en:'Ezetimibe',cat:'cardio',desc:'کاهنده‌ی جذب کلسترول از روده.',
+ mech:'پروتئین NPC1L1 روده را می‌بندد؛ کلسترول غذا جذب نمی‌شود و دفع می‌شود.',
+ ther:[{o:'gut',s:'جذب کلسترول غذا را کم می‌کند.',l:'کمک به استاتین.'}],
+ adv:[{o:'liver',c:'long',s:'آنزیم کبدی (نادر).',l:'چکاپ.'}],
+ tips:['معمولاً همراه استاتین داده می‌شود.']},
+{id:'fenofibrate',fa:'فنوفیبرات',en:'Fenofibrate',cat:'cardio',desc:'کاهنده‌ی تری‌گلیسیرید خون.',
+ mech:'گیرنده‌ی PPAR-آلفا را فعال می‌کند؛ کبد چربی‌سوزی را زیاد و تری‌گلیسیرید را کم می‌کند.',
+ ther:[{o:'liver',s:'تری‌گلیسیرید را پایین می‌آورد.',l:'کاهش خطر پانکراتیت.'}],
+ adv:[{o:'bone',c:'long',s:'درد عضلانی (مخصوصاً با استاتین).',l:'احتیاط ترکیبی.'},{o:'liver',c:'high',s:'سنگ کیسه‌ی صفرا.',l:'نادر.'}],
+ tips:['با غذا جذب بهتری دارد.']},
+{id:'nitroglycerin',fa:'نیتروگلیسیرین',en:'Nitroglycerin',cat:'cardio',desc:'زیرزبانی نجات آنژین صدری (درد قلبی).',
+ mech:'نیتریک اکساید آزاد می‌کند؛ رگ‌های کرونر قلب فوراً گشاد می‌شوند و درد سینه در دقیقه‌ها خوب می‌شود.',
+ ther:[{o:'heart',s:'درد قلبی (آنژین) را در چند دقیقه ساکت می‌کند.',l:'نجات‌بخش حاد.'}],
+ adv:[{o:'brain',c:'high',s:'سردرد شدید و افت فشار.',l:'شایع ولی گذرا.'}],
+ tips:['زیر زبان؛ اگر ۵ دقیقه بعد خوب نشدید اورژانس (۱۱۵).','⛔ با سیلدنافیل (ویاگرا) ترکیب مرگبار است.']},
+{id:'isosorbide',fa:'ایزوسورباید',en:'Isosorbide Dinitrate',cat:'cardio',desc:'نیترات طولانی‌اثر؛ پیشگیری از آنژین.',
+ mech:'مثل نیتروگلیسیرین ولی آهسته‌رهش؛ رگ‌های قلب را ساعت‌ها گشاد نگه می‌دارد.',
+ ther:[{o:'heart',s:'از حمله‌ی درد قلبی پیشگیری می‌کند.',l:'کاهش دفعات آنژین.'}],
+ adv:[{o:'brain',c:'high',s:'سردرد.',l:'تحمل ایجاد می‌شود.'}],
+ tips:['باید وقفه‌ی شبانه داشته باشد (تحمل نیتراتی).']},
+{id:'apixaban',fa:'آپیکسابان',en:'Apixaban',cat:'cardio',desc:'رقیق‌کننده‌ی مدرن (DOAC)؛ جایگزین وارفارین.',
+ mech:'مستقیم فاکتور Xa (قلب زنجیره‌ی لخته‌سازی) را می‌بندد؛ بدون نیاز به چکاپ مداوم INR.',
+ ther:[{o:'blood',s:'از لخته و سکته جلوگیری می‌کند.',l:'پیشگیری درازمدت.'}],
+ adv:[{o:'blood',c:'high',s:'خونریزی.',l:'کمتر از وارفارین ولی جدی.'}],
+ tips:['نیازی به رژیم ویتامین K ثابت نیست.']},
+{id:'rivaroxaban',fa:'ریواروکسابان',en:'Rivaroxaban',cat:'cardio',desc:'DOAC؛ رقیق‌کننده‌ی بدون نیاز به آزمایش مکرر.',
+ mech:'مهار مستقیم فاکتور Xa.',
+ ther:[{o:'blood',s:'پیشگیری از لخته.',l:'درازمدت.'}],
+ adv:[{o:'blood',c:'high',s:'خونریزی.',l:'احتیاط.'}],
+ tips:['با غذا (دوزهای بالا) جذب بهتری دارد.']},
+{id:'heparin',fa:'هپارین',en:'Heparin',cat:'cardio',desc:'رقیق‌کننده‌ی تزریقی بیمارستانی.',
+ mech:'آنتی‌ترومبین را فعال می‌کند؛ لخته‌سازی را فوراً متوقف می‌کند.',
+ ther:[{o:'blood',s:'لخته را سریع متوقف می‌کند.',l:'اورژانسی.'}],
+ adv:[{o:'blood',c:'high',s:'خونریزی + افت پلاکت (HIT).',l:'جدی.'}],
+ tips:['فقط بیمارستانی.']},
+{id:'enoxaparin',fa:'انوکساپارین',en:'Enoxaparin',cat:'cardio',desc:'هپارین سبک؛ آمپول زیرپوستی بعد از جراحی.',
+ mech:'مثل هپارین ولی انتخابی‌تر روی فاکتور Xa.',
+ ther:[{o:'blood',s:'پیشگیری از لخته بعد از جراحی.',l:'دوره‌ی کوتاه.'}],
+ adv:[{o:'blood',c:'high',s:'خونریزی.',l:'کمتر از هپارین.'}],
+ tips:['خود بیمار می‌تواند تزریق کند (آموزش لازم).']},
+{id:'hydralazine',fa:'هیدرالازین',en:'Hydralazine',cat:'cardio',desc:'گشادکننده‌ی مستقیم رگ؛ برای فشار مقاوم.',
+ mech:'مستقیم عضله‌ی دور شریان‌ها را شل می‌کند.',
+ ther:[{o:'blood',s:'فشار خون را پایین می‌آورد.',l:'در بارداری (پره‌اکلامپسی) کاربرد دارد.'}],
+ adv:[{o:'heart',c:'high',s:'تپش قلب جبرانی.',l:'معمولاً با بتابلاکر ترکیب می‌شود.'},{o:'brain',c:'long',s:'سندرم شبه‌لوپوس در مصرف طولانی.',l:'نادر.'}],
+ tips:['تپش قلب اول درمان طبیعی است.']},
+{id:'methyldopa',fa:'متیل‌دوپا',en:'Methyldopa',cat:'cardio',desc:'کاهنده‌ی فشار خون؛ انتخاب اول در بارداری.',
+ mech:'در مغز به آلفا-متیل‌نوراپی‌نفرین تبدیل می‌شود و مرکز فشار مغز را آرام می‌کند.',
+ ther:[{o:'blood',s:'کاهش فشار خون.',l:'ایمن در بارداری.'}],
+ adv:[{o:'brain',c:'long',s:'خواب‌آلودگی و افسردگی.',l:'شایع.'},{o:'liver',c:'high',s:'هپاتیت (نادر).',l:'چکاپ.'}],
+ tips:['ایمن‌ترین انتخاب فشار خون در بارداری.']},
+{id:'doxazosin',fa:'دوکسازوسین',en:'Doxazosin',cat:'cardio',desc:'برای پروستات و فشار خون.',
+ mech:'گیرنده‌ی آلفا-۱ را می‌بندد؛ هم رگ گشاد می‌شود هم عضله‌ی دور پروستات شل می‌شود.',
+ ther:[{o:'blood',s:'کاهش فشار.',l:'کنترل.'},{o:'kidney',s:'ادرار راحت‌تر در بزرگی پروستات.',l:'بهبود علائم.'}],
+ adv:[{o:'brain',c:'high',s:'افت فشار وضعیتی (سرگیجه اول دوز).',l:'دوز اول را شب بخوابید بخورید.'}],
+ tips:['اولین دوز را نشسته/خوابیده مصرف کنید.']},
+/* ---------- DIABETES ---------- */
+{id:'glibenclamide',fa:'گلی‌بن‌کلامید',en:'Glibenclamide',cat:'diabetes',desc:'پایین‌آورنده‌ی قند؛ تحریک‌کننده‌ی انسولین.',
+ mech:'کانال پتاسیم سلول‌های بتای پانکراس را می‌بندد؛ سلول فکر می‌کند قند بالاست و انسولین آزاد می‌کند.',
+ ther:[{o:'blood',s:'قند خون را پایین می‌آورد.',l:'کنترل دیابت نوع ۲.'}],
+ adv:[{o:'brain',c:'high',s:'افت قند (هیپوگلیسمی) حتی بدون غذا.',l:'خطرناک.'},{o:'bone',c:'long',s:'افزایش وزن.',l:'شایع.'}],
+ tips:['قبل از غذا؛ اگر غذا نخوردید افت قند می‌دهد.']},
+{id:'gliclazide',fa:'گلی‌کلازید',en:'Gliclazide',cat:'diabetes',desc:'مثل گلی‌بن‌کلامید ولی ملایم‌تر.',
+ mech:'تحریک ترشح انسولین از پانکراس با خطر کمتر افت قند.',
+ ther:[{o:'blood',s:'کنترل قند خون.',l:'درازمدت.'}],
+ adv:[{o:'brain',c:'high',s:'افت قند (کمتر از گلی‌بن‌کلامید).',l:'احتیاط.'}],
+ tips:['برای سالمندان بهتر از گلی‌بن‌کلامید است.']},
+{id:'pioglitazone',fa:'پیوگلیتازون',en:'Pioglitazone',cat:'diabetes',desc:'حساس‌کننده به انسولین.',
+ mech:'گیرنده‌ی PPAR-گاما را فعال می‌کند؛ سلول‌ها دوباره به انسولین جواب می‌دهند.',
+ ther:[{o:'blood',s:'قند را بدون افت شدید کنترل می‌کند.',l:'اثر ماندگار.'}],
+ adv:[{o:'bone',c:'long',s:'پوکی استخوان و شکستگی.',l:'در زنان یائسه احتیاط.'},{o:'heart',c:'long',s:'احتباس آب و ورم.',l:'در نارسایی قلبی ممنوع.'}],
+ tips:['اثر کاملش هفته‌ها طول می‌کشد.']},
+{id:'empagliflozin',fa:'امپاگلیفلوزین',en:'Empagliflozin',cat:'diabetes',desc:'دفع قند از ادرار؛ محافظ قلب و کلیه.',
+ mech:'پروتئین SGLT2 کلیه را می‌بندد؛ قندی که باید بازجذب شود با ادرار دفع می‌شود.',
+ ther:[{o:'kidney',s:'قند اضافی را دور می‌ریزد.',l:'محافظت کلیه و قلب (اثبات‌شده).'}],
+ adv:[{o:'kidney',c:'long',s:'عفونت قارچی تناسلی (به‌خاطر قند ادرار).',l:'شایع ولی قابل درمان.'}],
+ tips:['آب فراوان بنوشید.']},
+{id:'dapagliflozin',fa:'داپاگلیفلوزین',en:'Dapagliflozin',cat:'diabetes',desc:'مثل امپاگلیفلوزین؛ SGLT2.',
+ mech:'مهار SGLT2 و دفع قند از ادرار.',
+ ther:[{o:'kidney',s:'کنترل قند + محافظت قلبی-کلیوی.',l:'درازمدت.'}],
+ adv:[{o:'kidney',c:'long',s:'عفونت تناسلی.',l:'بهداشت مهم است.'}],
+ tips:['حتی در غیردیابتی‌ها برای قلب/کلیه تجویز می‌شود.']},
+{id:'sitagliptin',fa:'سیتاگلیپتین',en:'Sitagliptin',cat:'diabetes',desc:'مهارکننده‌ی DPP-4؛ تنظیم‌کننده‌ی هوشمند قند.',
+ mech:'آنزیم DPP-4 را می‌بندد تا هورمون‌های روده‌ای (اینکرتین) بیشتر بمانند؛ انسولین فقط وقتی قند بالاست آزاد می‌شود.',
+ ther:[{o:'blood',s:'قند را بدون افت شدید کنترل می‌کند.',l:'پایدار.'}],
+ adv:[{o:'gut',c:'high',s:'التهاب پانکراس (نادر).',l:'درد شکم شدید = اورژانس.'}],
+ tips:['خطر افت قندش خیلی کم است.']},
+{id:'liraglutide',fa:'لیراگلوتاید',en:'Liraglutide',cat:'diabetes',desc:'تزریقی؛ شبه‌هورمون روده برای قند و لاغری.',
+ mech:'مثل هورمون GLP-1 عمل می‌کند؛ انسولین را زیاد، اشتها را کم و تخلیه‌ی معده را کند می‌کند.',
+ ther:[{o:'blood',s:'کنترل قند + کاهش وزن.',l:'محافظت قلبی.'},{o:'stomach',s:'سیری زودرس.',l:'کاهش وزن پایدار.'}],
+ adv:[{o:'gut',s:'تهوع اول درمان.',l:'به‌تدریج کم می‌شود.'},{o:'gut',c:'high',s:'پانکراتیت نادر.',l:'هشدار.'}],
+ tips:['تزریق روزانه؛ تهوع اولش طبیعی است.']},
+{id:'glargine',fa:'انسولین گلارژین',en:'Insulin Glargine',cat:'diabetes',desc:'انسولین طولانی‌اثر (۲۴ ساعته).',
+ mech:'بعد از تزریق زیر پوست رسوب می‌کند و ۲۴ ساعت ذره‌ذره آزاد می‌شود؛ قند پایه را ثابت نگه می‌دارد.',
+ ther:[{o:'blood',s:'قند پایه‌ی شبانه‌روز را کنترل می‌کند.',l:'پایه‌ی درمان دیابت نوع ۱.'}],
+ adv:[{o:'brain',c:'high',s:'افت قند شبانه.',l:'خطرناک.'}],
+ tips:['هر روز سر ساعت مشخص تزریق شود.']},
+{id:'aspart',fa:'انسولین آسپارت',en:'Insulin Aspart',cat:'diabetes',desc:'انسولین سریع‌اثر وعده‌ی غذایی.',
+ mech:'نسخه‌ی دست‌کاری‌شده‌ی انسولین که در ۱۵ دقیقه اثر می‌کند و قند بعد از غذا را می‌گیرد.',
+ ther:[{o:'blood',s:'قند بعد از غذا را کنترل می‌کند.',l:'همراه وعده.'}],
+ adv:[{o:'brain',c:'high',s:'افت قند اگر غذا خورده نشود.',l:'اورژانسی.'}],
+ tips:['بلافاصله قبل از غذا تزریق شود.']},
+{id:'acarbose',fa:'آکاربوز',en:'Acarbose',cat:'diabetes',desc:'کندکننده‌ی جذب قند از روده.',
+ mech:'آنزیم هضم نشاسته (آلفا-گلوکوزیداز) را در روده می‌بندد؛ قند دیرتر و کمتر جذب می‌شود.',
+ ther:[{o:'gut',s:'قند بعد از غذا کمتر بالا می‌رود.',l:'کنترل.'}],
+ adv:[{o:'gut',s:'نفخ و گاز شدید (نشاسته‌ی هضم‌نشده).',l:'شایع‌ترین عارضه.'}],
+ tips:['اول لقمه‌ی غذا خورده شود.']}
+]);
+</script>
+<script>
+DRUGS.push(...[
+/* ---------- GI ---------- */
+{id:'famotidine',fa:'فاموتیدین',en:'Famotidine',cat:'gi',desc:'کاهنده‌ی اسید معده (H2 بلاکر).',
+ mech:'گیرنده‌ی H2 هیستامینِ سلول‌های اسیدساز معده را می‌بندد؛ فرمان «اسید بساز» به معده نمی‌رسد.',
+ ther:[{o:'stomach',s:'سوزش معده و رفلاکس را کم می‌کند.',l:'کنترل.'}],
+ adv:[{o:'brain',c:'high',s:'گیجی در سالمندان (نادر).',l:'گذرا.'}],
+ tips:['اثرش سریع‌تر از امپرازول ولی ضعیف‌تر است.']},
+{id:'pantoprazole',fa:'پنتوپرازول',en:'Pantoprazole',cat:'gi',desc:'PPI؛ مثل امپرازول ولی تزریقی هم دارد.',
+ mech:'پمپ پروتون (اسیدساز) معده را برای همیشه خاموش می‌کند.',
+ ther:[{o:'stomach',s:'اسید را به‌شدت کم می‌کند.',l:'ترمیم زخم.'}],
+ adv:[{o:'bone',c:'long',s:'کاهش جذب کلسیم.',l:'پوکی در مصرف چندساله.'}],
+ tips:['ناشتا قبل از صبحانه.']},
+{id:'esomeprazole',fa:'ازومپرازول',en:'Esomeprazole',cat:'gi',desc:'نسخه‌ی بهینه‌ی امپرازول.',
+ mech:'ایزومر فعال امپرازول؛ همان خاموش کردن پمپ پروتون با اثر پایدارتر.',
+ ther:[{o:'stomach',s:'رفلاکس شدید را کنترل می‌کند.',l:'درمان.'}],
+ adv:[{o:'bone',c:'long',s:'پوکی در مصرف طولانی.',l:'چکاپ.'},{o:'kidney',c:'long',s:'نفریت نادر.',l:'احتیاط.'}],
+ tips:['برای رفلاکس مقاوم انتخاب می‌شود.']},
+{id:'lansoprazole',fa:'لانزوپرازول',en:'Lansoprazole',cat:'gi',desc:'PPI دیگر؛ برای زخم و رفلاکس.',
+ mech:'مهار پمپ پروتون معده.',
+ ther:[{o:'stomach',s:'کاهش اسید و بهبود زخم.',l:'درمان.'}],
+ adv:[{o:'gut',c:'long',s:'اسهال.',l:'گذرا.'}],
+ tips:['کپسول را نجوید.']},
+{id:'rabeprazole',fa:'رابپرازول',en:'Rabeprazole',cat:'gi',desc:'PPI با شروع اثر سریع.',
+ mech:'سریع‌تر از بقیه پمپ پروتون را می‌بندد.',
+ ther:[{o:'stomach',s:'سوزش سریع‌تر خوب می‌شود.',l:'درمان.'}],
+ adv:[{o:'bone',c:'long',s:'پوکی درازمدت.',l:'احتیاط.'}],
+ tips:['تداخل دارویی کمتری دارد.']},
+{id:'sucralfate',fa:'سوکرالفیت',en:'Sucralfate',cat:'gi',desc:'چسب زخم معده؛ محافظ موضعی.',
+ mech:'روی زخم معده لایه‌ای چسبناک می‌سازد؛ مثل پانسمان داخلی که اسید به زخم نرسد.',
+ ther:[{o:'stomach',s:'از زخم محافظت می‌کند.',l:'کمک به ترمیم.'}],
+ adv:[{o:'gut',c:'long',s:'یبوست.',l:'شایع.'}],
+ tips:['ناشتا؛ با فاصله از داروهای دیگر (جذبشان را کم می‌کند).']},
+{id:'ondansetron',fa:'اندانسترون',en:'Ondansetron',cat:'gi',desc:'ضدتهوع قوی؛ برای شیمی‌درمانی و بعد از عمل.',
+ mech:'گیرنده‌ی 5HT3 سروتونین در مرکز استفراغ مغز و روده را قفل می‌کند؛ فرمان تهوع صادر نمی‌شود.',
+ ther:[{o:'brain',s:'تهوع و استفراغ را متوقف می‌کند.',l:'نجات‌بخش در شیمی‌درمانی.'}],
+ adv:[{o:'gut',c:'high',s:'یبوست و سردرد.',l:'شایع.'},{o:'heart',c:'high',s:'اختلال ریتم (نادر).',l:'احتیاط قلبی.'}],
+ tips:['زیرزبانی‌اش سریع اثر می‌کند.']},
+{id:'metoclopramide',fa:'متوکلوپرامید',en:'Metoclopramide',cat:'gi',desc:'ضدتهوع + تقویت‌کننده‌ی حرکت معده.',
+ mech:'گیرنده‌ی دوپامین را می‌بندد (ضدتهوع) و حرکت معده به روده را تند می‌کند.',
+ ther:[{o:'stomach',s:'تهوع را کم و تخلیه‌ی معده را تند می‌کند.',l:'در فلج معده‌ی دیابتی.'}],
+ adv:[{o:'brain',c:'long',s:'حرکات غیرارادی (دیسکینزی) در مصرف طولانی.',l:'ممکن است برگشت‌ناپذیر باشد.'}],
+ tips:['⛔ بیش از ۱۲ هفته مصرف نشود.']},
+{id:'domperidone',fa:'دامپریدون',en:'Domperidone',cat:'gi',desc:'مثل متوکلوپرامید ولی کمتر وارد مغز می‌شود.',
+ mech:'دوپامین روده را می‌بندد؛ حرکت گوارشی تند می‌شود بدون عوارض مغزی زیاد.',
+ ther:[{o:'stomach',s:'نفخ و تهوع بعد از غذا را کم می‌کند.',l:'کمک گوارشی.'}],
+ adv:[{o:'heart',c:'high',s:'اختلال ریتم قلب.',l:'در دوز بالا.'}],
+ tips:['در بارداری با احتیاط.']},
+{id:'bisacodyl',fa:'بیزاکودیل',en:'Bisacodyl',cat:'gi',desc:'ملین محرک؛ برای یبوست.',
+ mech:'عصب‌های دیواره‌ی روده را تحریک می‌کند؛ روده منقبض می‌شود و محتویات را جلو می‌راند.',
+ ther:[{o:'gut',s:'یبوست را در ۶-۱۲ ساعت رفع می‌کند.',l:'گاه‌به‌گاه.'}],
+ adv:[{o:'gut',c:'long',s:'روده‌ی تنبل؛ وابستگی به ملین.',l:'مصرف طولانی ممنوع.'}],
+ tips:['مصرف طولانی روده را تنبل می‌کند.']},
+{id:'lactulose',fa:'لاکتولوز',en:'Lactulose',cat:'gi',desc:'ملین اسمزی ملایم؛ برای یبوست مزمن و کبد.',
+ mech:'قندی که هضم نمی‌شود؛ آب را به روده می‌کشد و مدفوع را نرم می‌کند. در نارسایی کبد آمونیاک خون را هم کم می‌کند.',
+ ther:[{o:'gut',s:'یبوست را نرم و راحت رفع می‌کند.',l:'ایمن برای طولانی‌مدت.'},{o:'brain',s:'در نارسایی کبد، گیجی (آنسفالوپاتی) را کم می‌کند.',l:'نجات‌بخش.'}],
+ adv:[{o:'gut',s:'نفخ و گاز.',l:'با دوز کم شروع کنید.'}],
+ tips:['برای سالمندان و بارداری از ایمن‌ترین‌هاست.']},
+{id:'psyllium',fa:'پسیلیوم (اسفرزه)',en:'Psyllium',cat:'gi',desc:'فیبر طبیعی؛ ملین حجیم‌ساز.',
+ mech:'آب را مثل اسفنج جذب می‌کند و حجم مدفوع را زیاد می‌کند؛ روده برای دفع تحریک می‌شود.',
+ ther:[{o:'gut',s:'یبوست را طبیعی رفع می‌کند.',l:'سلامت روده.'},{o:'blood',s:'کلسترول را کمی پایین می‌آورد.',l:'اثر جانبی خوب.'}],
+ adv:[{o:'gut',c:'high',s:'بدون آب کافی، انسداد مری!',l:'خطرناک.'}],
+ tips:['⛔ حتماً با لیوان پر آب؛ وگرنه خفه‌کننده است.']},
+{id:'docusate',fa:'دوکوزات',en:'Docusate',cat:'gi',desc:'نرم‌کننده‌ی مدفوع.',
+ mech:'کشش سطحی را کم می‌کند تا آب وارد توده‌ی مدفوع شود؛ مثل نرم‌کننده‌ی لباس برای روده.',
+ ther:[{o:'gut',s:'دفع را راحت می‌کند.',l:'بعد از جراحی و زایمان.'}],
+ adv:[],
+ tips:['اثر ملایم؛ برای یبوست شدید کافی نیست.']},
+{id:'senna',fa:'سنا',en:'Senna',cat:'gi',desc:'ملین گیاهی محرک.',
+ mech:'ماده‌ی سنوزید عصب روده‌ی بزرگ را تحریک می‌کند.',
+ ther:[{o:'gut',s:'یبوست را در ۸-۱۲ ساعت رفع می‌کند.',l:'گاه‌به‌گاه.'}],
+ adv:[{o:'gut',c:'long',s:'وابستگی و روده‌ی تنبل.',l:'مصرف طولانی ممنوع.'},{o:'kidney',c:'long',s:'دفع پتاسیم.',l:'گرفتگی.'}],
+ tips:['شب خورده شود تا صبح اثر کند.']},
+{id:'pancreatin',fa:'پانکراتین',en:'Pancreatin',cat:'gi',desc:'آنزیم گوارشی؛ برای نارسایی پانکراس.',
+ mech:'همان آنزیم‌های پانکراس (لیپاز، آمیلاز) است؛ غذای هضم‌نشده را می‌شکافد.',
+ ther:[{o:'gut',s:'نفخ و سوءهاضمه‌ی چرب را کم می‌کند.',l:'جبران نارسایی.'}],
+ adv:[{o:'gut',c:'high',s:'تهوع.',l:'خفیف.'}],
+ tips:['وسط غذا مصرف شود.']},
+{id:'ursodiol',fa:'اورسودیول',en:'Ursodiol',cat:'gi',desc:'حل‌کننده‌ی سنگ کیسه‌ی صفرا.',
+ mech:'صفرای رقیق‌تری می‌سازد؛ سنگ‌های کلسترولی کوچک به‌تدریج حل می‌شوند.',
+ ther:[{o:'liver',s:'سنگ‌های کوچک صفراوی را حل می‌کند.',l:'جایگزین جراحی در موارد خاص.'}],
+ adv:[{o:'gut',s:'اسهال.',l:'شایع.'}],
+ tips:['ماه‌ها طول می‌کشد؛ فقط سنگ‌های کوچک کلسترولی.']},
+/* ---------- NEURO ---------- */
+{id:'citalopram',fa:'سیتالوپرام',en:'Citalopram',cat:'neuro',desc:'SSRI؛ ضدافسردگی.',
+ mech:'بازجذب سروتونین را مهار می‌کند؛ سروتونین بیشتر بین سلول‌های مغز می‌ماند.',
+ ther:[{o:'brain',s:'خلق را به‌تدریج بهتر می‌کند.',l:'اثر کامل در ۴-۶ هفته.'}],
+ adv:[{o:'gut',s:'تهوع اول درمان.',l:'گذرا.'},{o:'heart',c:'high',s:'اختلال ریتم در دوز بالا.',l:'سقف دوز دارد.'}],
+ tips:['بیش از ۴۰ میلی‌گرم در روز توصیه نمی‌شود.']},
+{id:'escitalopram',fa:'اسیتالوپرام',en:'Escitalopram',cat:'neuro',desc:'نسخه‌ی خالص‌تر سیتالوپرام.',
+ mech:'ایزومر فعال سیتالوپرام؛ همان مهار بازجذب سروتونین با عوارض کمتر.',
+ ther:[{o:'brain',s:'افسردگی و اضطراب را کم می‌کند.',l:'از پرتحمل‌ترین SSRIها.'}],
+ adv:[{o:'gut',s:'تهوع خفیف اول درمان.',l:'گذرا.'}],
+ tips:['معمولاً با دوز کم شروع می‌شود.']},
+{id:'paroxetine',fa:'پاروکستین',en:'Paroxetine',cat:'neuro',desc:'SSRI قوی؛ برای اضطراب و وسواس.',
+ mech:'مهار قوی بازجذب سروتونین.',
+ ther:[{o:'brain',s:'اضطراب، وسواس و افسردگی را کم می‌کند.',l:'درمان نگهدارنده.'}],
+ adv:[{o:'brain',c:'long',s:'بدترین علائم قطع در بین SSRIها.',l:'قطع باید خیلی تدریجی باشد.'},{o:'gut',s:'تهوع.',l:'گذرا.'}],
+ tips:['⛔ قطع ناگهانی‌اش از همه بدتر است.']},
+{id:'venlafaxine',fa:'ونلافاکسین',en:'Venlafaxine (SNRI)',cat:'neuro',desc:'SNRI؛ سروتونین + نورآدرنالین.',
+ mech:'بازجذب هر دو سروتونین و نورآدرنالین را می‌بندد؛ انرژی و خلق هر دو بالا می‌رود.',
+ ther:[{o:'brain',s:'افسردگی‌های مقاوم را بهتر جواب می‌دهد.',l:'درمان.'}],
+ adv:[{o:'blood',c:'high',s:'فشار خون را بالا می‌برد.',l:'چکاپ فشار.'},{o:'brain',c:'long',s:'علائم قطع شدید.',l:'تدریجی قطع شود.'}],
+ tips:['فشار خون را مرتب چک کنید.']},
+{id:'duloxetine',fa:'دولوکستین',en:'Duloxetine (SNRI)',cat:'neuro',desc:'SNRI؛ برای افسردگی و درد عصبی.',
+ mech:'سروتونین و نورآدرنالین را بالا نگه می‌دارد؛ هم خلق بهتر، هم درد عصبی کمتر.',
+ ther:[{o:'brain',s:'افسردگی و اضطراب را کم می‌کند.',l:'درمان.'},{o:'bone',s:'دردهای عصبی-عضلانی (فیبرومیالژیا) را کم می‌کند.',l:'کمک به درد مزمن.'}],
+ adv:[{o:'gut',s:'تهوع اول درمان.',l:'گذرا.'},{o:'liver',c:'high',s:'فشار کبدی.',l:'نادر.'}],
+ tips:['کپسول را باز نکنید.']},
+{id:'mirtazapine',fa:'میرتازاپین',en:'Mirtazapine',cat:'neuro',desc:'ضدافسردگی خواب‌آور؛ برای بی‌خوابی همراه افسردگی.',
+ mech:'گیرنده‌های سروتونین خاصی را می‌بندد و هیستامین را هم می‌بندد؛ نتیجه: خواب عمیق + اشتهای بیشتر.',
+ ther:[{o:'brain',s:'خواب را عمیق و خلق را بهتر می‌کند.',l:'درمان.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی روزانه و افزایش وزن.',l:'شایع‌ترین عوارض.'}],
+ tips:['شب مصرف شود؛ برای لاغرها و بی‌خواب‌ها عالی است.']},
+{id:'amitriptyline',fa:'آمی‌تریپتیلین',en:'Amitriptyline',cat:'neuro',desc:'ضدافسردگی سه‌حلقه‌ای قدیمی؛ برای درد عصبی و میگرن.',
+ mech:'بازجذب سروتونین و نورآدرنالین را می‌بندد ولی گیرنده‌های دیگری هم می‌بندد (برای همین خواب‌آور و دهان‌خشک‌کن است).',
+ ther:[{o:'brain',s:'درد عصبی و میگرن را کم می‌کند.',l:'پیشگیری از میگرن.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی شدید و خشکی دهان.',l:'شایع.'},{o:'heart',c:'high',s:'آریتمی در اوردوز.',l:'کشنده در دوز بالا.'}],
+ tips:['شب با دوز کم شروع شود. اوردوزش خطرناک است.']},
+{id:'bupropion',fa:'بوپروپیون',en:'Bupropion',cat:'neuro',desc:'ضدافسردگی محرک؛ برای ترک سیگار هم.',
+ mech:'دوپامین و نورآدرنالین را بالا می‌برد (نه سروتونین)؛ انرژی می‌دهد و میل به نیکوتین را کم می‌کند.',
+ ther:[{o:'brain',s:'انرژی و تمرکز را بالا می‌برد.',l:'کمک به ترک سیگار.'}],
+ adv:[{o:'brain',c:'high',s:'تشنج در دوز بالا.',l:'سقف دوز دارد.'},{o:'gut',s:'بی‌خوابی.',l:'صبح مصرف شود.'}],
+ tips:['چاق نمی‌کند و میل جنسی را کم نمی‌کند (برخلاف SSRIها).']},
+{id:'trazodone',fa:'ترازودون',en:'Trazodone',cat:'neuro',desc:'ضدافسردگی خواب‌آور با دوز کم.',
+ mech:'سروتونین را تنظیم و هیستامین را می‌بندد؛ در دوز کم بیشتر خواب‌آور است تا ضدافسردگی.',
+ ther:[{o:'brain',s:'بی‌خوابی را بدون اعتیادآوری بنزودیازپین‌ها درمان می‌کند.',l:'خواب منظم.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی صبحگاهی.',l:'با تنظیم دوز بهتر می‌شود.'},{o:'blood',c:'high',s:'پریاپیسم (نعوظ دردناک طولانی) نادر ولی اورژانسی.',l:'فوراً اورژانس.'}],
+ tips:['برای بی‌خوابی با دوز کم (۲۵-۱۰۰) داده می‌شود.']},
+{id:'diazepam',fa:'دیازپام',en:'Diazepam',cat:'neuro',desc:'آرام‌بخش بنزودیازپینی با اثر طولانی.',
+ mech:'اثر گابا (ترمز مغز) را قوی می‌کند؛ اضطراب، اسپاسم و تشنج را آرام می‌کند.',
+ ther:[{o:'brain',s:'اضطراب و حمله‌ی پانیک را سریع آرام می‌کند.',l:'کوتاه‌مدت.'},{o:'bone',s:'اسپاسم عضلانی را شل می‌کند.',l:'کمک حاد.'}],
+ adv:[{o:'brain',c:'long',s:'وابستگی شدید.',l:'ترک سخت.'}],
+ tips:['⛔ اثرش طولانی است؛ خواب‌آلودگی روز بعد طبیعی است.']},
+{id:'lorazepam',fa:'لورازپام',en:'Lorazepam',cat:'neuro',desc:'بنزودیازپین متوسط‌اثر؛ برای اضطراب و بی‌خوابی.',
+ mech:'تقویت گابا؛ آرام‌بخش و خواب‌آور.',
+ ther:[{o:'brain',s:'اضطراب و بی‌خوابی را سریع درمان می‌کند.',l:'کوتاه‌مدت.'}],
+ adv:[{o:'brain',c:'long',s:'وابستگی.',l:'بیش از ۲-۴ هفته توصیه نمی‌شود.'}],
+ tips:['در سالمندان با دوز کم.']},
+{id:'clonazepam',fa:'کلونازپام',en:'Clonazepam',cat:'neuro',desc:'بنزودیازپین طولانی‌اثر؛ برای صرع و پانیک.',
+ mech:'گابا را تقویت می‌کند؛ هم ضدتشنج هم ضداضطراب.',
+ ther:[{o:'brain',s:'تشنج و حمله‌ی پانیک را کنترل می‌کند.',l:'نگهدارنده.'}],
+ adv:[{o:'brain',c:'long',s:'وابستگی و تحمل.',l:'قطع تدریجی.'}],
+ tips:['قطع ناگهانی تشنج برمی‌گرداند.']},
+{id:'zolpidem',fa:'زولپیدم',en:'Zolpidem',cat:'neuro',desc:'خواب‌آور غیربنزودیازپینی.',
+ mech:'فقط زیرگروه خاصی از گیرنده‌ی گابا (خواب) را فعال می‌کند؛ خواب می‌آورد بدون شل‌کنندگی عضله‌ی زیاد.',
+ ther:[{o:'brain',s:'به خواب رفتن را سریع می‌کند.',l:'کوتاه‌مدت.'}],
+ adv:[{o:'brain',c:'long',s:'وابستگی + راه رفتن در خواب!',l:'رفتارهای عجیب شبانه.'}],
+ tips:['⛔ بلافاصله بعد از خوردن بخوابید؛ وگرنه کارهای عجیب می‌کنید!']},
+{id:'pregabalin',fa:'پرگابالین',en:'Pregabalin',cat:'neuro',desc:'برای درد عصبی، صرع و اضطراب.',
+ mech:'به زیرواحد آلفا-۲-دلتا کانال کلسیم عصب می‌چسبد؛ آزاد شدن پیام درد کم می‌شود.',
+ ther:[{o:'brain',s:'درد نوروپاتیک و اضطراب را کم می‌کند.',l:'کنترل درازمدت.'}],
+ adv:[{o:'brain',s:'گیجی، خواب‌آلودگی و افزایش وزن.',l:'شایع.'},{o:'brain',c:'long',s:'وابستگی.',l:'قطع تدریجی.'}],
+ tips:['دوز به‌تدریج بالا می‌رود.']},
+{id:'carbamazepine',fa:'کاربامازپین',en:'Carbamazepine',cat:'neuro',desc:'ضدصرع و تثبیت‌کننده‌ی خلق.',
+ mech:'کانال سدیم عصب را می‌بندد؛ شلیک‌های الکتریکی بی‌رویه‌ی مغز (تشنج) متوقف می‌شود.',
+ ther:[{o:'brain',s:'تشنج و درد عصب سه‌قلو را کنترل می‌کند.',l:'نگهدارنده.'}],
+ adv:[{o:'blood',c:'long',s:'مغز استخوان را سرکوب می‌کند.',l:'آزمایش خون دوره‌ای.'},{o:'skin',c:'high',s:'حساسیت پوستی شدید (نادر).',l:'هشدار.'}],
+ tips:['آزمایش خون و سطح دارویی دوره‌ای لازم است.']},
+{id:'valproate',fa:'والپروات',en:'Valproate',cat:'neuro',desc:'ضدصرع وسیع‌الطیف و تثبیت‌کننده‌ی خلق.',
+ mech:'گابا را زیاد و شلیک عصبی را کم می‌کند؛ تقریباً همه‌ی انواع تشنج را پوشش می‌دهد.',
+ ther:[{o:'brain',s:'تشنج و فاز شیدایی دوقطبی را کنترل می‌کند.',l:'نگهدارنده.'}],
+ adv:[{o:'liver',c:'high',s:'آسیب کبدی (مخصوصاً کودکان).',l:'چکاپ کبدی.'},{o:'brain',c:'long',s:'افزایش وزن و ریزش مو.',l:'شایع.'}],
+ tips:['⛔ در بارداری ممنوع (نقص جنین).']},
+{id:'lamotrigine',fa:'لاموتریژین',en:'Lamotrigine',cat:'neuro',desc:'ضدصرع و تثبیت‌کننده‌ی خلق (دوقطبی).',
+ mech:'کانال سدیم + آزادسازی گلوتامات را کم می‌کند؛ مغز آرام‌تر می‌شود.',
+ ther:[{o:'brain',s:'تشنج و نوسان خلق را کنترل می‌کند.',l:'نگهدارنده‌ی خوب.'}],
+ adv:[{o:'skin',c:'high',s:'جوش پوستی خطرناک (استیونز-جانسون) اگر سریع بالا برود.',l:'افزایش دوز باید خیلی آهسته باشد.'}],
+ tips:['⛔ دوز را هرگز سریع بالا نبرید؛ جوش = فوراً پزشک.']},
+{id:'levetiracetam',fa:'لوتیراستام',en:'Levetiracetam',cat:'neuro',desc:'ضدصرع مدرن (کپرا).',
+ mech:'به پروتئین SV2A وزیکول‌های عصبی می‌چسبد و آزاد شدن پیام‌عصبی را تنظیم می‌کند.',
+ ther:[{o:'brain',s:'تشنج را کنترل می‌کند.',l:'نگهدارنده.'}],
+ adv:[{o:'brain',s:'تحریک‌پذیری و پرخاشگری.',l:'«اثر کپرا» معروف است.'}],
+ tips:['تغییر خلق را به پزشک بگویید.']},
+{id:'phenytoin',fa:'فنی‌توئین',en:'Phenytoin',cat:'neuro',desc:'ضدصرع قدیمی.',
+ mech:'کانال سدیم را می‌بندد؛ از گسترش تشنج جلوگیری می‌کند.',
+ ther:[{o:'brain',s:'تشنج را کنترل می‌کند.',l:'نگهدارنده.'}],
+ adv:[{o:'skin',c:'long',s:'رشد لثه و پرمویی.',l:'آزاردهنده.'},{o:'brain',c:'high',s:'عدم تعادل و دوبینی در دوز بالا.',l:'مسمومیت.'}],
+ tips:['سطح خونی باید کنترل شود.']},
+{id:'topiramate',fa:'توپیرامات',en:'Topiramate',cat:'neuro',desc:'ضدصرع و پیشگیری از میگرن؛ لاغرکننده.',
+ mech:'چند کاره: کانال سدیم را می‌بندد، گابا را زیاد و گلوتامات را کم می‌کند.',
+ ther:[{o:'brain',s:'تشنج و حملات میگرن را کم می‌کند.',l:'پیشگیری.'}],
+ adv:[{o:'brain',s:'کندی ذهن («توپیرامات = توپ-کند») و گزگز.',l:'شایع.'},{o:'kidney',c:'long',s:'سنگ کلیه.',l:'آب فراوان.'}],
+ tips:['وزن کم می‌کند (برخلاف بقیه‌ی ضدصرع‌ها).']},
+{id:'donepezil',fa:'دونپزیل',en:'Donepezil',cat:'neuro',desc:'برای آلزایمر؛ تقویت‌کننده‌ی حافظه.',
+ mech:'آنزیم تجزیه‌کننده‌ی استیل‌کولین (پیام حافظه) را می‌بندد؛ پیام حافظه بیشتر می‌ماند.',
+ ther:[{o:'brain',s:'حافظه و عملکرد روزانه را کمی بهتر می‌کند.',l:'کند کردن سیر بیماری.'}],
+ adv:[{o:'gut',s:'تهوع و اسهال.',l:'گذرا.'},{o:'heart',c:'high',s:'کندی ضربان.',l:'احتیاط.'}],
+ tips:['درمان قطعی نیست؛ سیر را کند می‌کند.']},
+{id:'memantine',fa:'ممانتین',en:'Memantine',cat:'neuro',desc:'برای آلزایمر متوسط تا شدید.',
+ mech:'گیرنده‌ی NMDA (گلوتامات) را تنظیم می‌کند؛ از تحریک بیش‌ازحد و مرگ سلول مغزی جلوگیری می‌کند.',
+ ther:[{o:'brain',s:'آشفتگی و افت عملکرد را کم می‌کند.',l:'کمک در مراحل پیشرفته.'}],
+ adv:[{o:'brain',s:'سرگیجه و گیجی.',l:'خفیف.'}],
+ tips:['معمولاً با دونپزیل ترکیب می‌شود.']},
+{id:'methylphenidate',fa:'متیل‌فنیدیت',en:'Methylphenidate',cat:'neuro',desc:'ریتالین؛ برای بیش‌فعالی (ADHD).',
+ mech:'بازجذب دوپامین و نورآدرنالین را می‌بندد؛ تمرکز بالا می‌رود و تکانشگری کم می‌شود.',
+ ther:[{o:'brain',s:'تمرکز و کنترل تکانه را بهتر می‌کند.',l:'درمان اصلی ADHD.'}],
+ adv:[{o:'brain',c:'high',s:'بی‌خوابی و اضطراب.',l:'صبح مصرف شود.'},{o:'heart',c:'high',s:'تپش و فشار.',l:'چکاپ قلبی.'}],
+ tips:['⛔ پتانسیل سوءمصرف دارد؛ فقط با تجویز.']},
+{id:'atomoxetine',fa:'اتوموکستین',en:'Atomoxetine',cat:'neuro',desc:'غیرمحرک برای ADHD.',
+ mech:'فقط نورآدرنالین را بالا می‌برد؛ بدون پتانسیل اعتیاد محرک‌ها.',
+ ther:[{o:'brain',s:'تمرکز را بهتر می‌کند.',l:'جایگزین ریتالین.'}],
+ adv:[{o:'gut',s:'تهوع و کم‌اشتهایی.',l:'گذرا.'},{o:'liver',c:'high',s:'آسیب کبدی نادر.',l:'هشدار.'}],
+ tips:['اثر کاملش هفته‌ها طول می‌کشد.']}
+]);
+</script>
+<script>
+DRUGS.push(...[
+/* ---------- RESP ---------- */
+{id:'loratadine',fa:'لوراتادین',en:'Loratadine',cat:'resp',desc:'آنتی‌هیستامین بدون خواب‌آلودگی.',
+ mech:'گیرنده‌ی هیستامین را قفل می‌کند ولی وارد مغز نمی‌شود؛ پس خواب‌آلود نمی‌کند.',
+ ther:[{o:'skin',s:'خارش و کهیر را کم می‌کند.',l:'کنترل حساسیت.'},{o:'lungs',s:'عطسه و آبریزش را کم می‌کند.',l:'فصل حساسیت.'}],
+ adv:[{o:'brain',s:'به‌ندرت سردرد.',l:'خفیف.'}],
+ tips:['روزی یک عدد؛ خواب‌آلود نمی‌کند.']},
+{id:'fexofenadine',fa:'فکسوفنادین',en:'Fexofenadine',cat:'resp',desc:'آنتی‌هیستامین نسل جدید؛ خیلی کم‌عارضه.',
+ mech:'هیستامین را محیطی قفل می‌کند؛ تقریباً هیچ اثری بر مغز ندارد.',
+ ther:[{o:'skin',s:'کهیر مزمن را کنترل می‌کند.',l:'درازمدت.'},{o:'lungs',s:'علائم حساسیت فصلی.',l:'کنترل.'}],
+ adv:[],
+ tips:['با آبمیوه (گریپ‌فروت/پرتقال) نخورید؛ جذب کم می‌شود.']},
+{id:'desloratadine',fa:'دسلوراتادین',en:'Desloratadine',cat:'resp',desc:'متابولیت فعال لوراتادین.',
+ mech:'همان قفل هیستامین با اثر قوی‌تر و طولانی‌تر.',
+ ther:[{o:'skin',s:'خارش و کهیر.',l:'کنترل.'},{o:'lungs',s:'حساسیت بینی.',l:'کنترل.'}],
+ adv:[],
+ tips:['در نارسایی کلیه دوز کمتر.']},
+{id:'montelukast',fa:'مونته‌لوکاست',en:'Montelukast',cat:'resp',desc:'ضدآسم جویدنی؛ مسدودکننده‌ی لوکوترین.',
+ mech:'گیرنده‌ی لوکوترین (ماده‌ی التهاب آسم و حساسیت) را می‌بندد؛ راه هوایی کمتر متورم می‌شود.',
+ ther:[{o:'lungs',s:'حملات آسم و حساسیت فصلی را کم می‌کند.',l:'پیشگیری روزانه.'}],
+ adv:[{o:'brain',c:'long',s:'کابوس و تغییر خلق (هشدار جدی).',l:'در صورت بروز قطع و به پزشک بگویید.'}],
+ tips:['⚠️ تغییر رفتار/خلق را جدی بگیرید. شب مصرف شود.']},
+{id:'fluticasone_nasal',fa:'فلوتیکازون بینی',en:'Fluticasone Nasal Spray',cat:'resp',desc:'اسپری کورتون بینی برای حساسیت.',
+ mech:'کورتیکواستروئید موضعی؛ التهاب مخاط بینی را مستقیم سرکوب می‌کند بدون اثر سیستمیک زیاد.',
+ ther:[{o:'lungs',s:'گرفتگی و آبریزش بینی را کم می‌کند.',l:'کنترل فصلی.'}],
+ adv:[{o:'lungs',c:'long',s:'خونریزی خفیف بینی.',l:'با تکنیک درست کمتر می‌شود.'}],
+ tips:['به دیواره‌ی بینی نزنید؛ به سمت بیرون اسپری کنید. اثر کامل در چند روز.']},
+{id:'budesonide_inh',fa:'بودزوناید استنشاقی',en:'Budesonide Inhaler',cat:'resp',desc:'کورتون استنشاقی؛ کنترل‌کننده‌ی آسم.',
+ mech:'التهاب مزمن راه هوایی را سرکوب می‌کند؛ مثل خاموش نگه داشتن آتش زیر خاکستر.',
+ ther:[{o:'lungs',s:'از حملات آسم پیشگیری می‌کند.',l:'کنترل درازمدت.'}],
+ adv:[{o:'lungs',c:'long',s:'برفک دهان.',l:'بعد از مصرف دهان را بشویید.'}],
+ tips:['⛔ برای حمله‌ی حاد نیست (آن سالبوتامول است). هر روز منظم.']},
+{id:'salmeterol',fa:'سالمترول',en:'Salmeterol',cat:'resp',desc:'گشادکننده‌ی طولانی‌اثر راه هوایی (۱۲ ساعته).',
+ mech:'بتا-۲ را ۱۲ ساعت تحریک نگه می‌دارد؛ راه هوایی باز می‌ماند.',
+ ther:[{o:'lungs',s:'تنفس راحت تمام روز.',l:'همراه کورتون استنشاقی.'}],
+ adv:[{o:'heart',c:'high',s:'تپش قلب.',l:'خفیف.'}],
+ tips:['⛔ هرگز تنها مصرف نشود؛ حتماً با کورتون استنشاقی.']},
+{id:'tiotropium',fa:'تیوتروپیوم',en:'Tiotropium',cat:'resp',desc:'اسپری روزانه‌ی COPD (برونشیت مزمن).',
+ mech:'گیرنده‌ی موسکارینی ریه را ۲۴ ساعت می‌بندد؛ راه هوایی گشاد می‌ماند.',
+ ther:[{o:'lungs',s:'تنگی نفس COPD را کم می‌کند.',l:'روزی یک بار.'}],
+ adv:[{o:'lungs',s:'خشکی دهان.',l:'شایع ولی خفیف.'}],
+ tips:['کپسول را نجوید؛ با دستگاه مخصوص.']},
+{id:'theophylline',fa:'تئوفیلین',en:'Theophylline',cat:'resp',desc:'گشادکننده‌ی قدیمی راه هوایی.',
+ mech:'آنزیم فسفودی‌استراز را مهار می‌کند؛ عضله‌ی راه هوایی شل می‌شود.',
+ ther:[{o:'lungs',s:'تنگی نفس را کم می‌کند.',l:'خط دوم درمان.'}],
+ adv:[{o:'heart',c:'high',s:'تپش و آریتمی؛ پنجره‌ی درمانی باریک.',l:'سطح خونی کنترل شود.'},{o:'brain',c:'high',s:'بی‌خوابی و اضطراب.',l:'شایع.'}],
+ tips:['سطح خونی باید کنترل شود؛ با قهوه تشدید می‌شود.']},
+{id:'guaifenesin',fa:'گایافنزین',en:'Guaifenesin',cat:'resp',desc:'خلط‌آور؛ رقیق‌کننده‌ی خلط سینه.',
+ mech:'ترشحات راه هوایی را آبکی‌تر می‌کند؛ خلط راحت‌تر با سرفه خارج می‌شود.',
+ ther:[{o:'lungs',s:'خلط را شل و دفع را راحت می‌کند.',l:'در سرماخوردگی.'}],
+ adv:[{o:'gut',s:'تهوع در دوز بالا.',l:'خفیف.'}],
+ tips:['آب فراوان بنوشید تا بهتر اثر کند.']},
+{id:'bromhexine',fa:'برم‌هگزین',en:'Bromhexine',cat:'resp',desc:'خلط‌آور؛ برای سرفه‌ی خلط‌دار.',
+ mech:'الیاف مخاطی خلط را می‌شکافد؛ خلط رقیق‌تر می‌شود.',
+ ther:[{o:'lungs',s:'دفع خلط را راحت می‌کند.',l:'کمک تنفسی.'}],
+ adv:[{o:'gut',s:'تهوع خفیف.',l:'گذرا.'}],
+ tips:['برای سرفه‌ی خشک مناسب نیست.']},
+{id:'ambroxol',fa:'آمبروکسل',en:'Ambroxol',cat:'resp',desc:'متابولیت فعال برم‌هگزین؛ خلط‌آور.',
+ mech:'مثل برم‌هگزین خلط را رقیق می‌کند + سورفاکتانت ریه را تقویت می‌کند.',
+ ther:[{o:'lungs',s:'خلط غلیظ را نرم می‌کند.',l:'بهبود.'}],
+ adv:[{o:'gut',s:'تهوع خفیف.',l:'گذرا.'}],
+ tips:['در نارسایی کلیه احتیاط.']},
+/* ---------- HORMONE ---------- */
+{id:'methimazole',fa:'متی‌مازول',en:'Methimazole',cat:'hormone',desc:'ضد پرکاری تیروئید.',
+ mech:'آنزیم تیروئید پراکسیداز را می‌بندد؛ تیروئید نمی‌تواند هورمون بسازد.',
+ ther:[{o:'thyroid',s:'پرکاری تیروئید را کنترل می‌کند.',l:'درمان درازمدت.'},{o:'heart',s:'تپش ناشی از پرکاری کم می‌شود.',l:'بهبود.'}],
+ adv:[{o:'blood',c:'long',s:'افت گلبول سفید (آگرانولوسیتوز).',l:'تب و گلودرد = فوراً آزمایش.'},{o:'liver',c:'high',s:'آسیب کبدی.',l:'نادر.'}],
+ tips:['⚠️ تب یا گلودرد ناگهانی = فوراً به پزشک (افت ایمنی).']},
+{id:'carbimazole',fa:'کاربی‌مازول',en:'Carbimazole',cat:'hormone',desc:'پیش‌داروی متی‌مازول.',
+ mech:'در بدن تبدیل به متی‌مازول می‌شود؛ همان مهار ساخت هورمون تیروئید.',
+ ther:[{o:'thyroid',s:'کنترل پرکاری.',l:'درمان.'}],
+ adv:[{o:'blood',c:'long',s:'افت گلبول سفید.',l:'هشدار.'}],
+ tips:['در بارداری (سه‌ماهه‌ی اول) با نظر پزشک.']},
+{id:'dexamethasone',fa:'دگزامتازون',en:'Dexamethasone',cat:'hormone',desc:'کورتون خیلی قوی و طولانی‌اثر.',
+ mech:'مثل پردنیزولون ولی قوی‌تر و طولانی‌تر؛ التهاب و ایمنی را به‌شدت سرکوب می‌کند.',
+ ther:[{o:'blood',s:'التهاب شدید و آلرژی خطرناک را کنترل می‌کند.',l:'نجات‌بخش حاد.'},{o:'brain',s:'ورم مغزی را کم می‌کند.',l:'اورژانسی.'}],
+ adv:[{o:'bone',c:'long',s:'پوکی استخوان سریع.',l:'جدی.'},{o:'blood',c:'long',s:'قند بالا.',l:'دیابت دارویی.'},{o:'brain',c:'high',s:'بی‌خوابی و بی‌قراری.',l:'شایع.'}],
+ tips:['صبح مصرف شود. قطع ناگهانی ممنوع.']},
+{id:'hydrocortisone',fa:'هیدروکورتیزون',en:'Hydrocortisone',cat:'hormone',desc:'کورتون طبیعی بدن (کورتیزول).',
+ mech:'همان هورمون غده‌ی فوق‌کلیه؛ جایگزینی در نارسایی آدرنال.',
+ ther:[{o:'blood',s:'در بحران آدرنال نجات‌بخش است.',l:'جایگزینی مادام‌العمر.'}],
+ adv:[{o:'bone',c:'long',s:'پوکی در دوز بالا.',l:'احتیاط.'}],
+ tips:['در استرس/جراحی دوز باید بیشتر شود (با نظر پزشک).']},
+{id:'betamethasone',fa:'بتامتازون',en:'Betamethasone',cat:'hormone',desc:'کورتون قوی؛ تزریقی و موضعی.',
+ mech:'کورتیکواستروئید پرقدرت است؛ با ورود به سلول، ژن‌های التهاب‌ساز را خاموش و پاسخ ایمنی را به‌شدت سرکوب می‌کند.',
+ ther:[{o:'blood',s:'التهاب شدید را کنترل می‌کند.',l:'حاد.'},{o:'lungs',s:'در زایمان زودرس، ریه‌ی جنین را می‌رساند.',l:'نجات‌بخش نوزاد.'}],
+ adv:[{o:'skin',c:'long',s:'نازکی پوست (موضعی).',l:'مصرف طولانی موضعی ممنوع.'}],
+ tips:['پمادش را روی صورت طولانی نزنید.']},
+{id:'methylprednisolone',fa:'متیل‌پردنیزولون',en:'Methylprednisolone',cat:'hormone',desc:'کورتون تزریقی بیمارستانی.',
+ mech:'پالس‌درمانی التهاب‌های شدید (ام‌اس، لوپوس).',
+ ther:[{o:'blood',s:'حمله‌ی حاد خودایمنی را متوقف می‌کند.',l:'پالس چندروزه.'}],
+ adv:[{o:'blood',c:'high',s:'قند و فشار بالا.',l:'موقت.'},{o:'brain',c:'high',s:'بی‌خوابی و هیجان.',l:'شایع.'}],
+ tips:['فقط بیمارستانی.']},
+{id:'triamcinolone',fa:'تریامسینولون',en:'Triamcinolone',cat:'hormone',desc:'کورتون تزریق مفصلی و موضعی.',
+ mech:'مستقیم داخل مفصل ملتهب تزریق می‌شود؛ التهاب همان‌جا خاموش می‌شود.',
+ ther:[{o:'bone',s:'درد و ورم مفصل را ماه‌ها کم می‌کند.',l:'تزریق دوره‌ای.'}],
+ adv:[{o:'skin',c:'long',s:'روشن شدن پوست محل تزریق.',l:'موقت.'},{o:'blood',c:'high',s:'قند بالا (موقت).',l:'در دیابتی‌ها احتیاط.'}],
+ tips:['بعد از تزریق مفصل را ۱-۲ روز استراحت دهید.']},
+{id:'estradiol',fa:'استرادیول',en:'Estradiol',cat:'hormone',desc:'هورمون زنانه؛ برای یائسگی.',
+ mech:'جایگزین استروژن از دست‌رفته؛ گرگرفتگی و خشکی را کم می‌کند.',
+ ther:[{o:'blood',s:'علائم یائسگی را کم می‌کند.',l:'بهبود کیفیت زندگی.'},{o:'bone',s:'از پوکی استخوان جلوگیری می‌کند.',l:'محافظت.'}],
+ adv:[{o:'blood',c:'long',s:'خطر لخته.',l:'با پروژسترون ترکیب می‌شود.'}],
+ tips:['کمترین دوز مؤثر، کوتاه‌ترین زمان.']},
+{id:'medroxyprogesterone',fa:'مدروکسی‌پروژسترون',en:'Medroxyprogesterone',cat:'hormone',desc:'پروژسترون؛ آمپول ضدبارداری سه‌ماهه.',
+ mech:'تخمک‌گذاری را متوقف می‌کند و مخاط رحم را نازک نگه می‌دارد.',
+ ther:[{o:'blood',s:'جلوگیری از بارداری (۳ ماهه).',l:'اثر طولانی.'}],
+ adv:[{o:'bone',c:'long',s:'کاهش تراکم استخوان.',l:'در مصرف چندساله.'},{o:'brain',c:'long',s:'لک‌بینی و تغییر خلق.',l:'شایع.'}],
+ tips:['بعد از قطع، برگشت باروری ماه‌ها طول می‌کشد.']},
+{id:'levonorgestrel_iud',fa:'آی‌یودی هورمونی',en:'Levonorgestrel IUD',cat:'hormone',desc:'آی‌یودی هورمونی (میرنا)؛ ۵ سال جلوگیری.',
+ mech:'پروژسترون را مستقیم در رحم آزاد می‌کند؛ مخاط نازک و اسپرم ناتوان.',
+ ther:[{o:'gut',s:'جلوگیری ۵ ساله + قاعدگی خیلی کم.',l:'راحتی درازمدت.'}],
+ adv:[{o:'brain',c:'long',s:'لک‌بینی اول ماه‌ها.',l:'بعد خوب می‌شود.'}],
+ tips:['مؤثرترین روش برگشت‌پذیر است.']},
+{id:'testosterone',fa:'تستوسترون',en:'Testosterone',cat:'hormone',desc:'هورمون مردانه؛ برای کمبود.',
+ mech:'جایگزین تستوسترون؛ میل جنسی، انرژی و توده‌ی عضلانی را برمی‌گرداند.',
+ ther:[{o:'blood',s:'علائم کمبود را جبران می‌کند.',l:'درمانی.'},{o:'bone',s:'تراکم استخوان و عضله.',l:'بهبود.'}],
+ adv:[{o:'blood',c:'long',s:'غلیظ شدن خون و آکنه.',l:'چکاپ.'},{o:'heart',c:'long',s:'ریسک قلبی در سوءمصرف.',l:'هشدار.'}],
+ tips:['⛔ سوءمصرف بدنسازی عوارض جدی دارد.']},
+{id:'desmopressin',fa:'دسموپرسین',en:'Desmopressin',cat:'hormone',desc:'هورمون ضدادراری؛ برای شب‌ادراری.',
+ mech:'مثل هورمون ADH کلیه را وادار می‌کند آب را نگه دارد؛ ادرار شب کم می‌شود.',
+ ther:[{o:'kidney',s:'شب‌ادراری کودکان را کم می‌کند.',l:'کنترل.'},{o:'blood',s:'در هموفیلی خفیف به انعقاد کمک می‌کند.',l:'کاربرد خاص.'}],
+ adv:[{o:'brain',c:'high',s:'مسمومیت آب (هیپوناترمی) اگر آب زیاد خورده شود.',l:'محدودیت آب شبانه.'}],
+ tips:['شب‌ها آب کم بنوشید.']},
+{id:'cabergoline',fa:'کابرگولین',en:'Cabergoline',cat:'hormone',desc:'کاهنده‌ی پرولاکتین.',
+ mech:'دوپامین را تحریک می‌کند؛ پرولاکتین (هورمون شیر) پایین می‌آید.',
+ ther:[{o:'brain',s:'تومورهای پرولاکتینوما را کوچک می‌کند.',l:'درمان.'},{o:'blood',s:'ترشح شیر غیرطبیعی را قطع می‌کند.',l:'بهبود.'}],
+ adv:[{o:'heart',c:'long',s:'فیبروز دریچه‌ی قلب در دوز بالا.',l:'اکو دوره‌ای.'}],
+ tips:['هفته‌ای دو بار مصرف می‌شود.']},
+/* ---------- BLOOD ---------- */
+{id:'tranexamic',fa:'ترانگزامیک اسید',en:'Tranexamic Acid',cat:'blood',desc:'بندآورنده‌ی خونریزی.',
+ mech:'تجزیه‌ی لخته را متوقف می‌کند؛ لخته‌ای که ساخته شده پایدار می‌ماند.',
+ ther:[{o:'blood',s:'خونریزی شدید (قاعدگی، جراحی، تروما) را کم می‌کند.',l:'نجات‌بخش.'}],
+ adv:[{o:'blood',c:'high',s:'خطر لخته در افراد مستعد.',l:'احتیاط.'}],
+ tips:['در ۳ ساعت اول تروما بیشترین اثر را دارد.']},
+{id:'epoetin',fa:'اپوئتین (EPO)',en:'Epoetin Alfa',cat:'blood',desc:'هورمون خون‌سازی؛ برای کم‌خونی کلیوی.',
+ mech:'مثل اریتروپویتین کلیه، مغز استخوان را وادار به ساخت گلبول قرمز می‌کند.',
+ ther:[{o:'blood',s:'کم‌خونی نارسایی کلیه را درمان می‌کند.',l:'کاهش نیاز به تزریق خون.'}],
+ adv:[{o:'blood',c:'high',s:'فشار خون و لخته.',l:'هموگلوبین نباید از حد بگذرد.'}],
+ tips:['آهن کافی لازم دارد تا اثر کند.']},
+{id:'phytomenadione',fa:'ویتامین K',en:'Vitamin K',cat:'blood',desc:'ویتامین انعقاد خون.',
+ mech:'ماده‌ی اولیه‌ی ساخت فاکتورهای انعقادی در کبد است.',
+ ther:[{o:'blood',s:'خونریزی ناشی از کمبود را بند می‌آورد.',l:'پادزهر وارفارین.'},{o:'bone',s:'به استخوان‌سازی کمک می‌کند.',l:'کمک.'}],
+ adv:[],
+ tips:['نوزادان بدو تولد تزریق می‌شود.']},
+{id:'cilostazol',fa:'سیلوستازول',en:'Cilostazol',cat:'blood',desc:'برای لنگش متناوب (درد پا هنگام راه رفتن).',
+ mech:'پلاکت را مهار و رگ‌های پا را گشاد می‌کند؛ خون بیشتری به عضلات پا می‌رسد.',
+ ther:[{o:'blood',s:'مسافت راه رفتن بدون درد را زیاد می‌کند.',l:'بهبود.'}],
+ adv:[{o:'brain',c:'high',s:'سردرد.',l:'شایع.'},{o:'heart',c:'long',s:'در نارسایی قلبی ممنوع.',l:'هشدار.'}],
+ tips:['در نارسایی قلبی ممنوع است.']},
+{id:'pentoxifylline',fa:'پنتوکسی‌فیلین',en:'Pentoxifylline',cat:'blood',desc:'بهبود جریان خون محیطی.',
+ mech:'گلبول‌های قرمز را انعطاف‌پذیرتر می‌کند؛ از مویرگ‌های تنگ راحت‌تر رد می‌شوند.',
+ ther:[{o:'blood',s:'خون‌رسانی به پاها بهتر می‌شود.',l:'کمک.'}],
+ adv:[{o:'gut',s:'تهوع.',l:'خفیف.'}],
+ tips:['با غذا بهتر تحمل می‌شود.']},
+/* ---------- SUPP ---------- */
+{id:'calcium',fa:'کلسیم',en:'Calcium',cat:'supp',desc:'ماده‌ی اصلی استخوان و دندان.',
+ mech:'یون کلسیم برای انقباض عضله، انعقاد و استخوان‌سازی لازم است؛ مکمل، ذخیره‌ی بدن را پر می‌کند.',
+ ther:[{o:'bone',s:'تراکم استخوان را حفظ می‌کند.',l:'پیشگیری از پوکی.'}],
+ adv:[{o:'kidney',c:'high',s:'سنگ کلیه در دوز بالا.',l:'احتیاط.'},{o:'gut',s:'یبوست.',l:'شایع.'}],
+ tips:['با ویتامین D جذب بهتری دارد.']},
+{id:'magnesium',fa:'منیزیم',en:'Magnesium',cat:'supp',desc:'ماده‌ی معدنی ضدگرفتگی عضله.',
+ mech:'آرام‌کننده‌ی طبیعی عضله و عصب؛ کمبودش گرفتگی و بی‌خوابی می‌دهد.',
+ ther:[{o:'bone',s:'گرفتگی عضلات را کم می‌کند.',l:'کمک.'},{o:'brain',s:'خواب را بهتر می‌کند.',l:'آرامش.'}],
+ adv:[{o:'gut',c:'high',s:'اسهال.',l:'با دوز کم شروع کنید.'}],
+ tips:['فرم سیترات جذب بهتری دارد.']},
+{id:'zinc',fa:'روی (زینک)',en:'Zinc',cat:'supp',desc:'ماده‌ی معدنی ایمنی و پوست.',
+ mech:'برای صدها آنزیم لازم است؛ کمبودش ایمنی را ضعیف و زخم را دیر خوب می‌کند.',
+ ther:[{o:'blood',s:'سیستم ایمنی را تقویت می‌کند.',l:'کمک.'},{o:'skin',s:'بهبود آکنه و زخم.',l:'کمک.'}],
+ adv:[{o:'gut',c:'high',s:'تهوع.',l:'با غذا.'},{o:'blood',c:'long',s:'دوز خیلی بالا مس را کم می‌کند.',l:'تعادل.'}],
+ tips:['با معده‌ی خالی تهوع می‌دهد.']},
+{id:'vitc',fa:'ویتامین C',en:'Vitamin C',cat:'supp',desc:'آنتی‌اکسیدان؛ برای ایمنی و پوست.',
+ mech:'رادیکال‌های آزاد را خنثی می‌کند و برای ساخت کلاژن لازم است.',
+ ther:[{o:'blood',s:'کمک به ایمنی.',l:'روزانه.'},{o:'skin',s:'ساخت کلاژن پوست.',l:'شادابی.'}],
+ adv:[{o:'kidney',c:'high',s:'سنگ کلیه‌ی اگزالاتی در دوز مگا.',l:'نادر.'}],
+ tips:['اضافه‌اش با ادرار دفع می‌شود؛ مگادوز فایده‌ی اضافه ندارد.']},
+{id:'b12',fa:'ویتامین B12',en:'Vitamin B12',cat:'supp',desc:'ویتامین خون‌سازی و عصب.',
+ mech:'برای ساخت DNA گلبول قرمز و غلاف عصب (میلین) ضروری است.',
+ ther:[{o:'blood',s:'کم‌خونی مگالوبلاستیک را درمان می‌کند.',l:'درمان.'},{o:'brain',s:'گزگز و فراموشی ناشی از کمبود را بهتر می‌کند.',l:'بهبود.'}],
+ adv:[],
+ tips:['گیاه‌خواران و سالمندان بیشتر کمبود دارند.']},
+{id:'folicacid',fa:'اسید فولیک',en:'Folic Acid',cat:'supp',desc:'ویتامین B9؛ حیاتی در بارداری.',
+ mech:'ماده‌ی اولیه‌ی ساخت DNA؛ در رشد جنین حیاتی است.',
+ ther:[{o:'blood',s:'کم‌خونی را درمان می‌کند.',l:'درمان.'},{o:'brain',s:'از نقص لوله‌ی عصبی جنین پیشگیری می‌کند.',l:'⛔ قبل و حین بارداری ضروری.'}],
+ adv:[],
+ tips:['هر زن در سن باروری باید مصرف کند.']},
+{id:'vite',fa:'ویتامین E',en:'Vitamin E',cat:'supp',desc:'آنتی‌اکسیدان محلول در چربی.',
+ mech:'از غشای سلول‌ها در برابر اکسیداسیون محافظت می‌کند.',
+ ther:[{o:'skin',s:'سلامت پوست.',l:'کمک.'}],
+ adv:[{o:'blood',c:'high',s:'دوز مگا خونریزی را زیاد می‌کند.',l:'احتیاط با وارفارین.'}],
+ tips:['از غذا بهتر از مکمل تأمین می‌شود.']},
+{id:'omega3',fa:'امگا ۳',en:'Omega-3',cat:'supp',desc:'اسید چرب ماهی؛ برای قلب و مغز.',
+ mech:'التهاب را کم و تری‌گلیسیرید را پایین می‌آورد؛ جزء غشای سلول مغز است.',
+ ther:[{o:'heart',s:'تری‌گلیسیرید را کم می‌کند.',l:'کمک قلبی.'},{o:'brain',s:'کمک به خلق و تمرکز.',l:'کمک.'}],
+ adv:[{o:'blood',c:'high',s:'بوی ماهی و خونریزی خفیف.',l:'خفیف.'}],
+ tips:['با غذا بوی کمتری می‌دهد.']},
+{id:'potassium',fa:'پتاسیم',en:'Potassium',cat:'supp',desc:'الکترولیت قلب و عضله.',
+ mech:'تعادل الکتریکی سلول را نگه می‌دارد؛ کمبودش گرفتگی و آریتمی می‌دهد.',
+ ther:[{o:'heart',s:'ریتم قلب را منظم نگه می‌دارد.',l:'حیاتی.'},{o:'bone',s:'گرفتگی عضله را کم می‌کند.',l:'کمک.'}],
+ adv:[{o:'heart',c:'high',s:'پتاسیم بالا = ایست قلبی!',l:'کشنده.'}],
+ tips:['⛔ دوز بالا بدون تجویز خطرناک است. موز و سیب‌زمینی منابع خوب‌اند.']},
+{id:'selenium',fa:'سلنیوم',en:'Selenium',cat:'supp',desc:'ماده‌ی معدنی آنتی‌اکسیدان.',
+ mech:'جزء آنزیم‌های ضداکسیدان و لازم برای تیروئید.',
+ ther:[{o:'thyroid',s:'کمک به عملکرد تیروئید.',l:'کمک.'}],
+ adv:[{o:'skin',c:'high',s:'ریزش مو و شکنندگی ناخن در دوز بالا.',l:'مسمومیت.'}],
+ tips:['نیاز روزانه خیلی کم است (۵۵ میکروگرم).']},
+{id:'vita',fa:'ویتامین A',en:'Vitamin A',cat:'supp',desc:'ویتامین بینایی و پوست.',
+ mech:'رنگدانه‌ی بینایی شب (رودوپسین) را می‌سازد.',
+ ther:[{o:'brain',s:'بینایی در شب را حفظ می‌کند.',l:'ضروری.'},{o:'skin',s:'سلامت پوست.',l:'کمک.'}],
+ adv:[{o:'liver',c:'high',s:'مسمومیت کبدی در دوز مگا.',l:'جدی.'}],
+ tips:['⛔ در بارداری دوز بالا نقص جنین می‌دهد.']},
+{id:'multivit',fa:'مولتی‌ویتامین',en:'Multivitamin',cat:'supp',desc:'ترکیب ویتامین‌های روزانه.',
+ mech:'کمبودهای کوچک روزانه را پوشش می‌دهد.',
+ ther:[{o:'blood',s:'پوشش نیازهای پایه.',l:'روزانه.'}],
+ adv:[{o:'gut',c:'high',s:'تهوع.',l:'با غذا.'}],
+ tips:['جایگزین غذای سالم نیست.']}
+]);
+</script>
+<script>
+CATS.skin='پوست، مو و چشم';
+DRUGS.push(...[
+{id:'sildenafil',fa:'سیلدنافیل (ویاگرا)',en:'Sildenafil',cat:'blood',desc:'برای اختلال نعوظ و فشار ریوی.',
+ mech:'آنزیم PDE5 را مهار می‌کند؛ نیتریک اکساید بیشتر می‌ماند و رگ‌ها گشادتر می‌شوند.',
+ ther:[{o:'blood',s:'خون‌رسانی را بهبود می‌دهد.',l:'درمان اختلال نعوظ.'}],
+ adv:[{o:'brain',c:'high',s:'سردرد و گرگرفتگی.',l:'شایع.'},{o:'blood',c:'high',s:'افت فشار خطرناک با نیترات‌ها.',l:'⛔ ترکیب با نیتروگلیسیرین مرگبار است.'}],
+ tips:['⛔ با نیتروگلیسیرین هرگز.']},
+{id:'tadalafil',fa:'تادالافیل',en:'Tadalafil',cat:'blood',desc:'مثل سیلدنافیل ولی اثر ۳۶ ساعته.',
+ mech:'مهار PDE5 با اثر طولانی‌تر.',
+ ther:[{o:'blood',s:'بهبود خون‌رسانی.',l:'اثر آخر هفته.'}],
+ adv:[{o:'brain',c:'high',s:'سردرد و کمردرد.',l:'شایع.'}],
+ tips:['روزانه با دوز کم هم برای پروستات داده می‌شود.']},
+{id:'finasteride',fa:'فیناستراید',en:'Finasteride',cat:'hormone',desc:'برای ریزش مو و بزرگی پروستات.',
+ mech:'آنزیم ۵-آلفا ردوکتاز را می‌بندد؛ تستوسترون به DHT (عامل ریزش مو و بزرگی پروستات) تبدیل نمی‌شود.',
+ ther:[{o:'skin',s:'ریزش مو را کند و رویش را کمک می‌کند.',l:'نتیجه در ۶-۱۲ ماه.'},{o:'blood',s:'پروستات را کوچک می‌کند.',l:'بهبود ادرار.'}],
+ adv:[{o:'brain',c:'long',s:'کاهش میل جنسی در بعضی افراد.',l:'معمولاً برگشت‌پذیر.'}],
+ tips:['⛔ زنان باردار نباید حتی قرص خردشده را لمس کنند.']},
+{id:'dutasteride',fa:'دوتاستراید',en:'Dutasteride',cat:'hormone',desc:'قوی‌تر از فیناستراید.',
+ mech:'هر دو نوع آنزیم ۵-آلفا ردوکتاز را می‌بندد.',
+ ther:[{o:'skin',s:'کمک به رویش مو.',l:'درازمدت.'},{o:'blood',s:'کوچک شدن پروستات.',l:'بهبود.'}],
+ adv:[{o:'brain',c:'long',s:'عوارض جنسی.',l:'نادر.'}],
+ tips:['نیمه‌عمر خیلی طولانی (ماه‌ها).']},
+{id:'tamsulosin',fa:'تامسولوسین',en:'Tamsulosin',cat:'blood',desc:'برای بزرگی خوش‌خیم پروستات.',
+ mech:'آلفا-۱ پروستات و گردن مثانه را شل می‌کند؛ ادرار راحت‌تر خارج می‌شود.',
+ ther:[{o:'kidney',s:'جریان ادرار را بهتر می‌کند.',l:'بهبود علائم پروستات.'}],
+ adv:[{o:'brain',c:'high',s:'سرگیجه و افت فشار وضعیتی.',l:'دوز اول شب.'},{o:'blood',c:'high',s:'انزال رتروگراد.',l:'بی‌خطر ولی آزاردهنده.'}],
+ tips:['بعد از غذا؛ اولین دوز را خوابیده مصرف کنید.']},
+{id:'allopurinol',fa:'آلوپورینول',en:'Allopurinol',cat:'pain',desc:'کاهنده‌ی اسیداوریک؛ پیشگیری از نقرس.',
+ mech:'آنزیم گزانتین اکسیداز را می‌بندد؛ اسیداوریک کمتری ساخته می‌شود و کریستال در مفصل نمی‌نشیند.',
+ ther:[{o:'bone',s:'از حملات نقرس پیشگیری می‌کند.',l:'درمان نگهدارنده.'},{o:'kidney',s:'از سنگ اسیداوریکی جلوگیری می‌کند.',l:'محافظت.'}],
+ adv:[{o:'skin',c:'high',s:'جوش پوستی خطرناک (نادر).',l:'فوراً قطع و پزشک.'}],
+ tips:['در حمله‌ی حاد شروع نشود؛ آب فراوان.']},
+{id:'febuxostat',fa:'فبوکسوستات',en:'Febuxostat',cat:'pain',desc:'مثل آلوپورینول ولی قوی‌تر.',
+ mech:'مهار انتخابی گزانتین اکسیداز.',
+ ther:[{o:'bone',s:'پیشگیری از نقرس.',l:'نگهدارنده.'}],
+ adv:[{o:'heart',c:'long',s:'ریسک قلبی (هشدار).',l:'در بیماری قلبی احتیاط.'},{o:'liver',c:'high',s:'آنزیم کبدی.',l:'چکاپ.'}],
+ tips:['در نارسایی کلیه بهتر از آلوپورینول است.']},
+{id:'methotrexate',fa:'متوترکسات',en:'Methotrexate',cat:'blood',desc:'سرکوب‌کننده‌ی ایمنی؛ برای روماتیسم و پسوریازیس.',
+ mech:'آنتاگونیست فولات است؛ تقسیم سریع سلول‌های ایمنی را کند می‌کند.',
+ ther:[{o:'blood',s:'التهاب روماتیسم را سرکوب می‌کند.',l:'هفته‌ای یک بار.'},{o:'skin',s:'پسوریازیس را بهتر می‌کند.',l:'بهبود.'}],
+ adv:[{o:'liver',c:'long',s:'فیبروز کبدی.',l:'چکاپ دوره‌ای.'},{o:'lungs',c:'long',s:'فیبروز ریه.',l:'تنگی نفس = هشدار.'},{o:'bone',c:'long',s:'سرکوب مغز استخوان.',l:'آزمایش خون.'}],
+ tips:['⛔ هفته‌ای فقط یک روز! روزانه‌اش کشنده است. با اسید فولیک داده می‌شود.']},
+{id:'hydroxychloroquine',fa:'هیدروکسی‌کلروکین',en:'Hydroxychloroquine',cat:'blood',desc:'برای لوپوس و روماتیسم.',
+ mech:'pH وزیکول‌های سلول ایمنی را تغییر می‌دهد؛ پردازش آنتی‌ژن مختل و التهاب کم می‌شود.',
+ ther:[{o:'blood',s:'شعله‌ور شدن لوپوس را کم می‌کند.',l:'نگهدارنده.'}],
+ adv:[{o:'brain',c:'long',s:'رسوب در شبکیه‌ی چشم (نابینایی).',l:'معاینه‌ی چشم سالانه ضروری.'},{o:'skin',c:'long',s:'تغییر رنگ پوست.',l:'برگشت‌پذیر.'}],
+ tips:['⚠️ معاینه‌ی چشم سالانه فراموش نشود.']},
+{id:'azathioprine',fa:'آزاتیوپرین',en:'Azathioprine',cat:'blood',desc:'سرکوب‌کننده‌ی ایمنی؛ پیوند اعضا.',
+ mech:'ساخت DNA لنفوسیت‌ها را مختل می‌کند؛ سیستم ایمنی ضعیف می‌شود تا عضو پیوندی را پس نزند.',
+ ther:[{o:'blood',s:'از پس زدن پیوند جلوگیری می‌کند.',l:'مادام‌العمر.'}],
+ adv:[{o:'liver',c:'long',s:'آسیب کبدی.',l:'چکاپ.'},{o:'blood',c:'long',s:'افت گلبول‌ها + خطر عفونت و سرطان پوست.',l:'مراقبت.'}],
+ tips:['از آفتاب دوری کنید؛ واکسن زنده ممنوع.']},
+{id:'isotretinoin',fa:'ایزوترتینوئین',en:'Isotretinoin',cat:'skin',desc:'قوی‌ترین درمان آکنه‌ی شدید (راکوتان).',
+ mech:'غدد چربی پوست را کوچک و تولید سبوم را ۹۰٪ کم می‌کند؛ باکتری آکنه گرسنه می‌ماند.',
+ ther:[{o:'skin',s:'آکنه‌ی شدید را ریشه‌ای درمان می‌کند.',l:'بهبود ماندگار در اکثر موارد.'}],
+ adv:[{o:'skin',c:'high',s:'خشکی شدید لب و پوست.',l:'شایع.'},{o:'liver',c:'high',s:'چربی و آنزیم کبدی بالا.',l:'آزمایش دوره‌ای.'},{o:'brain',c:'long',s:'افسردگی (هشدار).',l:'خلق را زیر نظر بگیرید.'}],
+ tips:['⛔ در بارداری مطلقاً ممنوع (نقص شدید جنین)؛ تست بارداری ماهانه.']},
+{id:'adapalene',fa:'آداپالن',en:'Adapalene',cat:'skin',desc:'رتینوئید موضعی برای آکنه.',
+ mech:'ریزش سلول‌های منفذ پوست را تنظیم می‌کند؛ جوش سرسیاه کمتر تشکیل می‌شود.',
+ ther:[{o:'skin',s:'آکنه و جوش سرسیاه را کم می‌کند.',l:'بهبود تدریجی.'}],
+ adv:[{o:'skin',s:'قرمزی و پوسته‌ریزی اول درمان.',l:'گذرا.'}],
+ tips:['شب‌ها؛ ضدآفتاب روز فراموش نشود.']},
+{id:'tretinoin_top',fa:'ترتینوئین موضعی',en:'Tretinoin Topical',cat:'skin',desc:'رتینوئید موضعی؛ آکنه و ضدچروک.',
+ mech:'نوسازی پوست را تند می‌کند و کلاژن‌سازی را تحریک می‌کند.',
+ ther:[{o:'skin',s:'آکنه را کم و چروک ریز را بهتر می‌کند.',l:'ماه‌ها برای اثر کامل.'}],
+ adv:[{o:'skin',s:'تحریک و حساسیت به آفتاب.',l:'شایع اول درمان.'}],
+ tips:['نخودی‌اندازه برای کل صورت کافی است.']},
+{id:'hc_cream',fa:'هیدروکورتیزون موضعی',en:'Hydrocortisone Cream',cat:'skin',desc:'کورتون ضعیف پوستی؛ برای اگزما و خارش.',
+ mech:'التهاب موضعی پوست را سرکوب می‌کند.',
+ ther:[{o:'skin',s:'خارش و قرمزی اگزما را کم می‌کند.',l:'کوتاه‌مدت.'}],
+ adv:[{o:'skin',c:'long',s:'نازکی پوست و ترک.',l:'بیش از ۲ هفته روی یک ناحیه نزنید.'}],
+ tips:['روی صورت و چین‌ها کوتاه‌مدت.']},
+{id:'betam_cream',fa:'بتامتازون موضعی',en:'Betamethasone Cream',cat:'skin',desc:'کورتون قوی پوستی.',
+ mech:'سرکوب قوی التهاب پوست.',
+ ther:[{o:'skin',s:'پسوریازیس و اگزمای شدید را کنترل می‌کند.',l:'دوره‌ای.'}],
+ adv:[{o:'skin',c:'long',s:'نازکی و ترک پوست + جوش.',l:'مصرف طولانی ممنوع.'}],
+ tips:['⛔ بدون نسخه طولانی نزنید.']},
+{id:'keto_shampoo',fa:'شامپو کتوکونازول',en:'Ketoconazole Shampoo',cat:'skin',desc:'ضدقارچ برای شوره‌ی مقاوم.',
+ mech:'قارچ مالاسزیا (عامل شوره) را می‌کشد.',
+ ther:[{o:'skin',s:'شوره و خارش سر را درمان می‌کند.',l:'هفته‌ای ۲ بار.'}],
+ adv:[{o:'skin',s:'خشکی مو.',l:'خفیف.'}],
+ tips:['۵ دقیقه بماند بعد آبکشی.']},
+{id:'permethrin',fa:'پرمترین',en:'Permethrin',cat:'skin',desc:'برای شپش و گال (جرب).',
+ mech:'سیستم عصبی حشره/کنه را فلج می‌کند.',
+ ther:[{o:'skin',s:'شپش و گال را نابود می‌کند.',l:'تک‌دوز معمولاً کافی است.'}],
+ adv:[{o:'skin',s:'سوزش خفیف.',l:'گذرا.'}],
+ tips:['همه‌ی اعضای خانواده همزمان درمان شوند؛ لباس‌ها با آب داغ.']},
+{id:'minoxidil_top',fa:'ماینوکسیدیل موضعی',en:'Minoxidil Topical',cat:'skin',desc:'محلول رویش مو.',
+ mech:'رگ‌های پوست سر را گشاد و فاز رشد مو را طولانی می‌کند.',
+ ther:[{o:'skin',s:'ریزش را کند و رویش را تحریک می‌کند.',l:'مادام‌العمر (با قطع برمی‌گردد).'}],
+ adv:[{o:'skin',s:'خارش و شوره.',l:'خفیف.'},{o:'heart',c:'high',s:'تپش (در جذب زیاد).',l:'نادر.'}],
+ tips:['روزی ۲ بار؛ قطع = برگشت ریزش.']},
+{id:'terbinafine',fa:'تربی‌نافین',en:'Terbinafine',cat:'antibiotic',desc:'ضدقارچ خوراکی برای قارچ ناخن.',
+ mech:'آنزیم اسکوالن اپوکسیداز قارچ را می‌بندد؛ غشای قارچ نمی‌سازد.',
+ ther:[{o:'skin',s:'قارچ ناخن و پوست را درمان می‌کند.',l:'ماه‌ها طول می‌کشد.'}],
+ adv:[{o:'liver',c:'high',s:'آسیب کبدی.',l:'آنزیم چک شود.'},{o:'gut',s:'اختلال چشایی.',l:'گذرا.'}],
+ tips:['ناخن آهسته رشد می‌کند؛ صبور باشید.']},
+{id:'ivermectin',fa:'ایورمکتین',en:'Ivermectin',cat:'antibiotic',desc:'ضدانگل؛ برای گال و انگل روده‌ای.',
+ mech:'کانال کلر انگل را باز نگه می‌دارد؛ انگل فلج و می‌میرد.',
+ ther:[{o:'skin',s:'گال را درمان می‌کند.',l:'تک‌دوز.'},{o:'gut',s:'انگل‌های روده‌ای.',l:'درمان.'}],
+ adv:[{o:'brain',c:'high',s:'گیجی در دوز بالا.',l:'نادر.'}],
+ tips:['ناشتا با آب.']},
+{id:'albendazole',fa:'آلبندازول',en:'Albendazole',cat:'antibiotic',desc:'ضدکرم روده.',
+ mech:'میکروتوبول‌های کرم را خراب می‌کند؛ کرم نمی‌تواند غذا بخورد و می‌میرد.',
+ ther:[{o:'gut',s:'کرم‌های روده‌ای را دفع می‌کند.',l:'تک‌دوز یا ۳ روزه.'}],
+ adv:[{o:'gut',s:'دل‌پیچه خفیف.',l:'گذرا.'},{o:'liver',c:'high',s:'آنزیم کبدی.',l:'در دوره‌ی طولانی.'}],
+ tips:['خانواده همزمان درمان شوند.']},
+{id:'mebendazole',fa:'مبندازول',en:'Mebendazole',cat:'antibiotic',desc:'مثل آلبندازول؛ برای کرمک.',
+ mech:'مهار میکروتوبول کرم.',
+ ther:[{o:'gut',s:'کرمک کودکان را درمان می‌کند.',l:'تک‌دوز + تکرار ۲ هفته بعد.'}],
+ adv:[{o:'gut',s:'نفخ خفیف.',l:'گذرا.'}],
+ tips:['ناخن‌ها کوتاه و بهداشت رعایت شود.']},
+{id:'latanoprost',fa:'لاتانوپروست چشمی',en:'Latanoprost Eye Drops',cat:'skin',desc:'قطره‌ی فشار چشم (گلوکوم).',
+ mech:'خروج مایع چشم (زه زلالیه) را زیاد می‌کند؛ فشار داخل چشم پایین می‌آید.',
+ ther:[{o:'brain',s:'فشار چشم را کم و از عصب بینایی محافظت می‌کند.',l:'شب‌ها یک قطره؛ مادام‌العمر.'}],
+ adv:[{o:'skin',c:'long',s:'تیره شدن رنگ عنبیه و رشد مژه!',l:'برگشت‌ناپذیر ولی بی‌خطر.'}],
+ tips:['شب یک قطره کافی است؛ بیشتر = اثر کمتر!']},
+{id:'timolol_eye',fa:'تیمولول چشمی',en:'Timolol Eye Drops',cat:'skin',desc:'بتابلاکر چشمی برای گلوکوم.',
+ mech:'تولید مایع چشم را کم می‌کند.',
+ ther:[{o:'brain',s:'کاهش فشار چشم.',l:'نگهدارنده.'}],
+ adv:[{o:'heart',c:'high',s:'کندی ضربان (جذب سیستمیک).',l:'در آسم و بلوک قلبی ممنوع.'}],
+ tips:['بعد از چکاندن، گوشه‌ی چشم را ۱ دقیقه فشار دهید.']},
+{id:'tears',fa:'اشک مصنوعی',en:'Artificial Tears',cat:'skin',desc:'قطره‌ی خشکی چشم.',
+ mech:'لایه‌ی اشکی را جایگزین/تقویت می‌کند.',
+ ther:[{o:'brain',s:'سوزش و خشکی چشم را کم می‌کند.',l:'هر وقت لازم.'}],
+ adv:[],
+ tips:['نوع بدون نگهدارنده برای مصرف مکرر بهتر است.']},
+{id:'orlistat',fa:'اورلیستات',en:'Orlistat',cat:'gi',desc:'کاهنده‌ی جذب چربی؛ لاغری.',
+ mech:'آنزیم لیپاز روده را می‌بندد؛ یک‌سوم چربی غذا هضم نمی‌شود و دفع می‌شود.',
+ ther:[{o:'gut',s:'کاهش وزن با رژیم کم‌چرب.',l:'کمک درازمدت.'}],
+ adv:[{o:'gut',s:'اسهال چرب و نفخ (اگر چرب بخورید!).',l:'شایع.'},{o:'gut',c:'long',s:'کمبود ویتامین‌های محلول در چربی.',l:'مولتی‌ویتامین با فاصله.'}],
+ tips:['هرچه چرب‌تر بخورید عارضه بیشتر؛ ویتامین را با فاصله بخورید.']},
+{id:'misoprostol',fa:'میزوپروستول',en:'Misoprostol',cat:'gi',desc:'محافظ معده در مصرف NSAID.',
+ mech:'مثل پروستاگلاندین عمل می‌کند؛ ترشح اسید کم و مخاط معده زیاد می‌شود.',
+ ther:[{o:'stomach',s:'از زخم معده در مصرف مسکن‌ها جلوگیری می‌کند.',l:'پیشگیری.'}],
+ adv:[{o:'gut',s:'اسهال و دل‌پیچه.',l:'شایع.'}],
+ tips:['⛔ در بارداری مطلقاً ممنوع (سقط‌آور).']},
+{id:'biperiden',fa:'بای‌پریدن',en:'Biperiden',cat:'neuro',desc:'ضد پارکینسون؛ آنتی‌کولینرژیک.',
+ mech:'استیل‌کولین اضافی مغز (نسبت به دوپامین) را کم می‌کند؛ لرزش کمتر می‌شود.',
+ ther:[{o:'brain',s:'لرزش و سفتی پارکینسون را کم می‌کند.',l:'کمک.'}],
+ adv:[{o:'brain',s:'گیجی و اختلال حافظه (مخصوصاً سالمندان).',l:'شایع.'},{o:'gut',s:'خشکی دهان و یبوست.',l:'شایع.'}],
+ tips:['در سالمندان با احتیاط فراوان.']},
+{id:'amantadine',fa:'آمانتادین',en:'Amantadine',cat:'neuro',desc:'ضد پارکینسون و ضدویروس قدیمی.',
+ mech:'دوپامین را آزاد می‌کند و گیرنده‌ی NMDA را می‌بندد.',
+ ther:[{o:'brain',s:'علائم پارکینسون و خستگی ام‌اس را کم می‌کند.',l:'کمک.'}],
+ adv:[{o:'skin',c:'long',s:'لکه‌های توری پوست (livedo).',l:'بی‌خطر ولی آزاردهنده.'},{o:'brain',c:'high',s:'توهم.',l:'در دوز بالا.'}],
+ tips:['قطع ناگهانی علائم را برمی‌گرداند.']},
+{id:'dexketoprofen',fa:'دکسکتوپروفن',en:'Dexketoprofen',cat:'pain',desc:'NSAID سریع‌اثر؛ برای درد حاد.',
+ mech:'ایزومر فعال کتوپروفن؛ سریع COX را مهار می‌کند.',
+ ther:[{o:'bone',s:'درد حاد (دندان، قاعدگی) را سریع کم می‌کند.',l:'کوتاه‌مدت.'}],
+ adv:[{o:'stomach',c:'long',s:'تحریک معده.',l:'احتیاط.'}],
+ tips:['ساشه‌اش سریع جذب می‌شود.']},
+{id:'thiocolchicoside',fa:'تیوکلشیکوزید',en:'Thiocolchicoside',cat:'pain',desc:'شل‌کننده‌ی عضلات.',
+ mech:'گیرنده‌ی گابا را تحریک می‌کند؛ اسپاسم عضلانی شل می‌شود.',
+ ther:[{o:'bone',s:'گرفتگی عضلات (کمردرد) را کم می‌کند.',l:'کوتاه‌مدت.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی.',l:'خفیف.'}],
+ tips:['در بارداری ممنوع.']},
+{id:'ivabradine',fa:'ایوابرادین',en:'Ivabradine',cat:'cardio',desc:'کاهنده‌ی ضربان قلب بدون افت فشار.',
+ mech:'کانال If گره‌ی سینوسی را می‌بندد؛ فقط ضربان کم می‌شود، فشار نه.',
+ ther:[{o:'heart',s:'تپش را کم می‌کند.',l:'در نارسایی قلبی.'}],
+ adv:[{o:'brain',c:'high',s:'اختلال دید (نورهای درخشان).',l:'گذرا.'}],
+ tips:['برای کسانی که بتابلاکر را تحمل نمی‌کنند.']},
+{id:'nebivolol',fa:'نبیولولول',en:'Nebivolol',cat:'cardio',desc:'بتابلاکر با اثر گشادکنندگی رگ.',
+ mech:'بتا-۱ را می‌بندد + نیتریک اکساید آزاد می‌کند.',
+ ther:[{o:'heart',s:'فشار و تپش را کم می‌کند.',l:'کنترل.'},{o:'blood',s:'رگ‌ها گشادتر.',l:'کمک.'}],
+ adv:[{o:'brain',c:'long',s:'خستگی خفیف.',l:'کمتر از بقیه.'}],
+ tips:['عوارض جنسی‌اش کمتر از بقیه‌ی بتابلاکرهاست.']},
+{id:'nifedipine',fa:'نیفدیپین',en:'Nifedipine',cat:'cardio',desc:'کانال کلسیم سریع‌اثر.',
+ mech:'رگ‌ها را سریع گشاد می‌کند.',
+ ther:[{o:'blood',s:'کاهش سریع فشار.',l:'فرم طولانی‌اثر برای کنترل.'}],
+ adv:[{o:'brain',c:'high',s:'سردرد و گرگرفتگی.',l:'شایع.'},{o:'skin',c:'long',s:'ورم مچ.',l:'شایع.'}],
+ tips:['⛔ فرم سریع‌اثر زیرزبانی برای فشار بالا خطرناک است؛ دیگر توصیه نمی‌شود.']},
+{id:'ipratropium',fa:'ایپراتروپیوم',en:'Ipratropium',cat:'resp',desc:'اسپری آنتی‌کولینرژیک؛ برای COPD.',
+ mech:'گیرنده‌ی موسکارینی راه هوایی را می‌بندد؛ ترشح و انقباض کم می‌شود.',
+ ther:[{o:'lungs',s:'تنگی نفس را کم می‌کند.',l:'همراه سالبوتامول.'}],
+ adv:[{o:'lungs',s:'خشکی دهان.',l:'خفیف.'}],
+ tips:['در گلوکوم به چشم نپاشد.']},
+{id:'rifaximin',fa:'ریفاکسیمین',en:'Rifaximin',cat:'antibiotic',desc:'آنتی‌بیوتیک روده‌ای غیرجذبی.',
+ mech:'مثل ریفامپین ولی فقط در روده می‌ماند؛ باکتری‌های روده را کم می‌کند.',
+ ther:[{o:'gut',s:'اسهال مسافرتی و نفخ IBS را درمان می‌کند.',l:'دوره‌ای.'},{o:'brain',s:'در نارسایی کبد، گیجی را کم می‌کند.',l:'کمک.'}],
+ adv:[{o:'gut',s:'نفخ خفیف.',l:'گذرا.'}],
+ tips:['چون جذب نمی‌شود خیلی کم‌عارضه است.']},
+{id:'pyridostigmine',fa:'پیریدوستیگمین',en:'Pyridostigmine',cat:'neuro',desc:'برای میاستنی گراویس (ضعف عضلانی).',
+ mech:'آنزیم تجزیه‌کننده‌ی استیل‌کولین را می‌بندد؛ پیام عصب به عضله قوی‌تر می‌رسد.',
+ ther:[{o:'bone',s:'قدرت عضلات را برمی‌گرداند.',l:'نگهدارنده.'}],
+ adv:[{o:'gut',s:'اسهال و دل‌پیچه.',l:'شایع.'},{o:'lungs',s:'ترشحات زیاد.',l:'احتیاط در آسم.'}],
+ tips:['دوز را سر ساعت؛ بحران میاستنی اورژانسی است.']},
+{id:'mebeverine',fa:'مبورین',en:'Mebeverine',cat:'gi',desc:'ضداسپاسم روده؛ برای IBS.',
+ mech:'مستقیم عضله‌ی صاف روده را شل می‌کند بدون خشکی دهان آنتی‌کولینرژیک‌ها.',
+ ther:[{o:'gut',s:'دل‌پیچه و نفخ IBS را کم می‌کند.',l:'کمک.'}],
+ adv:[{o:'skin',c:'high',s:'حساسیت پوستی (نادر).',l:'خفیف.'}],
+ tips:['۲۰ دقیقه قبل از غذا.']},
+{id:'aceclofenac',fa:'اسکلوفناک',en:'Aceclofenac',cat:'pain',desc:'NSAID؛ برای درد مفاصل.',
+ mech:'مهار COX؛ ضدالتهاب و مسکن.',
+ ther:[{o:'bone',s:'درد آرتروز را کم می‌کند.',l:'کنترل.'}],
+ adv:[{o:'stomach',c:'long',s:'تحریک معده.',l:'احتیاط.'}],
+ tips:['با غذا.']},
+{id:'fusidic_acid',fa:'فیوزیدیک اسید موضعی',en:'Fusidic Acid Cream',cat:'skin',desc:'پماد آنتی‌بیوتیک پوستی.',
+ mech:'پروتئین‌سازی استاف پوست را متوقف می‌کند.',
+ ther:[{o:'skin',s:'عفونت سطحی پوست (زردزخم) را درمان می‌کند.',l:'بهبود.'}],
+ adv:[{o:'skin',c:'long',s:'مقاومت باکتریایی در مصرف طولانی.',l:'دوره‌ی کوتاه.'}],
+ tips:['معمولاً با کورتون ترکیب می‌شود.']}
+]);
+</script>
+<script>
+DRUGS.push(...[
+{id:'clonidine',fa:'کلونیدین',en:'Clonidine',cat:'cardio',desc:'کاهنده‌ی فشار خون مرکزی؛ برای ترک اعتیاد هم.',
+ mech:'گیرنده‌ی آلفا-۲ مغز را تحریک می‌کند؛ مرکز سمپاتیک آرام می‌شود و فشار پایین می‌آید.',
+ ther:[{o:'blood',s:'فشار خون را پایین می‌آورد.',l:'کنترل.'},{o:'brain',s:'علائم ترک مواد را کم می‌کند.',l:'کمک به ترک.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی و خشکی دهان.',l:'شایع.'},{o:'blood',c:'long',s:'قطع ناگهانی = جهش فشار!',l:'خطرناک.'}],
+ tips:['⛔ قطع ناگهانی ممنوع؛ فشار برمی‌گردد بالاتر.']},
+{id:'ethosuximide',fa:'اتوسوکسیمید',en:'Ethosuximide',cat:'neuro',desc:'ضدصرع مخصوص صرع ابسانس (خیرگی).',
+ mech:'کانال کلسیم T تالاموس را می‌بندد؛ امواج خیرگی متوقف می‌شود.',
+ ther:[{o:'brain',s:'حملات خیرگی کودکان را کنترل می‌کند.',l:'نگهدارنده.'}],
+ adv:[{o:'gut',s:'تهوع.',l:'خفیف.'}],
+ tips:['فقط برای ابسانس؛ برای تشنج تونیک-کلونیک کافی نیست.']},
+{id:'cimetidine',fa:'سایمتیدین',en:'Cimetidine',cat:'gi',desc:'H2 بلاکر قدیمی.',
+ mech:'گیرنده‌ی H2 معده را می‌بندد؛ اسید کم می‌شود.',
+ ther:[{o:'stomach',s:'سوزش معده را کم می‌کند.',l:'کنترل.'}],
+ adv:[{o:'brain',c:'high',s:'گیجی در سالمندان.',l:'گذرا.'}],
+ tips:['با خیلی از داروها تداخل دارد (مهار CYP).']},
+{id:'furazolidone',fa:'فورازولیدون',en:'Furazolidone',cat:'antibiotic',desc:'ضد اسهال عفونی قدیمی.',
+ mech:'به DNA باکتری و تک‌یاخته‌ی روده حمله می‌کند.',
+ ther:[{o:'gut',s:'اسهال عفونی را درمان می‌کند.',l:'دوره‌ی کوتاه.'}],
+ adv:[{o:'gut',s:'تهوع.',l:'شایع.'}],
+ tips:['در بارداری ممنوع (کمبود G6PD).']},
+{id:'ketoprofen',fa:'کتوپروفن',en:'Ketoprofen',cat:'pain',desc:'NSAID؛ ژل موضعی‌اش معروف است.',
+ mech:'مهار COX؛ ضدالتهاب و مسکن.',
+ ther:[{o:'bone',s:'درد مفاصل و عضلات (ژل موضعی عالی).',l:'کنترل.'}],
+ adv:[{o:'stomach',c:'long',s:'تحریک معده (خوراکی).',l:'احتیاط.'},{o:'skin',c:'long',s:'حساسیت به آفتاب (ژل).',l:'احتیاط.'}],
+ tips:['ژلش برای درد موضعی کم‌عارضه است.']},
+{id:'biotin',fa:'بیوتین',en:'Biotin',cat:'supp',desc:'ویتامین B7؛ برای مو و ناخن.',
+ mech:'کوآنزیم متابولیسم چربی و پروتئین.',
+ ther:[{o:'skin',s:'بهبود شکنندگی ناخن.',l:'کمک.'}],
+ adv:[],
+ tips:['⚠️ نتیجه‌ی آزمایش تیروئید را خراب می‌کند؛ قبل از آزمایش قطع کنید.']},
+{id:'dipyridamole',fa:'دی‌پیریدامول',en:'Dipyridamole',cat:'blood',desc:'ضدپلاکت؛ همراه آسپرین.',
+ mech:'آدنوزین را بالا می‌برد؛ پلاکت‌ها خواب می‌مانند.',
+ ther:[{o:'blood',s:'از لخته جلوگیری می‌کند.',l:'بعد از سکته.'}],
+ adv:[{o:'brain',c:'high',s:'سردرد.',l:'شایع.'}],
+ tips:['تست استرس دارویی هم با آن انجام می‌شود.']},
+{id:'azelaic_acid',fa:'ازلائیک اسید',en:'Azelaic Acid',cat:'skin',desc:'ژل آکنه و روزاسه.',
+ mech:'باکتری آکنه را کم و التهاب را مهار می‌کند + لک را روشن می‌کند.',
+ ther:[{o:'skin',s:'آکنه و قرمزی روزاسه را کم می‌کند.',l:'بهبود تدریجی.'}],
+ adv:[{o:'skin',s:'سوزش خفیف اول مصرف.',l:'گذرا.'}],
+ tips:['برای پوست‌های حساس از بنزوئیل پروکساید ملایم‌تر است.']},
+{id:'bacitracin',fa:'باسیتراسین موضعی',en:'Bacitracin Ointment',cat:'skin',desc:'پماد آنتی‌بیوتیک زخم.',
+ mech:'ساخت دیواره‌ی باکتری پوست را مختل می‌کند.',
+ ther:[{o:'skin',s:'از عفونت زخم جلوگیری می‌کند.',l:'پیشگیری.'}],
+ adv:[{o:'skin',c:'high',s:'حساسیت تماسی.',l:'نادر.'}],
+ tips:['فقط زخم سطحی.']},
+{id:'oxymetazoline',fa:'اکسی‌متازولین بینی',en:'Oxymetazoline Nasal',cat:'resp',desc:'اسپری بازکننده‌ی بینی.',
+ mech:'رگ‌های مخاط بینی را منقبض می‌کند؛ ورم می‌خوابد و بینی باز می‌شود.',
+ ther:[{o:'lungs',s:'گرفتگی بینی را در دقیقه‌ها باز می‌کند.',l:'فوری ولی موقت.'}],
+ adv:[{o:'lungs',c:'long',s:'⚠️ گرفتگی برگشتی؛ بینی بدون اسپری دیگر باز نمی‌شود!',l:'وابستگی بینی.'}],
+ tips:['⛔ بیش از ۳ روز پشت سر هم نزنید.']}
+]);
 </script>
 </body>
 </html>
