@@ -145,7 +145,7 @@ select.dsel{width:100%;background:var(--card2);border:1px solid var(--line2);col
 .hs-layer{position:absolute;inset:0}
 .hs{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;background:none;border:none;border-radius:50%;cursor:pointer;z-index:5;padding:0}
 .hs .ring{display:block;width:100%;height:100%;border-radius:50%;border:2px solid rgba(255,255,255,.22);background:rgba(45,212,191,.1);transition:.3s}
-.hs.dim{opacity:.15;pointer-events:none}
+.hs.dim{opacity:.15}
 .hs.fx-good .ring{border-color:var(--green);background:rgba(52,211,153,.28);animation:hsP 1.6s ease-in-out infinite}
 .hs.fx-bad .ring{border-color:var(--red);background:rgba(248,113,113,.28);animation:hsR 1s ease-in-out infinite}
 @keyframes hsP{50%{box-shadow:0 0 0 10px rgba(52,211,153,.22),0 0 26px rgba(52,211,153,.85)}}
@@ -386,7 +386,7 @@ const ORGANS={
  blood:{fa:'خون و رگ‌ها',x:50,y:73}, skin:{fa:'پوست',x:50,y:104}, bone:{fa:'استخوان و مفاصل',x:50,y:150}
 };
 const MOUTH={x:50,y:26}, STOMACH_PT={x:46,y:81};
-const CATS={pain:'مسکن و ضدالتهاب',antibiotic:'آنتی‌بیوتیک',cardio:'قلب و فشار خون',diabetes:'دیابت و قند خون',gi:'گوارش',neuro:'مغز و اعصاب',resp:'تنفسی و آلرژی',hormone:'هورمونی',blood:'خون',supp:'مکمل‌ها'};
+const CATS={pain:'مسکن و ضدالتهاب',antibiotic:'آنتی‌بیوتیک',cardio:'قلب و فشار خون',diabetes:'دیابت و قند خون',gi:'گوارش',neuro:'مغز و اعصاب',resp:'تنفسی و آلرژی',hormone:'هورمونی',blood:'خون',supp:'مکمل‌ها',skin:'پوست، مو و چشم'};
 
 /* ther: {o,s,l} | adv: {o,c,s,l} — c: high=دوز بالا، long=مصرف طولانی، both=هر دو */
 const DRUGS=[
@@ -583,7 +583,7 @@ const DRUGS=[
 /* ============ APP ============ */
 const $=id=>document.getElementById(id);
 const NS='http://www.w3.org/2000/svg';
-const COND_FA={high:'دوز بالا',long:'مصرف طولانی',both:'دوز بالا یا مصرف طولانی'};
+const COND_FA={high:'دوز بالا',long:'مصرف طولانی',both:'دوز بالا یا مصرف طولانی',short:'شروع درمان'};
 const S={gender:'male',dose:'normal',dur:'short',drugId:null,fx:[],tourIdx:0,autoTimer:null,zoom:1,cx:50,cy:104,cat:'all',q:'',favs:new Set(JSON.parse(localStorage.getItem('darusim-fav')||'[]'))};
 
 /* ---------- views ---------- */
@@ -849,7 +849,7 @@ $('zoomReset').onclick=()=>{stopAuto();setZoom(1,50,104);};
 
 /* ---------- init ---------- */
 segWire('segGender','gender');segWire('segDose','dose');segWire('segDur','dur');
-renderCats();renderGrid();populateSimDrug();buildStage();wireClose();
+buildStage();wireClose();
 if(!localStorage.getItem('darusim-discl')){
   $('disclModal').classList.add('open');
   $('disclOk').onclick=()=>{localStorage.setItem('darusim-discl','1');$('disclModal').classList.remove('open');};
@@ -1658,7 +1658,6 @@ DRUGS.push(...[
 ]);
 </script>
 <script>
-CATS.skin='پوست، مو و چشم';
 DRUGS.push(...[
 {id:'sildenafil',fa:'سیلدنافیل (ویاگرا)',en:'Sildenafil',cat:'blood',desc:'برای اختلال نعوظ و فشار ریوی.',
  mech:'آنزیم PDE5 را مهار می‌کند؛ نیتریک اکساید بیشتر می‌ماند و رگ‌ها گشادتر می‌شوند.',
@@ -1916,5 +1915,6 @@ DRUGS.push(...[
  tips:['⛔ بیش از ۳ روز پشت سر هم نزنید.']}
 ]);
 </script>
+<script>renderCats();renderGrid();populateSimDrug();</script>
 </body>
 </html>
