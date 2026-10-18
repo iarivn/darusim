@@ -635,7 +635,7 @@ function openDrug(id){
    <h2 style="margin-top:10px">${d.fa}</h2><div class="en">${d.en}</div>
    <h4>💡 مکانیسم اثر به زبان ساده</h4><p>${d.mech}</p>
    <h4>✅ این دارو چه می‌کند؟</h4><ul>${d.ther.map(t=>`<li><b>${ORGANS[t.o].fa}:</b> ${t.s}</li>`).join('')}</ul>
-   ${d.adv.length?`<h4>⚠️ عوارض مهم</h4><ul>${d.adv.map(a=>`<li><b>${ORGANS[a.o].fa}</b> (${COND_FA[a.c]}): ${a.s}</li>`).join('')}</ul>`:''}
+   ${d.adv.length?`<h4>⚠️ عوارض مهم</h4><ul>${d.adv.map(a=>`<li><b>${ORGANS[a.o].fa}</b> (${COND_FA[a.c]||'شایع'}): ${a.s}</li>`).join('')}</ul>`:''}
    ${d.tips.map(t=>`<div class="tip">💊 ${t}</div>`).join('')}
    <div class="cta"><button class="btn btn-p" id="mSim" style="flex:1">شبیه‌سازی در بدن</button>
    <button class="btn btn-g" data-close="drugModal">بستن</button></div>`;
