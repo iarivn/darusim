@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>داروسیم — سفر دارو در بدن</title>
+<meta name="description" content="دایرةالمعارف داروها به زبان ساده + شبیه‌ساز اثر دارو بر بدن">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#071214; --bg2:#0A1B1E; --card:#0F2428; --card2:#123035;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+  --ink:#EAF4F1; --mut:#8FA7A2; --dim:#5F7a76;
+  --teal:#2DD4BF; --teal-d:#0D9488; --green:#34D399; --red:#F87171; --red-d:#DC2626;
+  --amber:#FBBF24; --blue:#60A5FA; --violet:#A78BFA;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Vazirmatn',system-ui,sans-serif;line-height:1.9;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:radial-gradient(900px 500px at 85% -5%,rgba(45,212,191,.07),transparent 60%),
+                   radial-gradient(700px 500px at 10% 20%,rgba(96,165,250,.05),transparent 60%)}
+::selection{background:var(--teal);color:#04211d}
+button{font-family:inherit;cursor:pointer}
+input,select{font-family:inherit}
+/* ---------- header ---------- */
+.hd{position:sticky;top:0;z-index:50;background:rgba(7,18,20,.78);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid var(--line)}
+.hd-in{max-width:1200px;margin:0 auto;padding:0 22px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.logo .pill{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(140deg,var(--teal),var(--teal-d));box-shadow:0 6px 18px rgba(45,212,191,.35)}
+.logo b{font-size:1.15rem;font-weight:800;letter-spacing:-.01em}
+.logo small{display:block;font-size:.68rem;color:var(--mut);font-weight:500;line-height:1.4}
+.hd-actions{display:flex;gap:10px}
+.chipbtn{border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--ink);
+  border-radius:999px;padding:8px 18px;font-size:.83rem;font-weight:600;transition:.2s}
+.chipbtn:hover{background:rgba(45,212,191,.12);border-color:var(--teal)}
+/* ---------- hero ---------- */
+.hero{max-width:1200px;margin:0 auto;padding:64px 22px 30px;text-align:center}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;color:var(--teal);
+  border:1px solid rgba(45,212,191,.35);border-radius:999px;padding:6px 18px;margin-bottom:20px;
+  background:rgba(45,212,191,.08)}
+.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;letter-spacing:-.02em;line-height:1.4}
+.hero h1 .t{color:var(--teal)}
+.hero p{color:var(--mut);max-width:640px;margin:14px auto 0;font-size:1.02rem}
+.searchbar{max-width:620px;margin:30px auto 0;position:relative}
+.searchbar input{width:100%;background:var(--card);border:1px solid var(--line2);border-radius:16px;
+  color:var(--ink);padding:16px 52px 16px 20px;font-size:1rem;outline:none;transition:.2s}
+.searchbar input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(45,212,191,.15)}
+.searchbar svg{position:absolute;right:18px;top:50%;transform:translateY(-50%);opacity:.55}
+.cats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.cat{border:1px solid var(--line2);background:var(--card);color:var(--mut);border-radius:999px;
+  padding:8px 20px;font-size:.86rem;font-weight:600;transition:.2s}
+.cat:hover{color:var(--ink)}
+.cat.on{background:var(--teal);border-color:var(--teal);color:#04211d;font-weight:700}
+/* ---------- drug grid ---------- */
+.sec{max-width:1200px;margin:0 auto;padding:26px 22px 70px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px}
+.sec-h h2{font-size:1.35rem;font-weight:800}
+.sec-h span{color:var(--mut);font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px}
+.dcard{background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--r);
+  padding:20px;transition:transform .22s,border-color .22s,box-shadow .22s;position:relative;overflow:hidden}
+.dcard:hover{transform:translateY(-4px);border-color:rgba(45,212,191,.4);box-shadow:0 18px 40px -18px rgba(0,0,0,.6)}
+.dcard .cat-tag{font-size:.7rem;font-weight:700;color:var(--teal);background:rgba(45,212,191,.1);
+  border-radius:999px;padding:3px 12px;display:inline-block;margin-bottom:10px}
+.dcard h3{font-size:1.08rem;font-weight:800}
+.dcard .en{font-size:.76rem;color:var(--dim);direction:ltr;text-align:right;margin-bottom:8px}
+.dcard p{font-size:.85rem;color:var(--mut);line-height:1.9;min-height:3.6em}
+.dcard .row{display:flex;gap:8px;margin-top:14px}
+.btn{border:none;border-radius:12px;padding:10px 18px;font-weight:700;font-size:.86rem;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-p{background:linear-gradient(140deg,var(--teal),var(--teal-d));color:#04211d;box-shadow:0 8px 22px -8px rgba(45,212,191,.5)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 26px -8px rgba(45,212,191,.6)}
+.btn-g{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line2)}
+.btn-g:hover{background:rgba(255,255,255,.1)}
+.fav{position:absolute;top:14px;left:14px;background:none;border:none;font-size:1.25rem;color:var(--dim);transition:.2s;line-height:1}
+.fav.on{color:var(--amber)}
+.empty{text-align:center;color:var(--mut);padding:60px 0;grid-column:1/-1}
+/* ---------- modal ---------- */
+.movl{position:fixed;inset:0;z-index:100;background:rgba(3,8,9,.7);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  display:none;align-items:flex-start;justify-content:center;padding:34px 16px;overflow-y:auto}
+.movl.open{display:flex}
+.mbox{background:linear-gradient(170deg,#0E262B,#081417);border:1px solid var(--line2);border-radius:22px;
+  max-width:680px;width:100%;padding:34px;position:relative;animation:pop .3s ease}
+@keyframes pop{from{transform:translateY(24px) scale(.98);opacity:0}}
+.mbox .x{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.06);border:1px solid var(--line2);
+  color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:1rem}
+.mbox h2{font-size:1.5rem;font-weight:800;margin-bottom:2px}
+.mbox .en{color:var(--dim);font-size:.82rem;direction:ltr;text-align:right;margin-bottom:14px}
+.mbox h4{font-size:.92rem;font-weight:800;color:var(--teal);margin:20px 0 8px}
+.mbox p, .mbox li{font-size:.93rem;color:#C9D8D5;line-height:2}
+.mbox ul{padding-right:20px}
+.tip{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3);border-radius:14px;padding:12px 16px;margin-top:8px;font-size:.88rem}
+.tip b{color:var(--amber)}
+.mbox .cta{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+/* ---------- simulator ---------- */
+.sim-head{max-width:1200px;margin:0 auto;padding:44px 22px 10px;text-align:center}
+.sim-head h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900}
+.sim-head h1 .t{color:var(--teal)}
+.sim-head p{color:var(--mut);max-width:600px;margin:10px auto 0}
+.sim-wrap{max-width:1200px;margin:0 auto;padding:20px 22px 60px;display:grid;grid-template-columns:340px 1fr;gap:22px;align-items:start}
+@media(max-width:940px){.sim-wrap{grid-template-columns:1fr}}
+.panel{background:linear-gradient(170deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:20px;padding:24px;position:sticky;top:88px}
+@media(max-width:940px){.panel{position:static}}
+.panel h3{font-size:1rem;font-weight:800;margin-bottom:6px}
+.panel .fld{margin:18px 0}
+.panel label.fl{display:block;font-size:.8rem;font-weight:700;color:var(--mut);margin-bottom:10px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill2{border:1px solid var(--line2);background:rgba(255,255,255,.03);color:var(--mut);border-radius:12px;
+  padding:9px 16px;font-size:.85rem;font-weight:600;transition:.2s}
+.pill2 small{display:block;font-size:.68rem;font-weight:400;opacity:.75}
+.pill2.on{background:rgba(45,212,191,.14);border-color:var(--teal);color:var(--ink)}
+.pill2.on.warn{background:rgba(248,113,113,.12);border-color:var(--red)}
+.seg{display:flex;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:4px;gap:4px}
+.seg button{flex:1;border:none;background:none;color:var(--mut);border-radius:10px;padding:10px;font-weight:700;font-size:.88rem;transition:.2s}
+.seg button.on{background:var(--teal);color:#04211d}
+select.dsel{width:100%;background:var(--card2);border:1px solid var(--line2);color:var(--ink);border-radius:12px;padding:12px;font-size:.92rem;outline:none}
+.warnbox{display:none;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.4);border-radius:14px;
+  padding:12px 16px;font-size:.83rem;color:#FCA5A5;margin-top:16px;line-height:1.9}
+.warnbox.show{display:block}
+.runbtn{width:100%;margin-top:20px;padding:15px;font-size:1rem;border:none;border-radius:14px;font-weight:800;
+  background:linear-gradient(140deg,var(--teal),var(--teal-d));color:#04211d;box-shadow:0 10px 28px -10px rgba(45,212,191,.55);transition:.2s}
+.runbtn:hover{transform:translateY(-2px)}
+.discl{font-size:.72rem;color:var(--dim);margin-top:14px;line-height:1.9}
+/* stage */
+.stage-card{background:linear-gradient(170deg,#0C2227,#060F11);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.stage-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:10px}
+.stage-bar .t{font-weight:800;font-size:.95rem}
+.stage-bar .t small{color:var(--mut);font-weight:500}
+.sctl{display:flex;gap:8px}
+.sctl button{background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--ink);border-radius:10px;
+  padding:8px 14px;font-size:.8rem;font-weight:700;transition:.2s}
+.sctl button:hover{background:rgba(45,212,191,.12)}
+.stage{position:relative;height:640px;overflow:hidden;background:radial-gradient(600px 400px at 50% 30%,rgba(45,212,191,.06),transparent 65%)}
+@media(max-width:640px){.stage{height:520px}}
+.stage svg.body{position:absolute;inset:0;margin:auto;height:100%;max-width:100%}
+.legend{position:absolute;bottom:14px;right:14px;display:flex;gap:8px;flex-wrap:wrap;z-index:5}
+.lg{background:rgba(4,10,11,.75);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:.72rem;font-weight:700;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.lg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:6px}
+/* organ fx */
+.organ{transition:opacity .35s;cursor:pointer}
+.organ.dim{opacity:.22}
+.organ .hit{transition:.3s}
+.organ.fx-good .hit{filter:drop-shadow(0 0 5px #34D399) drop-shadow(0 0 16px rgba(52,211,153,.85));animation:pg 1.7s ease-in-out infinite}
+.organ.fx-bad .hit{filter:drop-shadow(0 0 5px #F87171) drop-shadow(0 0 16px rgba(248,113,113,.9));animation:pr 1.05s ease-in-out infinite}
+@keyframes pg{50%{filter:drop-shadow(0 0 12px #34D399) drop-shadow(0 0 30px rgba(52,211,153,.95))}}
+@keyframes pr{50%{filter:drop-shadow(0 0 12px #F87171) drop-shadow(0 0 30px rgba(248,113,113,1))}}
+.pt{fill:var(--teal);filter:drop-shadow(0 0 5px var(--teal))}
+.capsule{filter:drop-shadow(0 0 10px rgba(45,212,191,.8))}
+/* tour card */
+.tour{border-top:1px solid var(--line);padding:22px;min-height:190px}
+.tour .th{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.tour .th h3{font-size:1.15rem;font-weight:800}
+.badge{font-size:.72rem;font-weight:800;border-radius:999px;padding:4px 14px}
+.badge.good{background:rgba(52,211,153,.14);color:var(--green);border:1px solid rgba(52,211,153,.4)}
+.badge.bad{background:rgba(248,113,113,.12);color:var(--red);border:1px solid rgba(248,113,113,.4)}
+.tour .tt{font-size:.92rem;color:#C9D8D5;line-height:2}
+.tour .tt b{color:var(--ink)}
+.tnav{display:flex;align-items:center;gap:12px;margin-top:16px}
+.tnav button{background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--ink);border-radius:10px;padding:8px 18px;font-weight:700;font-size:.83rem}
+.tnav button:hover{background:rgba(45,212,191,.12)}
+.tnav .dots{display:flex;gap:6px;margin-right:auto}
+.tnav .dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer;transition:.2s}
+.tnav .dots i.on{background:var(--teal);transform:scale(1.25)}
+.tour-empty{text-align:center;color:var(--mut);padding:30px 0}
+.fxlist{max-width:1200px;margin:0 auto;padding:0 22px 70px}
+.fxlist h3{font-size:1.1rem;font-weight:800;margin-bottom:14px}
+.fxgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.fx{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:.86rem;cursor:pointer;transition:.2s}
+.fx:hover{border-color:var(--teal)}
+.fx .fh{display:flex;align-items:center;gap:10px;font-weight:800;margin-bottom:4px}
+.fx .fh i{width:10px;height:10px;border-radius:50%}
+.fx p{color:var(--mut);font-size:.8rem;line-height:1.9}
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 22px;text-align:center;color:var(--dim);font-size:.8rem;line-height:2.1}
+footer b{color:var(--mut)}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="#" id="logoHome">
+      <span class="pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#04211d" stroke-width="2.4" stroke-linecap="round"><rect x="3.5" y="8.5" width="17" height="7" rx="3.5" transform="rotate(-25 12 12)"/><path d="M12 5.8v12.4" stroke="#04211d"/></svg>
+      </span>
+      <span><b>داروسیم</b><small>سفر دارو در بدن</small></span>
+    </a>
+    <div class="hd-actions">
+      <button class="chipbtn" id="goSim">شبیه‌ساز بدن</button>
+      <button class="chipbtn" id="openDiscl">سلب مسئولیت</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<main id="viewHome">
+  <section class="hero">
+    <span class="kick">دایرةالمعارف داروها به زبان ساده</span>
+    <h1>ببین هر <span class="t">دارو</span> دقیقاً<br>توی بدنت چه کار می‌کنه</h1>
+    <p>مکانیسم اثر داروها را به زبان خیلی ساده بخوان، بعد وارد شبیه‌ساز شو؛ دارو، دوز و مدت مصرف را انتخاب کن و با انیمیشن ببین روی کدام اندام‌ها اثر می‌گذارد — چه خوب، چه بد.</p>
+    <div class="searchbar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8FA7A2" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="جست‌وجوی دارو… مثلاً استامینوفن، انسولین، امپرازول" autocomplete="off">
+    </div>
+    <div class="cats" id="cats"></div>
+  </section>
+  <section class="sec">
+    <div class="sec-h"><h2 id="gridTitle">داروها</h2><span id="gridCount"></span></div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<!-- ================= SIMULATOR ================= -->
+<main id="viewSim" style="display:none">
+  <section class="sim-head">
+    <h1>شبیه‌ساز <span class="t">اثر دارو</span> بر بدن</h1>
+    <p>دارو را انتخاب کن، دوز و مدت مصرف را مشخص کن و ببین با انیمیشن، دارو به کجای بدن می‌رود و چه اثری می‌گذارد.</p>
+  </section>
+  <div class="sim-wrap">
+    <aside class="panel">
+      <div class="fld" style="margin-top:0">
+        <label class="fl">۱. انتخاب دارو</label>
+        <select class="dsel" id="simDrug"></select>
+      </div>
+      <div class="fld">
+        <label class="fl">۲. بدن</label>
+        <div class="seg" id="segGender">
+          <button data-v="male" class="on">مرد</button>
+          <button data-v="female">زن</button>
+        </div>
+      </div>
+      <div class="fld">
+        <label class="fl">۳. میزان دوز <span style="font-weight:400">(سناریوی آموزشی)</span></label>
+        <div class="pills" id="segDose">
+          <button class="pill2" data-v="low">کم<small>کمتر از معمول</small></button>
+          <button class="pill2 on" data-v="normal">معمول<small>دوز درمانی رایج</small></button>
+          <button class="pill2" data-v="high">زیاد<small>بیش از حد درمانی</small></button>
+        </div>
+      </div>
+      <div class="fld">
+        <label class="fl">۴. مدت مصرف</label>
+        <div class="pills" id="segDur">
+          <button class="pill2 on" data-v="short">کوتاه‌مدت<small>چند روز</small></button>
+          <button class="pill2" data-v="long">طولانی‌مدت<small>هفته‌ها تا ماه‌ها</small></button>
+        </div>
+      </div>
+      <div class="warnbox" id="warnBox">⚠️ این یک <b>سناریوی آموزشی</b> است: دوز بالا یا مصرف طولانی می‌تواند آسیب جدی بزند. دوز واقعی هر دارو را فقط پزشک یا داروساز تعیین می‌کند.</div>
+      <button class="runbtn" id="runSim">▶ اجرای شبیه‌سازی</button>
+      <p class="discl">این شبیه‌سازی صرفاً جنبه‌ی آموزشی دارد و توصیه‌ی پزشکی نیست. هیچ‌وقت دوز دارویی را خودسرانه تغییر ندهید.</p>
+    </aside>
+
+    <div>
+      <div class="stage-card">
+        <div class="stage-bar">
+          <div class="t" id="stageTitle">بدن <small>— دارویی انتخاب نشده</small></div>
+          <div class="sctl">
+            <button id="zoomIn">＋ زوم</button>
+            <button id="zoomOut">－ زوم</button>
+            <button id="zoomReset">نمای کلی</button>
+            <button id="replay">↻ پخش مجدد</button>
+          </div>
+        </div>
+        <div class="stage" id="stage">
+          <div class="legend">
+            <span class="lg"><i style="background:var(--green)"></i>اثر مفید</span>
+            <span class="lg"><i style="background:var(--red)"></i>اثر مضر</span>
+            <span class="lg"><i style="background:var(--teal)"></i>مسیر دارو</span>
+          </div>
+        </div>
+        <div class="tour" id="tour">
+          <div class="tour-empty">دارو، دوز و مدت را انتخاب کن و «اجرای شبیه‌سازی» را بزن تا سفر دارو در بدن را ببینی.<br>روی هر اندام هم می‌توانی کلیک کنی.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="fxlist" id="fxListSec" style="display:none">
+    <h3>اندام‌های تحت تأثیر</h3>
+    <div class="fxgrid" id="fxGrid"></div>
+  </section>
+</main>
+
+<!-- drug modal -->
+<div class="movl" id="drugModal"><div class="mbox" id="drugBox"></div></div>
+<!-- disclaimer modal -->
+<div class="movl" id="disclModal">
+  <div class="mbox">
+    <button class="x" data-close="disclModal">✕</button>
+    <h2>سلب مسئولیت</h2>
+    <p style="margin-top:12px">«داروسیم» یک ابزار <b>آموزشی و سرگرمی</b> است:</p>
+    <ul>
+      <li>توضیحات و شبیه‌سازی‌ها ساده‌سازی شده‌اند و جایگزین نظر پزشک، داروساز یا بروشور رسمی دارو نیستند.</li>
+      <li>«دوز» و «مدت» در شبیه‌ساز فقط سناریوهای آموزشی‌اند؛ دوز واقعی هر دارو را فقط پزشک یا داروساز تعیین می‌کند.</li>
+      <li>هیچ‌وقت بر اساس این وب‌اپ دارو را شروع، قطع یا کم‌وزیاد نکنید.</li>
+      <li>در صورت بروز علائم یا عوارض، به پزشک یا داروساز مراجعه کنید (اورژانس: ۱۱۵).</li>
+    </ul>
+    <div class="cta"><button class="btn btn-p" data-close="disclModal" id="disclOk" style="flex:1">فهمیدم</button></div>
+  </div>
+</div>
+
+<footer>
+  <b>داروسیم</b> — دایرةالمعارف داروها به زبان ساده + شبیه‌ساز اثر دارو بر بدن<br>
+  محتوای این وب‌اپ صرفاً آموزشی است و توصیه‌ی پزشکی محسوب نمی‌شود. دوز و مصرف هر دارو را فقط پزشک یا داروساز تعیین می‌کند.
+</footer>
+<script>
+/* ============ ORGAN META ============ */
+const ORGANS={
+ brain:{fa:'مغز',x:200,y:78}, thyroid:{fa:'غده تیروئید',x:200,y:148},
+ lungs:{fa:'ریه‌ها',x:200,y:235}, heart:{fa:'قلب',x:182,y:262},
+ liver:{fa:'کبد',x:243,y:335}, stomach:{fa:'معده',x:172,y:345},
+ kidney:{fa:'کلیه‌ها',x:200,y:378}, gut:{fa:'روده‌ها',x:200,y:445},
+ blood:{fa:'خون و رگ‌ها',x:200,y:400}, skin:{fa:'پوست',x:200,y:400}, bone:{fa:'استخوان و مفاصل',x:200,y:600}
+};
+const CATS={pain:'مسکن و ضدالتهاب',antibiotic:'آنتی‌بیوتیک',cardio:'قلب و فشار خون',diabetes:'دیابت و قند خون',gi:'گوارش',neuro:'مغز و اعصاب',resp:'تنفسی و آلرژی',hormone:'هورمونی',blood:'خون',supp:'مکمل‌ها'};
+
+/* ther: {o,s,l} | adv: {o,c,s,l} — c: high=دوز بالا، long=مصرف طولانی، both=هر دو */
+const DRUGS=[
+{id:'acetaminophen',fa:'استامینوفن',en:'Acetaminophen (Paracetamol)',cat:'pain',desc:'مسکن و تب‌بر پرمصرف؛ انتخاب اول برای تب و دردهای خفیف.',
+ mech:'استامینوفن در مغز جلوی ساخته شدن پیام‌رسان‌های درد و تب (پروستاگلاندین‌ها) را می‌گیرد. یعنی مثل این است که ولومِ آژیر درد و تب را در مغز کم می‌کند. برخلاف ایبوپروفن، التهاب بدن را کم نمی‌کند.',
+ ther:[{o:'brain',s:'درد را کم و تب را پایین می‌آورد.',l:'با مصرف درست و کوتاه‌مدت، اثر پایدار بدون آسیب.'}],
+ adv:[{o:'liver',c:'high',s:'در دوز بالا، کبد نمی‌تواند دارو را کامل پاک‌سازی کند؛ ماده‌ای سمی در کبد جمع می‌شود و سلول‌های کبد را نابود می‌کند — مسمومیت کبدی.',l:'مصرف مزمن بیش‌ازحد می‌تواند به نارسایی کبد منجر شود.'}],
+ tips:['سقف دوز روزانه را رد نکنید (معمولاً ۴ گرم در بزرگسالان، کمتر در بیماری کبدی).','خیلی از داروهای سرماخوردگی هم استامینوفن دارند؛ مصرف همزمان = دوز بالا!']},
+{id:'ibuprofen',fa:'ایبوپروفن',en:'Ibuprofen',cat:'pain',desc:'مسکن، تب‌بر و ضدالتهاب؛ برای دردهای التهابی مثل دندان‌درد و کمردرد.',
+ mech:'ایبوپروفن آنزیم‌های COX را مهار می‌کند؛ این آنزیم‌ها ماده‌ای به نام پروستاگلاندین می‌سازند که هم درد و تب می‌آورد و هم التهاب. یعنی ایبوپروفن «کارخانه‌ی التهاب» بدن را خاموش می‌کند.',
+ ther:[{o:'bone',s:'درد و ورم مفاصل، عضلات و دندان را کم می‌کند.',l:'در مصرف کوتاه‌مدت و با دوز درست، التهاب را کنترل می‌کند.'}],
+ adv:[{o:'stomach',c:'long',s:'همان ماده‌ای که التهاب را کم می‌کند از دیواره‌ی معده هم محافظت می‌کند؛ با مهار آن، معده بی‌دفاع می‌ماند.',l:'مصرف طولانی می‌تواند زخم معده و خونریزی گوارشی بدهد.'},
+      {o:'kidney',c:'long',s:'کلیه برای تصفیه‌ی خون به همان ماده نیاز دارد؛ مهار طولانی‌مدت به کلیه فشار می‌آورد.',l:'در مصرف مزمن، خطر آسیب کلیوی بالا می‌رود.'},
+      {o:'heart',c:'both',s:'در دوز بالا و طولانی، خطر لخته و فشار خون کمی بیشتر می‌شود.',l:'مصرف طولانی با دوز بالا ریسک قلبی-عروقی را افزایش می‌دهد.'}],
+ tips:['بهتر است با غذا یا شیر خورده شود تا معده اذیت نشود.','در آسم، زخم معده فعال یا نارسایی کلیه با نظر پزشک مصرف شود.']},
+{id:'aspirin',fa:'آسپرین',en:'Aspirin',cat:'pain',desc:'مسکن قدیمی؛ در دوز پایین، محافظ قلب با رقیق نگه داشتن خون.',
+ mech:'آسپرین پلاکت‌های خون (سلول‌های لخته‌ساز) را برای همیشه «خواب‌آلود» می‌کند تا به هم نچسبند. پلاکت خواب‌آلود نمی‌تواند لخته بسازد؛ پس خون روان‌تر می‌ماند و رگ‌های قلب و مغز کمتر می‌گیرند.',
+ ther:[{o:'blood',s:'خون را رقیق نگه می‌دارد و از لخته جلوگیری می‌کند.',l:'مصرف روزانه‌ی طولانی با نظر پزشک، ریسک سکته‌ی قلبی و مغزی را کم می‌کند.'},{o:'heart',s:'با جلوگیری از لخته، از قلب محافظت می‌کند.',l:'محافظت درازمدت قلبی-عروقی.'}],
+ adv:[{o:'stomach',c:'long',s:'مثل ایبوپروفن، دیواره‌ی معده را بی‌دفاع می‌کند.',l:'خطر زخم و خونریزی معده در مصرف طولانی.'}],
+ tips:['آسپرین روزانه را خودسرانه شروع یا قطع نکنید؛ حتماً با پزشک.','در کودکان و نوجوانانِ مبتلا به عفونت ویروسی ممنوع (خطر سندرم ری).']},
+{id:'diclofenac',fa:'دیکلوفناک',en:'Diclofenac',cat:'pain',desc:'ضدالتهاب قوی؛ رایج برای دردهای عضلانی-مفصلی و کمردرد.',
+ mech:'دیکلوفناک هم مثل ایبوپروفن از خانواده‌ی NSAIDهاست و با مهار آنزیم COX، تولید مواد التهاب‌ساز را متوقف می‌کند؛ فقط قوی‌تر و تخصصی‌تر روی دردهای مفصلی اثر می‌کند.',
+ ther:[{o:'bone',s:'درد و التهاب مفاصل و عضلات را سریع کم می‌کند.',l:'در دوره‌های کوتاه، التهاب مزمن مفصلی را کنترل می‌کند.'}],
+ adv:[{o:'stomach',c:'long',s:'دیواره‌ی معده را تحریک و بی‌دفاع می‌کند.',l:'زخم و خونریزی گوارشی در مصرف طولانی.'},
+      {o:'kidney',c:'long',s:'به کلیه‌ها فشار می‌آورد.',l:'خطر آسیب کلیوی در مصرف مزمن.'},
+      {o:'heart',c:'both',s:'در دوز بالا و طولانی، ریسک قلبی کمی بیشتر می‌شود.',l:'مصرف طولانی با احتیاط قلبی.'}],
+ tips:['معمولاً با غذا مصرف می‌شود.','تزریقی آن فقط با تجویز پزشک.']},
+{id:'tramadol',fa:'ترامادول',en:'Tramadol',cat:'pain',desc:'مسکن قوی برای دردهای متوسط تا شدید؛ نسخه‌ای و اعتیادآور.',
+ mech:'ترامادول دو کار همزمان می‌کند: در مغز گیرنده‌های مخدر (اپیوئیدی) را فعال می‌کند تا پیام درد نرسد، و سطح سروتونین و نورآدرنالین را بالا می‌برد تا تحمل درد بیشتر شود.',
+ ther:[{o:'brain',s:'دردهای متوسط تا شدید را به‌طور محسوس کم می‌کند.',l:'فقط برای دوره‌های کوتاه و با نظر پزشک.'}],
+ adv:[{o:'brain',c:'long',s:'مغز به آن عادت می‌کند؛ تحمل بالا می‌رود و قطع ناگهانی علائم ترک می‌دهد.',l:'خطر وابستگی و اعتیاد در مصرف طولانی.'},
+      {o:'lungs',c:'high',s:'در دوز بالا تنفس را کند می‌کند.',l:'اوردوز می‌تواند تنفس را متوقف کند — اورژانسی.'}],
+ tips:['به‌هیچ‌وجه خودسرانه و طولانی مصرف نشود.','با الکل و خواب‌آورها ترکیب خطرناکی است.']},
+{id:'amoxicillin',fa:'آموکسی‌سیلین',en:'Amoxicillin',cat:'antibiotic',desc:'آنتی‌بیوتیک پرمصرف برای عفونت‌های باکتریایی گوش، گلو و دندان.',
+ mech:'آموکسی‌سیلین دیوار خانه‌ی باکتری‌ها (دیواره‌ی سلولی) را خراب می‌کند. باکتری بدون دیوار مثل بادکنک می‌ترکد و می‌میرد. روی ویروس‌ها (سرماخوردگی، آنفلوآنزا) هیچ اثری ندارد.',
+ ther:[{o:'blood',s:'باکتری‌های عامل عفونت را از بین می‌برد.',l:'با کامل کردن دوره‌ی درمان، عفونت ریشه‌کن می‌شود.'}],
+ adv:[{o:'gut',c:'long',s:'باکتری‌های خوب روده را هم می‌کشد و تعادل روده به‌هم می‌ریزد.',l:'اسهال و عفونت‌های قارچی در مصرف طولانی.'},
+      {o:'skin',c:'high',s:'در افراد حساس، کهیر و خارش پوستی می‌دهد.',l:'حساسیت شدید نیاز به قطع فوری دارو دارد.'}],
+ tips:['دوره‌ی درمان را کامل کنید؛ قطع زودهنگام = مقاوم شدن باکتری.','برای سرماخوردگی ویروسی بی‌فایده است.']},
+{id:'azithromycin',fa:'آزیترومایسین',en:'Azithromycin',cat:'antibiotic',desc:'آنتی‌بیوتیک با دوره‌ی کوتاه (۳ تا ۵ روزه) برای عفونت‌های تنفسی.',
+ mech:'آزیترومایسین وارد باکتری می‌شود و «کارخانه‌ی پروتئین‌سازی» آن را از کار می‌اندازد. باکتری بدون پروتئین نمی‌تواند رشد کند و بمیرد. مزیتش این است که مدت طولانی در بدن می‌ماند.',
+ ther:[{o:'lungs',s:'عفونت‌های باکتریایی ریه و گلو را درمان می‌کند.',l:'دوره‌ی کوتاه اما اثر طولانی.'},{o:'blood',s:'از طریق خون به محل عفونت می‌رسد.',l:'پاک‌سازی کامل عفونت.'}],
+ adv:[{o:'heart',c:'high',s:'در موارد نادر، ریتم قلب را به‌هم می‌ریزد.',l:'در بیماری قلبی با احتیاط.'},
+      {o:'liver',c:'high',s:'در دوز بالا به کبد فشار می‌آورد.',l:'نادر ولی جدی.'}],
+ tips:['با معده‌ی خالی یا پر هر دو قابل مصرف است (بسته به بروشور).','دوره را کامل کنید.']},
+{id:'cephalexin',fa:'سفالکسین',en:'Cephalexin',cat:'antibiotic',desc:'آنتی‌بیوتیک خانواده‌ی سفالوسپورین؛ برای عفونت پوست و مجاری ادراری.',
+ mech:'مثل آموکسی‌سیلین، دیواره‌ی سلولی باکتری را تخریب می‌کند و باکتری می‌ترکد. از خانواده‌ی سفالوسپورین‌هاست و روی خیلی از باکتری‌های پوستی و ادراری جواب می‌دهد.',
+ ther:[{o:'skin',s:'عفونت‌های باکتریایی پوست و زخم را درمان می‌کند.',l:'با دوره‌ی کامل، عفونت برمی‌گردد.'},{o:'kidney',s:'عفونت مجاری ادراری را پاک می‌کند.',l:'پیشگیری از برگشت عفونت.'}],
+ adv:[{o:'gut',c:'long',s:'تعادل باکتری‌های روده را به‌هم می‌زند.',l:'اسهال در مصرف طولانی.'}],
+ tips:['در حساسیت به پنی‌سیلین با احتیاط (حساسیت متقاطع).']},
+{id:'metronidazole',fa:'مترونیدازول',en:'Metronidazole',cat:'antibiotic',desc:'ضد انگل و باکتری‌های بی‌هوازی؛ معروف برای عفونت‌های روده‌ای و دندان.',
+ mech:'مترونیدازول وارد بدن انگل و باکتری‌های بی‌هوازی می‌شود و به DNA آن‌ها حمله می‌کند؛ مثل پاره کردن نقشه‌ی ساختمان — سلول دیگر نمی‌تواند خودش را بسازد و می‌میرد.',
+ ther:[{o:'gut',s:'انگل‌ها و عفونت‌های روده‌ای و لثه را نابود می‌کند.',l:'درمان کامل عفونت‌های مزمن روده‌ای.'}],
+ adv:[{o:'brain',c:'long',s:'در مصرف خیلی طولانی، گزگز و بی‌حسی دست و پا می‌دهد.',l:'آسیب عصبی با قطع دارو معمولاً برمی‌گردد.'}],
+ tips:['⛔ در طول درمان و تا ۴۸ ساعت بعد، الکل مطلقاً ممنوع (تهوع و استفراغ شدید).','طعم فلزی دهان شایع و موقتی است.']},
+{id:'atorvastatin',fa:'آتورواستاتین',en:'Atorvastatin',cat:'cardio',desc:'کاهنده‌ی کلسترول؛ معروف‌ترین داروی چربی خون.',
+ mech:'آتورواستاتین آنزیم HMG-CoA ردوکتاز در کبد را مهار می‌کند؛ این آنزیم «خط تولید کلسترول» کبد است. وقتی تولید کم شود، کبد کلسترول اضافی خون را هم جمع می‌کند تا جبران کند.',
+ ther:[{o:'liver',s:'تولید کلسترول کبد را کم می‌کند.',l:'کلسترول خون به‌طور پایدار پایین می‌ماند.'},{o:'blood',s:'رگ‌ها از رسوب چربی پاک‌تر می‌مانند.',l:'کاهش محسوس ریسک سکته‌ی قلبی و مغزی.'}],
+ adv:[{o:'bone',c:'long',s:'در بعضی افراد درد و ضعف عضلانی می‌دهد.',l:'در موارد نادر آسیب جدی عضله — با درد عضلانی شدید به پزشک مراجعه کنید.'}],
+ tips:['معمولاً شب‌ها مصرف می‌شود.','گریپ‌فروت با آن تداخل دارد.']},
+{id:'losartan',fa:'لوزارتان',en:'Losartan',cat:'cardio',desc:'کاهنده‌ی فشار خون از خانواده‌ی ARB؛ محافظ کلیه در دیابتی‌ها.',
+ mech:'لوزارتان گیرنده‌ی «آنژیوتانسین ۲» را می‌بندد؛ آنژیوتانسین ماده‌ای است که رگ‌ها را تنگ می‌کند. وقتی گیرنده بسته باشد، رگ‌ها شل و گشاد می‌مانند و فشار خون پایین می‌آید.',
+ ther:[{o:'blood',s:'رگ‌ها را گشاد و فشار خون را کم می‌کند.',l:'کنترل پایدار فشار خون.'},{o:'kidney',s:'فشار روی کلیه‌ها را کم می‌کند.',l:'محافظت از کلیه در بیماران دیابتی.'}],
+ adv:[{o:'kidney',c:'high',s:'در کم‌آبی یا دوز بالا، کلیه اذیت می‌شود.',l:'نارسایی کلیه در شرایط خاص.'}],
+ tips:['در بارداری ممنوع است.','پتاسیم خون را بالا می‌برد؛ مکمل پتاسیم با نظر پزشک.']},
+{id:'amlodipine',fa:'آملودیپین',en:'Amlodipine',cat:'cardio',desc:'کاهنده‌ی فشار خون؛ از خانواده‌ی مسدودکننده‌های کانال کلسیم.',
+ mech:'آملودیپین کانال‌های کلسیمِ دیواره‌ی رگ‌ها را می‌بندد. کلسیم مثل «فرمان انقباض» است؛ وقتی نرسد، عضله‌ی دور رگ شل می‌شود، رگ گشاد می‌شود و فشار پایین می‌آید.',
+ ther:[{o:'blood',s:'رگ‌ها را گشاد و فشار را کم می‌کند.',l:'کنترل درازمدت فشار خون.'},{o:'heart',s:'بار کاری قلب را کم می‌کند.',l:'کاهش درد قلبی (آنژین).'}],
+ adv:[{o:'skin',c:'long',s:'ورم مچ و ساق پا (به‌خاطر گشاد شدن رگ‌های کوچک).',l:'ورم مزمن ولی معمولاً بی‌خطر.'}],
+ tips:['ورم پا شایع‌ترین عارضه‌اش است و معمولاً خطرناک نیست.']},
+{id:'metoprolol',fa:'متوپرولول',en:'Metoprolol',cat:'cardio',desc:'بتابلاکر؛ آرام‌کننده‌ی تپش قلب و کاهنده‌ی فشار خون.',
+ mech:'متوپرولول گیرنده‌های بتا-۱ قلب را می‌بندد؛ این گیرنده‌ها «پدال گاز» قلب‌اند. وقتی بسته باشند، قلب آرام‌تر، کم‌تپش‌تر و با فشار کمتر کار می‌کند.',
+ ther:[{o:'heart',s:'تپش و فشار قلب را کم می‌کند.',l:'محافظت درازمدت قلب بعد از سکته.'}],
+ adv:[{o:'lungs',c:'high',s:'در بیماران آسمی می‌تواند راه هوایی را تنگ کند.',l:'تنگی نفس در آسم.'},{o:'brain',c:'long',s:'خستگی و خواب‌آلودگی.',l:'کاهش انرژی در مصرف طولانی.'}],
+ tips:['قطع ناگهانی ممنوع؛ باید تدریجی کم شود.','نبض را خیلی پایین می‌آورد؛ سرگیجه را جدی بگیرید.']},
+{id:'furosemide',fa:'فوروزماید (لازیکس)',en:'Furosemide (Lasix)',cat:'cardio',desc:'ادرارآور قوی؛ برای ورم بدن و فشار خون بالا.',
+ mech:'فوروزماید در کلیه جلوی بازجذب نمک و آب را می‌گیرد. نمک که دفع شود، آب هم دنبالش می‌رود؛ یعنی آب اضافی بدن با ادرار خارج می‌شود و ورم و فشار کم می‌شود.',
+ ther:[{o:'kidney',s:'آب و نمک اضافی را با ادرار دفع می‌کند.',l:'کنترل ورم و فشار در نارسایی قلبی.'}],
+ adv:[{o:'kidney',c:'high',s:'پتاسیم زیادی هم دفع می‌کند؛ کمبود پتاسیم گرفتگی عضله می‌دهد.',l:'اختلال الکترولیت و ریتم قلب.'},{o:'heart',c:'high',s:'به‌خاطر به‌هم‌ریختن پتاسیم، ریتم قلب به‌هم می‌ریزد.',l:'خطر آریتمی در دوز بالا.'}],
+ tips:['پتاسیم خون را چک کنید؛ موز و سیب‌زمینی کمک می‌کند (با نظر پزشک).','ادرار زیاد اول درمان طبیعی است.']},
+{id:'metformin',fa:'متفورمین',en:'Metformin',cat:'diabetes',desc:'خط اول درمان دیابت نوع ۲؛ کاهنده‌ی قند خون.',
+ mech:'متفورمین سه کار می‌کند: به کبد می‌گوید «قند کمتری بساز»، به بدن کمک می‌کند به انسولین بهتر جواب بدهد، و جذب قند از روده را کمی کم می‌کند.',
+ ther:[{o:'liver',s:'تولید قند کبد را کم می‌کند.',l:'کنترل پایدار قند خون.'},{o:'blood',s:'قند خون را پایین نگه می‌دارد.',l:'کاهش عوارض دیابت در درازمدت.'}],
+ adv:[{o:'gut',s:'اول درمان نفخ، دل‌پیچه و اسهال می‌دهد.',l:'معمولاً بدن بعد از چند هفته عادت می‌کند.'},{o:'kidney',c:'high',s:'در نارسایی کلیه دفع نمی‌شود و خطر اسیدوز لاکتیک دارد.',l:'در نارسایی کلیه ممنوع.'}],
+ tips:['با غذا خورده شود تا معده اذیت نشود.','به‌ندرت باعث افت قند شدید می‌شود (برخلاف انسولین).']},
+{id:'insulin',fa:'انسولین',en:'Insulin',cat:'diabetes',desc:'هورمون تنظیم قند خون؛ حیاتی برای دیابت نوع ۱.',
+ mech:'انسولین «کلید» ورود قند به سلول‌هاست. وقتی انسولین به گیرنده‌ی سلول می‌چسبد، درِ سلول باز می‌شود و قند خون وارد سلول می‌شود تا بسوزد؛ پس قند خون پایین می‌آید.',
+ ther:[{o:'blood',s:'قند خون بالا را سریع پایین می‌آورد.',l:'کنترل دیابت و پیشگیری از عوارض آن.'}],
+ adv:[{o:'brain',c:'high',s:'قند که خیلی پایین بیاید، مغز گرسنه می‌ماند: لرزش، تعریق، تپش و گیجی.',l:'افت شدید قند می‌تواند به بیهوشی منجر شود — اورژانسی.'}],
+ tips:['علائم افت قند را بشناسید و همیشه قند سریع (آب‌نبات) همراه داشته باشید.','دوز را هرگز خودسرانه تغییر ندهید.']},
+{id:'omeprazole',fa:'امپرازول',en:'Omeprazole',cat:'gi',desc:'کاهنده‌ی اسید معده؛ برای رفلاکس و زخم معده.',
+ mech:'امپرازول «پمپ‌های اسیدساز» معده (پمپ پروتون) را پیدا می‌کند و برای همیشه خاموششان می‌کند؛ تا وقتی پمپ جدید ساخته شود، اسید معده کم می‌ماند.',
+ ther:[{o:'stomach',s:'اسید معده را کم می‌کند؛ سوزش و رفلاکس بهتر می‌شود.',l:'زخم معده فرصت ترمیم پیدا می‌کند.'}],
+ adv:[{o:'bone',c:'long',s:'جذب کلسیم و منیزیم را کم می‌کند.',l:'در مصرف چندساله، خطر پوکی استخوان.'},{o:'gut',c:'long',s:'تغییر محیط معده، تعادل میکروبی را به‌هم می‌زند.',l:'خطر عفونت‌های روده‌ای کمی بیشتر می‌شود.'}],
+ tips:['نیم ساعت قبل از صبحانه (ناشتا) مصرف شود.','مصرف چندساله نیاز به چکاپ دوره‌ای دارد.']},
+{id:'dimeticone',fa:'دایمتیکون',en:'Dimeticone (Simethicone)',cat:'gi',desc:'ضد نفخ؛ حباب‌های گاز روده را از بین می‌برد.',
+ mech:'دایمتیکون «ضد کف» است: کشش سطحی حباب‌های گاز روده را کم می‌کند تا حباب‌ها بترکند و به هم بچسبند؛ گاز یکپارچه راحت‌تر دفع می‌شود. جذب بدن هم نمی‌شود.',
+ ther:[{o:'gut',s:'نفخ و احساس پری شکم را کم می‌کند.',l:'بی‌خطر برای مصرف گاه‌به‌گاه.'}],
+ adv:[],
+ tips:['چون جذب نمی‌شود، از کم‌عارضه‌ترین داروهای گوارشی است.']},
+{id:'bismuth',fa:'بیسموت ساب‌سالیسیلات',en:'Bismuth Subsalicylate',cat:'gi',desc:'محافظ معده؛ برای سوزش معده و اسهال مسافرتی.',
+ mech:'بیسموت مثل «چسب زخم» روی جداره‌ی معده و زخم‌ها لایه‌ای محافظ می‌کشد و همزمان باکتری هلیکوباکتر (عامل زخم معده) را ضعیف می‌کند.',
+ ther:[{o:'stomach',s:'سوزش معده را آرام و زخم را محافظت می‌کند.',l:'کمک به ریشه‌کنی هلیکوباکتر در ترکیب‌درمانی.'},{o:'gut',s:'اسهال را کم می‌کند.',l:'بهبود علائم گوارشی.'}],
+ adv:[{o:'gut',c:'long',s:'مدفوع را تیره و سیاه می‌کند — ترسناک ولی بی‌خطر و موقتی.',l:'با قطع دارو رنگ مدفوع برمی‌گردد.'}],
+ tips:['سیاه شدن مدفوع و زبان طبیعی است؛ نگران نباشید.']},
+{id:'fluoxetine',fa:'فلوکستین',en:'Fluoxetine (Prozac)',cat:'neuro',desc:'ضدافسردگی معروف (پروزاک)؛ از خانواده‌ی SSRI.',
+ mech:'فلوکستین بازجذب «سروتونین» (هورمون حال خوب) در مغز را کم می‌کند؛ یعنی سروتونین مدت بیشتری بین سلول‌های مغزی می‌ماند و پیام «حال خوب» قوی‌تر مخابره می‌شود. اثر کاملش چند هفته طول می‌کشد.',
+ ther:[{o:'brain',s:'به‌تدریج خلق را بهتر و اضطراب را کم می‌کند.',l:'اثر کامل بعد از ۴ تا ۶ هفته؛ درمان نگهدارنده‌ی افسردگی.'}],
+ adv:[{o:'gut',c:'high',s:'اول درمان تهوع و بی‌اشتهایی می‌دهد.',l:'معمولاً گذراست.'},{o:'brain',c:'long',s:'قطع ناگهانی علائم قطع می‌دهد (سرگیجه، برق‌گرفتگی).',l:'قطع باید تدریجی و با نظر پزشک باشد.'}],
+ tips:['اثرش فوری نیست؛ صبور باشید و دوره را کامل کنید.','قطع ناگهانی ممنوع.']},
+{id:'sertraline',fa:'سرترالین',en:'Sertraline',cat:'neuro',desc:'ضدافسردگی و ضداضطراب پرمصرف از خانواده‌ی SSRI.',
+ mech:'مثل فلوکستین، سروتونین را بیشتر در دسترس سلول‌های مغز نگه می‌دارد تا مدارهای خلق و اضطراب بهتر کار کنند.',
+ ther:[{o:'brain',s:'افسردگی، اضطراب و وسواس را به‌تدریج کم می‌کند.',l:'درمان نگهدارنده‌ی مؤثر.'}],
+ adv:[{o:'gut',s:'تهوع و اسهال اول درمان شایع است.',l:'معمولاً در چند هفته برطرف می‌شود.'},{o:'brain',c:'long',s:'قطع ناگهانی علائم آزاردهنده می‌دهد.',l:'کاهش تدریجی دوز ضروری است.'}],
+ tips:['صبح یا شب طبق دستور پزشک؛ با غذا تهوع کمتر می‌شود.']},
+{id:'alprazolam',fa:'آلپرازولام',en:'Alprazolam',cat:'neuro',desc:'آرام‌بخش و ضداضطراب قوی؛ اعتیادآور — فقط کوتاه‌مدت.',
+ mech:'آلپرازولام اثر «گابا» را قوی می‌کند؛ گابا ترمز اصلی مغز است. وقتی ترمز قوی‌تر شود، فعالیت الکتریکی مغز آرام می‌شود و اضطراب و پانیک فروکش می‌کند.',
+ ther:[{o:'brain',s:'اضطراب و حمله‌ی پانیک را سریع آرام می‌کند.',l:'فقط برای دوره‌های کوتاه و بحرانی.'}],
+ adv:[{o:'brain',c:'long',s:'مغز سریع به آن عادت می‌کند؛ تحمل بالا می‌رود.',l:'وابستگی شدید و ترک سخت — قطع ناگهانی می‌تواند تشنج بدهد.'}],
+ tips:['⛔ بیش از چند هفته مصرف نشود مگر با نظر مستقیم پزشک.','با الکل ترکیب مرگبار است.']},
+{id:'gabapentin',fa:'گاباپنتین',en:'Gabapentin',cat:'neuro',desc:'برای دردهای عصبی (نوروپاتیک) و صرع.',
+ mech:'گاباپنتین جلوی آزاد شدن بیش‌ازحد پیام‌رسان‌های درد از پایانه‌های عصبی را می‌گیرد؛ یعنی «بلندگوی» عصب‌های درد را کم‌صدا می‌کند.',
+ ther:[{o:'brain',s:'دردهای سوزشی عصبی (مثل نوروپاتی دیابتی) را کم می‌کند.',l:'کنترل درازمدت درد عصبی.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی، گیجی و عدم تعادل.',l:'با تنظیم دوز معمولاً قابل تحمل می‌شود.'}],
+ tips:['دوز به‌تدریج بالا می‌رود (تیتراسیون).','بعد از مصرف رانندگی با احتیاط.']},
+{id:'salbutamol',fa:'سالبوتامول (اسپری)',en:'Salbutamol Inhaler',cat:'resp',desc:'اسپری نجات آسم؛ بازکننده‌ی سریع راه هوایی.',
+ mech:'سالبوتامول گیرنده‌های بتا-۲ دور نایژه‌ها را تحریک می‌کند؛ عضلات دور راه هوایی شل می‌شوند و لوله‌های تنفسی مثل بادکنک باز می‌شوند. چون استنشاقی است، مستقیم به ریه می‌رسد.',
+ ther:[{o:'lungs',s:'در چند دقیقه راه هوایی را باز و تنگی نفس را برطرف می‌کند.',l:'نجات‌بخش در حمله‌ی آسم.'}],
+ adv:[{o:'heart',c:'high',s:'مقدار زیادش به قلب هم می‌رسد: تپش قلب و لرزش دست.',l:'استفاده‌ی بیش‌ازحد نشانه‌ی کنترل نبودن آسم است.'}],
+ tips:['اگر هفته‌ای بیش از دو بار نیاز شد، به پزشک بگویید (آسم کنترل نیست).','بعد از اسپری، دهان را بشویید.']},
+{id:'cetirizine',fa:'سیتریزین',en:'Cetirizine',cat:'resp',desc:'آنتی‌هیستامین برای حساسیت، عطسه و کهیر.',
+ mech:'سیتریزین گیرنده‌های «هیستامین» را قفل می‌کند؛ هیستامین همان ماده‌ای است که در حساسیت باعث عطسه، آبریزش و خارش می‌شود. قفل که باشد، هیستامین هرچه داد بزند کسی نمی‌شنود.',
+ ther:[{o:'skin',s:'خارش و کهیر پوستی را کم می‌کند.',l:'کنترل حساسیت‌های فصلی.'},{o:'lungs',s:'عطسه، آبریزش و گرفتگی بینی را کم می‌کند.',l:'تنفس راحت در فصل حساسیت.'}],
+ adv:[{o:'brain',s:'خواب‌آلودگی خفیف در بعضی افراد.',l:'نسبت به نسل قدیم خیلی کمتر.'}],
+ tips:['کم‌خواب‌آور است ولی اول مصرف، رانندگی با احتیاط.']},
+{id:'dextromethorphan',fa:'دکسترومتورفان',en:'Dextromethorphan',cat:'resp',desc:'ضدسرفه برای سرفه‌های خشک و آزاردهنده.',
+ mech:'دکسترومتورفان «مرکز سرفه» در ساقه‌ی مغز را آرام می‌کند؛ یعنی به مغز می‌گوید «این تحریک مهم نیست، سرفه نکن». روی سرفه‌ی خلط‌دار نباید مصرف شود.',
+ ther:[{o:'brain',s:'رفلکس سرفه‌ی خشک را سرکوب می‌کند.',l:'خواب راحت در سرماخوردگی.'},{o:'lungs',s:'تحریک راه هوایی کمتر احساس می‌شود.',l:'کاهش سرفه‌های مکرر.'}],
+ adv:[{o:'brain',c:'high',s:'در دوز خیلی بالا گیجی و توهم می‌دهد.',l:'سوءمصرف آن خطرناک است.'}],
+ tips:['فقط برای سرفه‌ی خشک؛ خلط را نباید سرکوب کرد.']},
+{id:'levothyroxine',fa:'لووتیروکسین',en:'Levothyroxine',cat:'hormone',desc:'هورمون تیروئید؛ برای کم‌کاری تیروئید.',
+ mech:'لووتیروکسین دقیقاً همان هورمون T4 تیروئید است. مثل بنزین موتور بدن عمل می‌کند: سرعت سوخت‌وساز، انرژی، دمای بدن و تپش قلب را تنظیم می‌کند.',
+ ther:[{o:'thyroid',s:'کمبود هورمون تیروئید را جبران می‌کند.',l:'بازگشت انرژی و متابولیسم طبیعی.'},{o:'heart',s:'تپش و انرژی بدن طبیعی می‌شود.',l:'محافظت از قلب در برابر کم‌کاری طولانی.'}],
+ adv:[{o:'heart',c:'high',s:'دوز اضافی = تپش قلب، اضطراب و لرزش.',l:'پرکاری مصنوعی تیروئید.'},{o:'bone',c:'long',s:'دوز اضافی طولانی، تراکم استخوان را کم می‌کند.',l:'خطر پوکی استخوان.'}],
+ tips:['ناشتا، نیم ساعت قبل از صبحانه، با آب.','کلسیم و آهن را با فاصله مصرف کنید.']},
+{id:'prednisolone',fa:'پردنیزولون',en:'Prednisolone',cat:'hormone',desc:'کورتون قوی؛ ضدالتهاب و سرکوب‌کننده‌ی ایمنی.',
+ mech:'پردنیزولون نسخه‌ی قوی «کورتیزول» (هورمون استرس بدن) است. وارد سلول‌های ایمنی می‌شود و ژن‌های التهاب‌ساز را خاموش می‌کند؛ یعنی کل سیستم هشدار بدن را کم‌صدا می‌کند.',
+ ther:[{o:'blood',s:'التهاب و واکنش ایمنی افراطی را در کل بدن سرکوب می‌کند.',l:'نجات‌بخش در بیماری‌های خودایمنی و حساسیت شدید.'}],
+ adv:[{o:'bone',c:'long',s:'جذب کلسیم را مختل می‌کند.',l:'پوکی استخوان در مصرف ماه‌ها.'},{o:'skin',c:'long',s:'پوست نازک و کبودی راحت.',l:'ترک‌های پوستی.'},{o:'stomach',c:'long',s:'دیواره‌ی معده را تحریک می‌کند.',l:'خطر زخم معده.'},{o:'brain',c:'long',s:'بی‌خوابی، بی‌قراری و تغییر خلق.',l:'در موارد نادر علائم روانی.'}],
+ tips:['⛔ قطع ناگهانی بعد از مصرف طولانی خطرناک است؛ تدریجی کم شود.','صبح‌ها مصرف شود تا خواب به‌هم نریزد.']},
+{id:'warfarin',fa:'وارفارین',en:'Warfarin',cat:'blood',desc:'رقیق‌کننده‌ی خون قوی؛ برای جلوگیری از لخته.',
+ mech:'وارفارین در کبد جلوی ساخت فاکتورهای انعقادی وابسته به ویتامین K را می‌گیرد. بدون این فاکتورها، زنجیره‌ی لخته‌سازی ناقص می‌ماند و خون دیرتر لخته می‌شود.',
+ ther:[{o:'blood',s:'از تشکیل لخته‌های خطرناک جلوگیری می‌کند.',l:'پیشگیری درازمدت از سکته در بیماران پرخطر.'}],
+ adv:[{o:'blood',c:'high',s:'خون خیلی رقیق = خونریزی؛ از بینی، لثه یا داخلی.',l:'خونریزی خطرناک در اوردوز.'},{o:'skin',c:'high',s:'کبودی‌های بزرگ و بی‌دلیل روی پوست.',l:'نشانه‌ی هشدار دوز بالا.'}],
+ tips:['مصرف سبزیجات (ویتامین K) را ناگهان کم‌وزیاد نکنید؛ ثابت نگه دارید.','آزمایش INR منظم ضروری است.']},
+{id:'vitamind',fa:'ویتامین D',en:'Vitamin D',cat:'supp',desc:'ویتامین آفتاب؛ برای استخوان و ایمنی.',
+ mech:'ویتامین D در روده مثل «درِ ورودی» کلسیم عمل می‌کند؛ بدون آن کلسیم غذا دفع می‌شود. بعد هم به استخوان‌سازی کمک می‌کند کلسیم را در استخوان بنشاند.',
+ ther:[{o:'gut',s:'جذب کلسیم از روده را چند برابر می‌کند.',l:'جبران کمبود ویتامین D.'},{o:'bone',s:'کلسیم را به استخوان می‌رساند.',l:'استخوان‌های محکم‌تر، پیشگیری از پوکی.'}],
+ adv:[{o:'kidney',c:'both',s:'دوز خیلی بالا کلسیم خون را زیاد می‌کند.',l:'رسوب کلسیم در کلیه و سنگ کلیه.'}],
+ tips:['خیلی‌ها کمبود دارند؛ آزمایش بدهید بعد دوز را تنظیم کنید.','مصرف خودسرانه‌ی دوزهای مگا بی‌خطر نیست.']},
+{id:'iron',fa:'آهن (فروس سولفات)',en:'Iron (Ferrous Sulfate)',cat:'supp',desc:'برای کم‌خونی فقر آهن؛ ماده‌ی اولیه‌ی خون‌سازی.',
+ mech:'آهن قلبِ مولکول «هموگلوبین» است؛ هموگلوبین همان چیزی است که اکسیژن را در خون حمل می‌کند. با رسیدن آهن کافی، کارخانه‌ی مغز استخوان دوباره گلبول قرمز سالم می‌سازد.',
+ ther:[{o:'blood',s:'تولید گلبول قرمز و هموگلوبین را راه می‌اندازد.',l:'رفع خستگی و رنگ‌پریدگی کم‌خونی در چند ماه.'}],
+ adv:[{o:'stomach',s:'تهوع و دل‌پیچه، مخصوصاً با معده‌ی خالی.',l:'با ادامه‌ی مصرف معمولاً بهتر می‌شود.'},{o:'gut',c:'long',s:'یبوست و تیره شدن مدفوع (بی‌خطر).',l:'مدفوع تیره طبیعی است.'}],
+ tips:['با ویتامین C جذبش بهتر می‌شود؛ با چای و لبنیات بدتر.','مدفوع تیره بعد از آهن طبیعی است.']},
+{id:'colchicine',fa:'کلشی‌سین',en:'Colchicine',cat:'pain',desc:'داروی حمله‌ی حاد نقرس؛ ضدالتهاب مفصلی خاص.',
+ mech:'در حمله‌ی نقرس، کریستال‌های اسیداوریک در مفصل می‌نشینند و گلبول‌های سفید به آن‌ها حمله می‌کنند. کلشی‌سین جلوی هجوم گلبول‌های سفید را می‌گیرد؛ یعنی دعوا را قبل از شروع تمام می‌کند.',
+ ther:[{o:'bone',s:'درد و ورم حمله‌ی نقرس را در چند ساعت کم می‌کند.',l:'پیشگیری از حملات مکرر با دوز کم روزانه.'}],
+ adv:[{o:'gut',c:'high',s:'اولین علامت مسمومیت: اسهال و دل‌پیچه‌ی شدید.',l:'دوز بالا سمی است — حتماً طبق دستور.'}],
+ tips:['اسهال بعد از کلشی‌سین = علامت هشدار؛ به پزشک بگویید.','گریپ‌فروت تداخل دارد.']},
+{id:'loperamide',fa:'لوپرامید',en:'Loperamide',cat:'gi',desc:'ضداسهال؛ ترمز حرکت روده.',
+ mech:'لوپرامید گیرنده‌های مخدرِ دیواره‌ی روده را فعال می‌کند (بدون اثر بر مغز)؛ عضلات روده آرام‌تر و کندتر حرکت می‌کنند، آب بیشتری جذب می‌شود و مدفوع سفت‌تر می‌شود.',
+ ther:[{o:'gut',s:'اسهال را سریع بند می‌آورد.',l:'کنترل اسهال‌های حاد.'}],
+ adv:[{o:'gut',c:'high',s:'زیاده‌روی = یبوست شدید و نفخ.',l:'انسداد روده در سوءمصرف.'}],
+ tips:['در اسهال خونی یا تب‌دار بدون نظر پزشک مصرف نشود.','آب و الکترولیت را جبران کنید.']},
+{id:'diphenhydramine',fa:'دیفن‌هیدرامین',en:'Diphenhydramine',cat:'resp',desc:'آنتی‌هیستامین نسل اول؛ برای آلرژی و بی‌خوابی.',
+ mech:'دیفن‌هیدرامین هم هیستامین را قفل می‌کند و هم مستقیم مغز را خواب‌آلود می‌کند (چون به‌راحتی وارد مغز می‌شود). برای همین هم ضدخارش است و هم خواب‌آور.',
+ ther:[{o:'skin',s:'خارش و علائم آلرژی را کم می‌کند.',l:'کنترل حساسیت‌های گاه‌به‌گاه.'},{o:'brain',s:'خواب‌آلودگی می‌دهد و به خواب کمک می‌کند.',l:'کمک کوتاه‌مدت به بی‌خوابی.'}],
+ adv:[{o:'brain',c:'high',s:'گیجی، خشکی دهان و تاری دید.',l:'در سالمندان خطر زمین خوردن و گیجی.'}],
+ tips:['بعد از مصرف رانندگی نکنید.','برای بی‌خوابی مزمن راه‌حل نیست.']},
+{id:'spironolactone',fa:'اسپیرونولاکتون',en:'Spironolactone',cat:'cardio',desc:'ادرارآور نگه‌دارنده‌ی پتاسیم؛ برای فشار خون و نارسایی قلبی.',
+ mech:'اسپیرونولاکتون جلوی اثر «آلدوسترون» در کلیه را می‌گیرد؛ آلدوسترون دستور نگه داشتن نمک و دفع پتاسیم می‌دهد. با بستن راه آن، نمک و آب دفع می‌شود ولی پتاسیم حفظ می‌شود.',
+ ther:[{o:'kidney',s:'آب و نمک اضافی را بدون دفع پتاسیم خارج می‌کند.',l:'کنترل فشار و ورم در نارسایی قلبی.'},{o:'heart',s:'بار قلب را کم می‌کند.',l:'بهبود پیش‌آگهی نارسایی قلبی.'}],
+ adv:[{o:'blood',c:'high',s:'پتاسیم خون را زیاد می‌کند.',l:'پتاسیم بالا ریتم قلب را به‌هم می‌ریزد.'}],
+ tips:['مکمل پتاسیم همزمان با آن خطرناک است.','در مردان ممکن است عوارض هورمونی بدهد.']},
+{id:'melatonin',fa:'ملاتونین',en:'Melatonin',cat:'neuro',desc:'هورمون خواب؛ تنظیم‌کننده‌ی ریتم شبانه‌روزی.',
+ mech:'ملاتونین همان هورمونی است که مغز در تاریکی می‌سازد و به بدن می‌گوید «شب شده، آماده‌ی خواب شو». مصرف آن ساعت بیولوژیک بدن را تنظیم می‌کند؛ مثل کوک کردن ساعت بدن.',
+ ther:[{o:'brain',s:'به خواب رفتن را راحت‌تر می‌کند، مخصوصاً در جت‌لگ.',l:'تنظیم ریتم خواب در شیفت‌کارها.'}],
+ adv:[{o:'brain',c:'high',s:'خواب‌آلودگی و گیجی روز بعد.',l:'کابوس‌های زنده در بعضی افراد.'}],
+ tips:['نیم تا یک ساعت قبل از خواب؛ نور موبایل اثرش را کم می‌کند.','دوز کم (۰.۵ تا ۱ میلی‌گرم) معمولاً کافی است.']}
+];
+</script>
+<script>
+/* ============ BODY SVG BUILDER ============ */
+function torsoPath(sw,ww,hw){
+  const X=v=>200+v;
+  return `M${X(-sw)},152 C${X(-sw+14)},144 ${X(-34)},141 200,141 C${X(34)},141 ${X(sw-14)},144 ${X(sw)},152 `+
+  `L${X(sw-8)},250 C${X(ww+4)},305 ${X(ww)},350 ${X(ww)},395 L${X(hw)},468 L${X(-hw)},468 L${X(-ww)},395 `+
+  `C${X(-ww)},350 ${X(-ww-4)},305 ${X(-sw+8)},250 Z`;
+}
+function bodySVG(gender){
+  const F = gender==='female';
+  const sw=F?58:66, ww=F?40:48, hw=F?62:52;
+  const X=v=>200+v;
+  const SKIN='#D29B78', SKIN_D='#B9835F', HAIR='#241A12';
+  const armL=`M${X(-sw-6)},160 C${X(-sw-12)},230 ${X(-sw-14)},300 ${X(-sw-8)},348 L${X(-sw+12)},346 C${X(-sw+8)},300 ${X(-sw+6)},230 ${X(-sw+2)},162 Z`;
+  const armR=`M${X(sw+6)},160 C${X(sw+12)},230 ${X(sw+14)},300 ${X(sw+8)},348 L${X(sw-12)},346 C${X(sw-8)},300 ${X(sw-6)},230 ${X(sw-2)},162 Z`;
+  const legL=`M${X(-hw+10)},468 C${X(-hw+8)},540 ${X(-hw+8)},610 ${X(-hw+12)},672 L${X(-16)},672 C${X(-16)},610 ${X(-14)},540 ${X(-12)},468 Z`;
+  const legR=`M${X(12)},468 C${X(14)},540 ${X(16)},610 ${X(16)},672 L${X(hw-12)},672 C${X(hw-8)},610 ${X(hw-8)},540 ${X(hw-10)},468 Z`;
+  const hairBack = F ?
+   `<path d="M200,20 C166,20 152,46 154,82 C155,112 150,142 144,170 L166,170 C170,146 171,126 172,110 L172,84 C178,62 222,62 228,84 L228,110 C229,126 230,146 234,170 L256,170 C250,142 245,112 246,82 C248,46 234,20 200,20 Z" fill="${HAIR}"/>` :
+   `<path d="M160,68 C160,32 240,32 240,68 C236,52 220,44 200,44 C180,44 164,52 160,68 Z" fill="${HAIR}"/>`;
+  const hairFront = F ?
+   `<path d="M160,66 C164,46 180,38 200,38 C220,38 236,46 240,66 C232,54 218,50 200,50 C182,50 168,54 160,66 Z" fill="${HAIR}"/>` : '';
+  const skinPaths = `${hairBack}
+   <ellipse cx="200" cy="72" rx="40" ry="48" fill="${SKIN}"/>
+   <ellipse cx="160" cy="76" rx="7" ry="10" fill="${SKIN}"/><ellipse cx="240" cy="76" rx="7" ry="10" fill="${SKIN}"/>
+   <path d="M187,108 L213,108 L211,142 L189,142 Z" fill="${SKIN}"/>
+   <path d="M187,108 L213,108 L211,120 L189,120 Z" fill="${SKIN_D}" opacity=".55"/>
+   <path d="${torsoPath(sw,ww,hw)}" fill="${SKIN}"/>
+   <path d="${armL}" fill="${SKIN}"/><path d="${armR}" fill="${SKIN}"/>
+   <circle cx="${X(-sw+2)}" cy="358" r="11" fill="${SKIN}"/><circle cx="${X(sw-2)}" cy="358" r="11" fill="${SKIN}"/>
+   <path d="${legL}" fill="${SKIN}"/><path d="${legR}" fill="${SKIN}"/>
+   <ellipse cx="${X(-hw+34)}" cy="684" rx="18" ry="9" fill="${SKIN}"/><ellipse cx="${X(hw-34)}" cy="684" rx="18" ry="9" fill="${SKIN}"/>
+   ${hairFront}
+   <path d="M${X(sw-4)},200 C${X(sw-2)},280 ${X(sw-2)},360 ${X(sw-6)},440" stroke="${SKIN_D}" stroke-width="10" fill="none" opacity=".35" stroke-linecap="round"/>`;
+  const vessels = `<g class="hit" stroke="#E0303E" fill="none" stroke-linecap="round" opacity=".55">
+   <path d="M200,112 C200,200 200,300 200,420" stroke-width="6"/>
+   <path d="M200,190 C172,210 152,232 140,258" stroke-width="4"/><path d="M200,190 C228,210 248,232 260,258" stroke-width="4"/>
+   <path d="M200,420 C192,500 188,580 187,660" stroke-width="5"/><path d="M200,420 C208,500 212,580 213,660" stroke-width="5"/>
+   <path d="M200,300 C160,320 130,330 110,335" stroke-width="3" opacity=".7"/><path d="M200,300 C240,320 270,330 290,335" stroke-width="3" opacity=".7"/>
+   <circle cx="200" cy="420" r="4" fill="#E0303E" stroke="none"/></g>`;
+  const org = (id, inner)=>`<g id="og-${id}" class="organ" data-organ="${id}"><g class="hit">${inner}</g></g>`;
+  return `<svg class="body" viewBox="0 0 400 800" role="img" aria-label="آناتومی بدن">
+   <g id="zoomG">
+   ${org('skin', skinPaths)}
+   ${org('blood', vessels)}
+   ${org('kidney', `<ellipse cx="158" cy="380" rx="13" ry="19" fill="#B0503C" transform="rotate(-15 158 380)"/><ellipse cx="242" cy="380" rx="13" ry="19" fill="#B0503C" transform="rotate(15 242 380)"/><path d="M158,398 C156,420 156,440 158,458 M242,398 C244,420 244,440 242,458" stroke="#B0503C" stroke-width="4" fill="none"/>`)}
+   ${org('gut', `<g stroke="#E78FA0" stroke-width="11" fill="none" stroke-linecap="round">
+     <path d="M168,412 C200,404 232,404 236,418 C239,430 208,430 176,430"/>
+     <path d="M176,442 C208,442 240,442 236,456 C232,468 200,468 168,466"/>
+     <path d="M170,478 C200,480 228,478 234,486"/></g>`)}
+   ${org('liver', `<path d="M218,315 C235,310 255,315 262,330 C266,342 260,355 245,358 C230,361 216,352 214,338 C213,328 214,320 218,315 Z" fill="#A8433C"/><path d="M225,322 C238,320 250,326 254,336" stroke="#7E2F28" stroke-width="3" fill="none"/>`)}
+   ${org('stomach', `<path d="M172,322 C190,322 197,340 189,354 C181,368 162,368 156,355" stroke="#E8B06A" stroke-width="17" fill="none" stroke-linecap="round"/>`)}
+   ${org('lungs', `<ellipse cx="167" cy="248" rx="25" ry="46" fill="#E89AA0" transform="rotate(7 167 248)"/><ellipse cx="233" cy="248" rx="25" ry="46" fill="#E89AA0" transform="rotate(-7 233 248)"/><path d="M200,205 L178,235 M200,205 L222,235 M200,205 L200,250" stroke="#C9737E" stroke-width="5" stroke-linecap="round"/>`)}
+   ${org('heart', `<path d="M182,282 C170,270 158,260 158,246 C158,236 166,230 174,232 C178,233 181,236 182,239 C183,236 186,233 190,232 C198,230 206,236 206,246 C206,260 194,270 182,282 Z" fill="#D7263D"/><path d="M170,246 C172,254 176,260 182,266" stroke="#8E1420" stroke-width="3" fill="none"/>`)}
+   ${org('thyroid', `<ellipse cx="190" cy="142" rx="9" ry="13" fill="#E8A87C"/><ellipse cx="210" cy="142" rx="9" ry="13" fill="#E8A87C"/><rect x="192" y="139" width="16" height="7" rx="3" fill="#E8A87C"/>`)}
+   ${org('brain', `<g fill="#D98CA6" stroke="#8E4A63" stroke-width="2"><ellipse cx="200" cy="72" rx="26" ry="30"/><circle cx="182" cy="58" r="12"/><circle cx="218" cy="58" r="12"/><circle cx="186" cy="88" r="10"/><circle cx="214" cy="88" r="10"/></g><path d="M200,46 L200,98" stroke="#8E4A63" stroke-width="2"/>`)}
+   ${org('bone', `<g fill="#EDE6D6" stroke="#B9AE97" stroke-width="2"><circle cx="${X(-sw+6)}" cy="168" r="9"/><circle cx="${X(sw-6)}" cy="168" r="9"/><circle cx="${X(-sw+2)}" cy="262" r="8"/><circle cx="${X(sw-2)}" cy="262" r="8"/><circle cx="${X(-30)}" cy="470" r="9"/><circle cx="${X(30)}" cy="470" r="9"/><circle cx="${X(-34)}" cy="600" r="10"/><circle cx="${X(34)}" cy="600" r="10"/></g>`)}
+   <g id="fxLayer"></g>
+   </g></svg>`;
+}
+</script>
+<script>
+/* ============ APP ============ */
+const $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+const COND_FA={high:'دوز بالا',long:'مصرف طولانی',both:'دوز بالا یا مصرف طولانی'};
+const S={gender:'male',dose:'normal',dur:'short',drugId:null,fx:[],tourIdx:0,autoTimer:null,zoom:1,cx:200,cy:400,cat:'all',q:'',favs:new Set(JSON.parse(localStorage.getItem('darusim-fav')||'[]'))};
+
+/* ---------- views ---------- */
+function showView(v){
+  $('viewHome').style.display=v==='home'?'':'none';
+  $('viewSim').style.display=v==='sim'?'':'none';
+  window.scrollTo({top:0});
+}
+$('logoHome').onclick=e=>{e.preventDefault();showView('home');};
+$('goSim').onclick=()=>showView('sim');
+
+/* ---------- home: cats + grid ---------- */
+function renderCats(){
+  const box=$('cats'); box.innerHTML='';
+  const mk=(v,t)=>{const b=document.createElement('button');b.className='cat'+(S.cat===v?' on':'');b.textContent=t;
+    b.onclick=()=>{S.cat=v;renderCats();renderGrid();};box.appendChild(b);};
+  mk('all','همه'); mk('fav','★ علاقه‌مندی‌ها');
+  Object.entries(CATS).forEach(([k,v])=>mk(k,v));
+}
+function renderGrid(){
+  const g=$('grid'); g.innerHTML='';
+  let list=DRUGS.filter(d=>(S.cat==='all'||(S.cat==='fav'?S.favs.has(d.id):d.cat===S.cat))&&
+    (d.fa.includes(S.q)||d.en.toLowerCase().includes(S.q.toLowerCase())));
+  $('gridCount').textContent=list.length+' دارو';
+  $('gridTitle').textContent=S.cat==='fav'?'علاقه‌مندی‌ها':(S.cat==='all'?'داروها':CATS[S.cat]);
+  if(!list.length){g.innerHTML='<div class="empty">دارویی پیدا نشد. عبارت دیگری را جست‌وجو کنید.</div>';return;}
+  list.forEach(d=>{
+    const c=document.createElement('div');c.className='dcard';
+    c.innerHTML=`<button class="fav ${S.favs.has(d.id)?'on':''}" data-f="${d.id}">★</button>
+      <span class="cat-tag">${CATS[d.cat]}</span><h3>${d.fa}</h3><div class="en">${d.en}</div>
+      <p>${d.desc}</p>
+      <div class="row"><button class="btn btn-g" data-m="${d.id}" style="flex:1">جزئیات</button>
+      <button class="btn btn-p" data-s="${d.id}" style="flex:1">شبیه‌سازی</button></div>`;
+    g.appendChild(c);
+  });
+  g.querySelectorAll('[data-f]').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleFav(b.dataset.f);});
+  g.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>openDrug(b.dataset.m));
+  g.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{toSim(b.dataset.s);});
+}
+function toggleFav(id){S.favs.has(id)?S.favs.delete(id):S.favs.add(id);
+  localStorage.setItem('darusim-fav',JSON.stringify([...S.favs]));renderGrid();}
+$('q').addEventListener('input',e=>{S.q=e.target.value.trim();renderGrid();});
+
+/* ---------- drug modal ---------- */
+function openDrug(id){
+  const d=DRUGS.find(x=>x.id===id); if(!d)return;
+  $('drugBox').innerHTML=`<button class="x" data-close="drugModal">✕</button>
+   <span class="cat-tag" style="font-size:.7rem;font-weight:700;color:var(--teal);background:rgba(45,212,191,.1);border-radius:999px;padding:3px 12px">${CATS[d.cat]}</span>
+   <h2 style="margin-top:10px">${d.fa}</h2><div class="en">${d.en}</div>
+   <h4>💡 مکانیسم اثر به زبان ساده</h4><p>${d.mech}</p>
+   <h4>✅ این دارو چه می‌کند؟</h4><ul>${d.ther.map(t=>`<li><b>${ORGANS[t.o].fa}:</b> ${t.s}</li>`).join('')}</ul>
+   ${d.adv.length?`<h4>⚠️ عوارض مهم</h4><ul>${d.adv.map(a=>`<li><b>${ORGANS[a.o].fa}</b> (${COND_FA[a.c]}): ${a.s}</li>`).join('')}</ul>`:''}
+   ${d.tips.map(t=>`<div class="tip">💊 ${t}</div>`).join('')}
+   <div class="cta"><button class="btn btn-p" id="mSim" style="flex:1">شبیه‌سازی در بدن</button>
+   <button class="btn btn-g" data-close="drugModal">بستن</button></div>`;
+  $('drugModal').classList.add('open');
+  $('mSim').onclick=()=>{$('drugModal').classList.remove('open');toSim(d.id);};
+  wireClose();
+}
+function toSim(id){ if(id)$('simDrug').value=id; showView('sim'); }
+
+/* ---------- modal close ---------- */
+function wireClose(){
+  document.querySelectorAll('[data-close]').forEach(b=>{b.onclick=()=>$(b.dataset.close).classList.remove('open');});
+}
+document.querySelectorAll('.movl').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
+$('openDiscl').onclick=()=>{$('disclModal').classList.add('open');wireClose();};
+
+/* ---------- simulator ---------- */
+function doseFa(){return {low:'دوز کم',normal:'دوز معمول',high:'دوز زیاد'}[S.dose];}
+function durFa(){return {short:'کوتاه‌مدت',long:'طولانی‌مدت'}[S.dur];}
+function segWire(id,key){
+  $(id).querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    $(id).querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); S[key]=b.dataset.v;
+    if(key==='dose')b.classList.toggle('warn',false);
+  });
+}
+function populateSimDrug(){
+  const sel=$('simDrug'); sel.innerHTML='';
+  Object.entries(CATS).forEach(([ck,cv])=>{
+    const og=document.createElement('optgroup');og.label=cv;
+    DRUGS.filter(d=>d.cat===ck).forEach(d=>{const o=document.createElement('option');o.value=d.id;o.textContent=d.fa;og.appendChild(o);});
+    sel.appendChild(og);
+  });
+}
+const LEGEND='<div class="legend"><span class="lg"><i style="background:var(--green)"></i>اثر مفید</span><span class="lg"><i style="background:var(--red)"></i>اثر مضر</span><span class="lg"><i style="background:var(--teal)"></i>مسیر دارو</span></div>';
+function buildStage(){
+  $('stage').innerHTML=LEGEND+bodySVG(S.gender);
+  document.querySelectorAll('.organ').forEach(g=>{
+    g.addEventListener('click',()=>organClicked(g.dataset.organ));
+  });
+}
+function setZoom(s,cx,cy){
+  S.zoom=Math.min(3,Math.max(1,s)); if(cx!==undefined){S.cx=cx;S.cy=cy;}
+  $('zoomG').setAttribute('transform',`translate(${200-S.cx*S.zoom} ${400-S.cy*S.zoom}) scale(${S.zoom})`);
+}
+function clearFx(){document.querySelectorAll('.organ').forEach(g=>g.classList.remove('dim','fx-good','fx-bad'));}
+function computeFx(d){
+  const map={};
+  d.ther.forEach(t=>{map[t.o]=map[t.o]||{};map[t.o].good=t;});
+  d.adv.forEach(a=>{
+    const hit=(a.c==='high'&&S.dose==='high')||(a.c==='long'&&S.dur==='long')||(a.c==='both'&&(S.dose==='high'||S.dur==='long'));
+    if(hit){map[a.o]=map[a.o]||{};map[a.o].bad=a;}
+  });
+  return Object.entries(map).map(([o,v])=>v.bad?{o,type:'bad',...v.bad}:{o,type:'good',...v.good});
+}
+function stopAuto(){if(S.autoTimer){clearInterval(S.autoTimer);S.autoTimer=null;}}
+
+/* --- run --- */
+function runSim(){
+  const d=DRUGS.find(x=>x.id===$('simDrug').value); if(!d)return;
+  S.drugId=d.id; S.fx=computeFx(d); S.tourIdx=0; stopAuto();
+  buildStage();
+  $('stageTitle').innerHTML=`${d.fa} <small>— ${doseFa()} · ${durFa()}</small>`;
+  $('warnBox').classList.toggle('show',S.dose==='high'||S.dur==='long');
+  setZoom(1,200,400); clearFx();
+  $('tour').innerHTML='<div class="tour-empty">در حال آماده‌سازی شبیه‌سازی…</div>';
+  $('fxListSec').style.display='none';
+  flyCapsule(d);
+}
+function flyCapsule(d){
+  const fxL=$('fxLayer');
+  const eso=document.createElementNS(NS,'path');
+  eso.setAttribute('d','M200,118 C200,170 196,230 186,290 C182,310 177,328 172,342');
+  eso.setAttribute('fill','none'); fxL.appendChild(eso);
+  const len=eso.getTotalLength();
+  const cap=document.createElementNS(NS,'g'); cap.setAttribute('class','capsule');
+  cap.innerHTML='<rect x="-17" y="-7" width="34" height="14" rx="7" fill="#EAF4F1"/><rect x="0" y="-7" width="17" height="14" rx="7" fill="#2DD4BF" transform="translate(0,0)"/><rect x="-2" y="-7" width="4" height="14" fill="#0F2428"/>';
+  fxL.appendChild(cap);
+  const t0=performance.now(),DUR=1500;
+  (function step(t){
+    const p=Math.min(1,(t-t0)/DUR), e=p*p*(3-2*p);
+    const pt=eso.getPointAtLength(e*len), pt2=eso.getPointAtLength(Math.min(len,e*len+2));
+    const ang=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI+90;
+    cap.setAttribute('transform',`translate(${pt.x} ${pt.y}) rotate(${ang})`);
+    if(p<1)requestAnimationFrame(step); else dissolve(cap,d);
+  })(t0);
+}
+function dissolve(cap,d){
+  const t0=performance.now(),DUR=450;
+  (function step(t){
+    const p=Math.min(1,(t-t0)/DUR);
+    cap.setAttribute('opacity',1-p); cap.setAttribute('transform',`translate(172 342) scale(${1-p})`);
+    if(p<1)requestAnimationFrame(step); else {cap.remove();spawnParticles(d);}
+  })(t0);
+}
+function spawnParticles(d){
+  const fxL=$('fxLayer');
+  const targets=[...new Set(S.fx.map(f=>f.o))];
+  if(!targets.length){finishNoFx(d);return;}
+  let pending=0;
+  targets.forEach((o,i)=>{
+    const {x:ox,y:oy}=ORGANS[o];
+    for(let k=0;k<3;k++){
+      pending++;
+      setTimeout(()=>{
+        const c=document.createElementNS(NS,'circle');
+        c.setAttribute('r',4.5);c.setAttribute('class','pt');fxL.appendChild(c);
+        const x0=172,y0=345,cx=(x0+ox)/2+34,cy=(y0+oy)/2-44;
+        const s=performance.now(),DUR=950;
+        (function step(t){
+          const p=Math.min(1,(t-s)/DUR),e=1-Math.pow(1-p,3);
+          const x=(1-e)*(1-e)*x0+2*(1-e)*e*cx+e*e*ox;
+          const y=(1-e)*(1-e)*y0+2*(1-e)*e*cy+e*e*oy;
+          c.setAttribute('cx',x);c.setAttribute('cy',y);
+          if(p<1)requestAnimationFrame(step);
+          else{c.remove();if(--pending===0)startTour(d);}
+        })(s);
+      }, i*380+k*130);
+    }
+  });
+}
+function finishNoFx(d){
+  $('tour').innerHTML=`<div class="tour-empty">در این سناریو، «${d.fa}» اثر موضعی مشخصی روی اندام‌ها ندارد.<br>روی اندام‌ها کلیک کنید تا آناتومی را ببینید.</div>`;
+}
+function startTour(d){
+  const targets=[...new Set(S.fx.map(f=>f.o))];
+  document.querySelectorAll('.organ').forEach(g=>{
+    g.classList.add('dim');
+    const o=g.dataset.organ;
+    if(targets.includes(o)){
+      const fx=S.fx.find(f=>f.o===o);
+      g.classList.remove('dim');g.classList.add(fx.type==='good'?'fx-good':'fx-bad');
+    }
+  });
+  renderFxList(d);
+  showTourStep(0,true);
+  stopAuto();
+  S.autoTimer=setInterval(()=>{showTourStep((S.tourIdx+1)%S.fx.length,true);},3400);
+}
+function showTourStep(i,auto){
+  if(!S.fx.length)return;
+  S.tourIdx=(i+S.fx.length)%S.fx.length;
+  const f=S.fx[S.tourIdx], meta=ORGANS[f.o];
+  const wide=(f.o==='skin'||f.o==='blood');
+  setZoom(wide?1.12:1.7,meta.x,meta.y);
+  $('tour').innerHTML=`
+   <div class="th"><h3>${meta.fa}</h3>
+    <span class="badge ${f.type}">${f.type==='good'?'✓ اثر درمانی':'⚠ عارضه / اثر مضر'}</span></div>
+   <p class="tt"><b>کوتاه‌مدت:</b> ${f.s}</p>
+   <p class="tt"><b>بلندمدت:</b> ${f.l}</p>
+   <div class="tnav">
+    <button id="tPrev">قبلی</button><button id="tNext">بعدی</button>
+    <div class="dots">${S.fx.map((_,k)=>`<i data-k="${k}" class="${k===S.tourIdx?'on':''}"></i>`).join('')}</div>
+   </div>`;
+  $('tPrev').onclick=()=>{stopAuto();showTourStep(S.tourIdx-1);};
+  $('tNext').onclick=()=>{stopAuto();showTourStep(S.tourIdx+1);};
+  $('tour').querySelectorAll('.dots i').forEach(dt=>dt.onclick=()=>{stopAuto();showTourStep(+dt.dataset.k);});
+}
+function renderFxList(d){
+  $('fxListSec').style.display='';
+  $('fxGrid').innerHTML=S.fx.map((f,k)=>{
+    const meta=ORGANS[f.o];
+    return `<div class="fx" data-k="${k}"><div class="fh">
+     <i style="background:${f.type==='good'?'var(--green)':'var(--red)'}"></i>${meta.fa}
+     <span class="badge ${f.type}" style="margin-right:auto">${f.type==='good'?'مفید':'مضر'}</span></div>
+     <p>${f.s}</p></div>`;
+  }).join('');
+  $('fxGrid').querySelectorAll('.fx').forEach(el=>el.onclick=()=>{stopAuto();showTourStep(+el.dataset.k);
+    $('stage').scrollIntoView({behavior:'smooth',block:'center'});});
+}
+function organClicked(o){
+  const k=S.fx.findIndex(f=>f.o===o);
+  if(k>=0){stopAuto();showTourStep(k);}
+  else if(S.drugId){
+    const meta=ORGANS[o];
+    stopAuto();setZoom(1.6,meta.x,meta.y);
+    $('tour').innerHTML=`<div class="th"><h3>${meta.fa}</h3></div>
+     <p class="tt">در این سناریو، «${DRUGS.find(d=>d.id===S.drugId).fa}» اثر مستقیم شناخته‌شده‌ای روی ${meta.fa} ندارد.</p>
+     <div class="tnav"><button onclick="setZoom(1,200,400)">نمای کلی</button></div>`;
+  }
+}
+
+/* ---------- sim controls ---------- */
+$('runSim').onclick=runSim;
+$('replay').onclick=()=>{if(S.drugId)runSim();};
+$('zoomIn').onclick=()=>{stopAuto();setZoom(S.zoom+0.35);};
+$('zoomOut').onclick=()=>{stopAuto();setZoom(S.zoom-0.35);};
+$('zoomReset').onclick=()=>{stopAuto();setZoom(1,200,400);};
+
+/* ---------- init ---------- */
+segWire('segGender','gender');segWire('segDose','dose');segWire('segDur','dur');
+renderCats();renderGrid();populateSimDrug();buildStage();wireClose();
+if(!localStorage.getItem('darusim-discl')){
+  $('disclModal').classList.add('open');
+  $('disclOk').onclick=()=>{localStorage.setItem('darusim-discl','1');$('disclModal').classList.remove('open');};
+  wireClose();
+}
+</script>
+</body>
+</html>
