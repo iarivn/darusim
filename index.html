@@ -529,8 +529,10 @@ function bodySVG(gender){
   const legL=`M${X(-hw+10)},468 C${X(-hw+8)},540 ${X(-hw+8)},610 ${X(-hw+12)},672 L${X(-16)},672 C${X(-16)},610 ${X(-14)},540 ${X(-12)},468 Z`;
   const legR=`M${X(12)},468 C${X(14)},540 ${X(16)},610 ${X(16)},672 L${X(hw-12)},672 C${X(hw-8)},610 ${X(hw-8)},540 ${X(hw-10)},468 Z`;
   const hairBack = F ?
-   `<path d="M200,20 C166,20 152,46 154,82 C155,112 150,142 144,170 L166,170 C170,146 171,126 172,110 L172,84 C178,62 222,62 228,84 L228,110 C229,126 230,146 234,170 L256,170 C250,142 245,112 246,82 C248,46 234,20 200,20 Z" fill="${HAIR}"/>` :
+   `<path d="M200,14 C160,14 144,46 147,88 C149,120 144,155 138,185 L160,195 C166,170 168,145 170,125 L170,90 C176,66 224,66 230,90 L230,125 C232,145 234,170 240,195 L262,185 C256,155 251,120 253,88 C256,46 240,14 200,14 Z" fill="${HAIR}"/>` :
    `<path d="M160,68 C160,32 240,32 240,68 C236,52 220,44 200,44 C180,44 164,52 160,68 Z" fill="${HAIR}"/>`;
+  const hairLocks = F ?
+   `<path d="M162,70 C152,100 150,140 154,180 C156,205 162,228 172,245 L192,238 C184,218 180,195 179,170 C178,140 180,105 188,80 Z" fill="${HAIR}"/><path d="M238,70 C248,100 250,140 246,180 C244,205 238,228 228,245 L208,238 C216,218 220,195 221,170 C222,140 220,105 212,80 Z" fill="${HAIR}"/>` : '';
   const hairFront = F ?
    `<path d="M160,66 C164,46 180,38 200,38 C220,38 236,46 240,66 C232,54 218,50 200,50 C182,50 168,54 160,66 Z" fill="${HAIR}"/>` : '';
   const skinPaths = `${hairBack}
@@ -543,6 +545,7 @@ function bodySVG(gender){
    <circle cx="${X(-sw+2)}" cy="358" r="11" fill="${SKIN}"/><circle cx="${X(sw-2)}" cy="358" r="11" fill="${SKIN}"/>
    <path d="${legL}" fill="${SKIN}"/><path d="${legR}" fill="${SKIN}"/>
    <ellipse cx="${X(-hw+34)}" cy="684" rx="18" ry="9" fill="${SKIN}"/><ellipse cx="${X(hw-34)}" cy="684" rx="18" ry="9" fill="${SKIN}"/>
+   ${hairLocks}
    ${hairFront}
    <path d="M${X(sw-4)},200 C${X(sw-2)},280 ${X(sw-2)},360 ${X(sw-6)},440" stroke="${SKIN_D}" stroke-width="10" fill="none" opacity=".35" stroke-linecap="round"/>`;
   const vessels = `<g class="hit" stroke="#E0303E" fill="none" stroke-linecap="round" opacity=".55">
@@ -552,7 +555,7 @@ function bodySVG(gender){
    <path d="M200,300 C160,320 130,330 110,335" stroke-width="3" opacity=".7"/><path d="M200,300 C240,320 270,330 290,335" stroke-width="3" opacity=".7"/>
    <circle cx="200" cy="420" r="4" fill="#E0303E" stroke="none"/></g>`;
   const org = (id, inner)=>`<g id="og-${id}" class="organ" data-organ="${id}"><g class="hit">${inner}</g></g>`;
-  return `<svg class="body" viewBox="0 0 400 800" role="img" aria-label="آناتومی بدن">
+  return `<svg class="body" data-g="${gender}" viewBox="0 0 400 800" role="img" aria-label="آناتومی بدن">
    <g id="zoomG">
    ${org('skin', skinPaths)}
    ${org('blood', vessels)}
